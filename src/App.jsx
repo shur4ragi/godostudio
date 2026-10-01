@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
-  Preloader,
   Header,
   Hero,
   Manifesto,
@@ -19,15 +18,10 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  const [ready, setReady] = useState(false);
-
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
-    if (prefersReducedMotion) {
-      setReady(true);
-      return;
-    }
+    if (prefersReducedMotion) return undefined;
 
     const lenis = new Lenis({
       duration: 1.2,
@@ -53,16 +47,11 @@ function App() {
     };
   }, []);
 
-  const handlePreloaderComplete = () => {
-    setReady(true);
-  };
-
   return (
     <>
-      <Preloader onComplete={handlePreloaderComplete} />
       <Header />
       <main>
-        <Hero ready={ready} />
+        <Hero />
         <Manifesto />
         <ProjectsCarousel />
         <Process />

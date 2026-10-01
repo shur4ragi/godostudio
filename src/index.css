@@ -75,7 +75,6 @@
   --duration-slow: 800ms;
   
   /* Z-index */
-  --z-preloader: 1000;
   --z-header: 100;
   --z-modal: 200;
 }
@@ -217,9 +216,22 @@ section {
   }
 }
 
-/* Hide during preload */
-body.is-loading main {
-  visibility: hidden;
+/* Entrance (Hero intro): header hidden while loading, slides in on reveal */
+html[data-entrance='loading'] {
+  overflow: hidden;
+}
+
+html[data-entrance] [data-site-header] {
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1), background 0.3s ease, box-shadow 0.3s ease;
+}
+
+html[data-entrance='loading'] [data-site-header] {
+  transform: translateY(-100%);
+  transition: none;
+}
+
+html[data-entrance='reveal'] [data-site-header] {
+  transition-delay: 0.35s;
 }
 
 /* Section backgrounds for alternating contrast */

@@ -15,6 +15,8 @@ export const siteConfig = {
   hero: {
     headline: 'GodoStudio',
     subtitle: 'Sites profissionais para negócios locais',
+    highlight: 'negócios locais',
+    lead: 'Landing pages para cafés, estúdios e comércios locais, com foco em conversão. Assinatura mensal a partir de R$ 100.',
   },
   
   manifesto: {

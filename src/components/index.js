@@ -1,4 +1,3 @@
-export { Preloader } from './Preloader';
 export { Header } from './Header';
 export { Hero } from './Hero';
 export { Manifesto } from './Manifesto';
