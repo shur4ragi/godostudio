@@ -1,0 +1,9 @@
+export { Header } from './Header';
+export { Hero } from './Hero';
+export { ClientsMarquee } from './ClientsMarquee';
+export { Portfolio } from './Portfolio';
+export { HowItWorks } from './HowItWorks';
+export { Pricing } from './Pricing';
+export { FAQ } from './FAQ';
+export { FinalCTA } from './FinalCTA';
+export { Footer } from './Footer';
