@@ -93,6 +93,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: var(--header-h);
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html.lenis, html.lenis body {
@@ -120,7 +121,9 @@ body {
   background: var(--color-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* clip (não hidden): hidden transforma o body em contêiner de rolagem e quebra position: sticky */
   overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
 }
 
@@ -233,4 +236,17 @@ body.is-loading main {
 .section-muted {
   background: var(--color-light-2);
   color: var(--color-dark);
+}
+
+/* Texto só para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

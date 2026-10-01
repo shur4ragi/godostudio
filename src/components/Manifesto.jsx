@@ -24,7 +24,7 @@ export function Manifesto() {
 
     const wordInners = text.querySelectorAll(`.${styles.wordInner}`);
 
-    gsap.fromTo(wordInners,
+    const tween = gsap.fromTo(wordInners,
       { 
         opacity: 0.2,
       },
@@ -42,7 +42,8 @@ export function Manifesto() {
     );
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      tween.scrollTrigger?.kill();
+      tween.kill();
     };
   }, []);
 

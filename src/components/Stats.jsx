@@ -33,8 +33,10 @@ export function Stats() {
       );
     });
 
+    // Só os gatilhos desta seção (matar todos derrubava o pin do Processo).
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      tl.scrollTrigger?.kill();
+      tl.kill();
     };
   }, []);
 
@@ -47,7 +49,6 @@ export function Stats() {
               key={i}
               className={styles.item}
               ref={(el) => (itemsRef.current[i] = el)}
-              style={{ opacity: 0 }}
             >
               <span className={styles.label}>{stat.label}</span>
               <span className={styles.value} ref={(el) => (valuesRef.current[i] = el)}>

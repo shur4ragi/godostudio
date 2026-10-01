@@ -143,29 +143,109 @@ export const siteConfig = {
     },
   ],
   
+  // Processo — "A escada". Durações, entregáveis e rodadas são SUGESTÕES da pesquisa.
+  // TODO: Vitor - confirmar durações, entregáveis ("Você recebe") e nº de rodadas de ajustes.
+  // rulerWeight = tamanho do trecho do passo na régua de tempo (proporcional à duração).
+  processIntro: {
+    title: 'Como funciona',
+    subtitle: 'do primeiro oi ao site no ar',
+    // TODO: Vitor - confirmar prazo total (a soma das durações abaixo dá ≈ 6–9 dias)
+    total: '≈ 7–10 dias',
+    rulerLabel: 'Do primeiro oi ao site no ar',
+    closing: 'Do primeiro oi ao site no ar em cerca de 7 a 10 dias.',
+    cta: 'Começar pelo passo 01',
+    ctaMessage: 'Oi, Vitor! Quero começar o meu site. Meu negócio é ',
+  },
+
   process: [
     {
       number: '01',
       title: 'Descobrir',
-      description: 'Entendo seu negócio numa conversa rápida pelo WhatsApp.',
+      duration: '≈ 1 dia',
+      rulerWeight: 2,
+      art: 'chat',
+      headline: 'Um papo rápido sobre o seu negócio',
+      description: 'A gente conversa pelo WhatsApp (ou numa chamada de 20 minutos). Eu entendo o que você vende, quem é o seu cliente, como ele te encontra hoje e o que o site precisa resolver. No fim, você sabe qual plano faz sentido — sem empurrar nada.',
+      deliverables: ['Resumo do projeto em 1 página', 'Plano recomendado', 'Lista do que preciso de você'],
+      youDo: 'Me manda o que já tem: logo, fotos, cardápio ou lista de produtos, endereço e horários. Não tem foto boa? A gente resolve junto.',
     },
     {
       number: '02',
       title: 'Prototipar',
-      description: 'Você recebe um preview para aprovar ou ajustar.',
+      duration: '≈ 2–3 dias',
+      rulerWeight: 3,
+      art: 'wireframe',
+      headline: 'Você vê o site antes de ele existir',
+      description: 'Monto uma prévia com as suas cores, seus textos e suas fotos de verdade — não um modelo genérico. Você abre o link no celular e navega como se o site já estivesse no ar.',
+      deliverables: ['Link da prévia', 'Paleta e fontes', 'Estrutura das seções', '2 rodadas de ajustes'],
+      youDo: 'Olha com calma e me diz o que mudar — pode ser por áudio. Aprovou? Partimos pra construção.',
     },
     {
       number: '03',
       title: 'Construir',
-      description: 'Desenvolvo com código otimizado e rápido.',
+      duration: '≈ 3–5 dias',
+      rulerWeight: 5,
+      art: 'code',
+      headline: 'Código leve, rápido e feito sob medida',
+      description: 'Desenvolvo o site de verdade: carregamento rápido no 4G, imagens otimizadas, botão de WhatsApp, mapa, formulários e o que o seu plano incluir. Testo em vários celulares e deixo tudo pronto para o Google encontrar você.',
+      deliverables: ['Versão final para revisar', 'Teste de velocidade (PageSpeed)', 'Textos revisados', 'SEO básico (título, descrição, mapa)'],
+      youDo: 'Quase nada: só uma última olhada na versão final e o ok.',
     },
     {
       number: '04',
       title: 'Lançar',
-      description: 'Site no ar com domínio próprio e manutenção inclusa.',
+      duration: 'Contínuo',
+      live: true,
+      rulerWeight: 1,
+      art: 'browser',
+      headline: 'No ar, com o seu domínio — e eu continuo por perto',
+      description: 'Coloco o site no ar com domínio próprio (seunegocio.com.br), hospedagem e cadeado de segurança (HTTPS). Depois disso, a manutenção mensal está inclusa: pediu, eu ajusto.',
+      deliverables: ['Site publicado', 'Domínio e hospedagem configurados', 'Guia rápido: como pedir alterações', 'Manutenção mensal'],
+      youDo: 'Compartilha o link na bio do Instagram, no Google Meu Negócio e no status do WhatsApp. Pronto! 🎉',
     },
   ],
-  
+
+  // Planos — cards (Resumo) e tabela (Comparar tudo) saem daqui.
+  pricing: {
+    subtitle: 'Assinatura mensal, sem fidelidade. Cancele quando quiser.',
+    // TODO: Vitor - confirmar a data de vigência dos preços
+    validFrom: 'Preços válidos desde 10/2026',
+    // {plan} vira o nome do plano na mensagem do WhatsApp
+    planMessage: 'Olá, Vitor! Vim pelo site da GodoStudio e tenho interesse no plano {plan}.',
+    // Faixa de confiança abaixo da tabela.
+    trust: [
+      { icon: 'unlock', text: 'Sem fidelidade' },
+      // TODO: Vitor - confirmar "o domínio é seu" (registrado no nome do cliente)
+      { icon: 'key', text: 'O domínio é seu' },
+      // TODO: Vitor - confirmar o aviso de 30 dias antes de reajuste
+      { icon: 'bell', text: 'Aviso com 30 dias se o preço mudar' },
+    ],
+    // Notas de rodapé (as marcas ¹ ² ³ nos cards e na tabela apontam para cá).
+    footnotes: [
+      { mark: '¹', text: 'Plano Médio: você usa o site completo durante 30 dias sem pagar nada. A cobrança começa no segundo mês. Sem compromisso.' },
+      { mark: '²', text: 'Sem fidelidade nem multa. Para pausar ou cancelar, é só avisar.' },
+      // TODO: Vitor - confirmar (sugestão da pesquisa)
+      { mark: '³', text: 'Domínio próprio (seunegocio.com.br) registrado no seu nome.' },
+    ],
+  },
+
+  // Recursos dos planos. icon = nome do ícone em PlanIcon.jsx; tip = explicação no "?" da tabela.
+  planFeatures: {
+    landing: { label: 'Landing page de uma página', icon: 'page', tip: 'Um site de uma página só, com tudo o que o seu cliente precisa ver antes de chamar no WhatsApp.' },
+    whatsapp: { label: 'Botão WhatsApp flutuante', icon: 'whatsapp' },
+    map: { label: 'Mapa e localização', icon: 'pin' },
+    hosting: { label: 'Hospedagem e domínio inclusos', icon: 'globe', note: '³', tip: 'O endereço seunegocio.com.br e o servidor onde o site fica no ar.' },
+    tweaks: { label: 'Ajustes simples sob demanda', icon: 'wrench' },
+    catalog: { label: 'Cardápio ou catálogo completo', icon: 'menu' },
+    gallery: { label: 'Galeria de fotos/portfólio', icon: 'image' },
+    form: { label: 'Formulário de orçamento/contato', icon: 'form' },
+    updates: { label: 'Atualizações mensais inclusas', icon: 'refresh' },
+    cart: { label: 'Carrinho com pedido pelo WhatsApp', icon: 'cart' },
+    tour: { label: 'Tour guiado interativo', icon: 'compass' },
+    priority: { label: 'Prioridade em alterações', icon: 'bolt' },
+    custom: { label: 'Recursos sob medida', icon: 'spark' },
+  },
+
   plans: [
     {
       id: 'basico',
@@ -173,29 +253,26 @@ export const siteConfig = {
       price: 100,
       highlighted: false,
       badge: null,
+      persona: 'Pra quem precisa existir no Google e no WhatsApp.',
+      // TODO: Vitor - confirmar "sem taxa de adesão"
+      anchor: 'Sem taxa de adesão',
       // TODO: Vitor - confirmar recursos do plano Básico
-      features: [
-        'Landing page de uma página',
-        'Botão WhatsApp flutuante',
-        'Mapa e localização',
-        'Hospedagem e domínio inclusos',
-        'Ajustes simples sob demanda',
-      ],
+      features: ['landing', 'whatsapp', 'map', 'hosting', 'tweaks'],
     },
     {
       id: 'medio',
       name: 'Médio',
       price: 175,
       highlighted: true,
-      badge: 'Primeiro mês grátis',
+      badge: 'Mais escolhido',
+      persona: 'Pra quem quer mostrar o cardápio/catálogo e receber pedidos de orçamento.',
+      anchor: '1º mês: R$ 0 · você economiza R$ 175',
+      anchorNote: '¹',
+      barNote: '1º mês grátis',
+      // Tudo do plano indicado + os recursos abaixo.
+      includes: 'basico',
       // TODO: Vitor - confirmar recursos do plano Médio
-      features: [
-        'Tudo do plano Básico',
-        'Cardápio ou catálogo completo',
-        'Galeria de fotos/portfólio',
-        'Formulário de orçamento/contato',
-        'Atualizações mensais inclusas',
-      ],
+      features: ['catalog', 'gallery', 'form', 'updates'],
     },
     {
       id: 'premium',
@@ -203,17 +280,34 @@ export const siteConfig = {
       price: 250,
       highlighted: false,
       badge: null,
+      persona: 'Pra quem quer vender pelo site e ter prioridade.',
+      // TODO: Vitor - confirmar "sem taxa de adesão"
+      anchor: 'Sem taxa de adesão',
+      includes: 'medio',
       // TODO: Vitor - confirmar recursos do plano Premium
-      features: [
-        'Tudo do plano Médio',
-        'Carrinho com pedido pelo WhatsApp',
-        'Tour guiado interativo',
-        'Prioridade em alterações',
-        'Recursos sob medida',
-      ],
+      features: ['cart', 'tour', 'priority', 'custom'],
     },
   ],
-  
+
+  // Tabela "Comparar tudo": grupos com os recursos acima (só o que já está nos planos).
+  compare: {
+    title: 'Compare todos os recursos',
+    groups: [
+      { title: 'O site', rows: ['landing', 'catalog', 'gallery', 'tour'] },
+      { title: 'Contato e vendas', rows: ['whatsapp', 'map', 'form', 'cart'] },
+      { title: 'Hospedagem e manutenção', rows: ['hosting', 'tweaks', 'updates', 'priority', 'custom'] },
+    ],
+    // Linhas de texto (valor por plano). {price} = preço do plano.
+    conditions: {
+      title: 'Condições',
+      rows: [
+        { label: 'Mensalidade', values: { basico: 'R$ 100', medio: 'R$ 175', premium: 'R$ 250' } },
+        { label: 'Primeiro mês', note: '¹', values: { basico: 'R$ 100', medio: 'R$ 0', premium: 'R$ 250' } },
+        { label: 'Fidelidade', note: '²', values: { basico: 'Nenhuma', medio: 'Nenhuma', premium: 'Nenhuma' } },
+      ],
+    },
+  },
+
   faq: [
     {
       question: 'Qual o prazo de entrega do site?',
@@ -252,11 +346,15 @@ export const siteConfig = {
 
 export const getWhatsAppLink = (planName = null) => {
   const { whatsapp } = siteConfig.contact;
-  let message = whatsapp.defaultMessage;
-  
-  if (planName) {
-    message = `Olá, Vitor! Vim pelo site da GodoStudio e tenho interesse no plano ${planName}.`;
-  }
-  
+  const message = planName
+    ? siteConfig.pricing.planMessage.replace('{plan}', planName)
+    : whatsapp.defaultMessage;
   return `https://wa.me/${whatsapp.number}?text=${encodeURIComponent(message)}`;
+};
+
+// Recursos de um plano, incluindo os herdados ("Tudo do plano Básico").
+export const planFeatureIds = (planId) => {
+  const plan = siteConfig.plans.find((p) => p.id === planId);
+  if (!plan) return [];
+  return [...(plan.includes ? planFeatureIds(plan.includes) : []), ...plan.features];
 };
