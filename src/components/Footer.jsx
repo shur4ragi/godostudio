@@ -1,101 +1,83 @@
 import { useEffect, useState } from 'react';
-import { siteConfig, getWhatsAppLink } from '../data/site';
+import { siteConfig } from '../data/site';
+import { whatsappUrl } from '../utils/external';
+import { Mark } from './Mark';
 import styles from './Footer.module.css';
 
-function Star({ className }) {
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z" />
-    </svg>
-  );
+const { contact, brand, nav } = siteConfig;
+
+const fmt = (timeZone) =>
+  new Date().toLocaleTimeString('pt-BR', { timeZone, hour: '2-digit', minute: '2-digit' });
+
+function useClock(timeZone) {
+  const [time, setTime] = useState(() => fmt(timeZone));
+  useEffect(() => {
+    const id = setInterval(() => setTime(fmt(timeZone)), 15000);
+    return () => clearInterval(id);
+  }, [timeZone]);
+  return time;
 }
 
+// Rodapé no formato do Galvão Tattoo (/ Seções, / Redes, local à direita) + wordmark e linha final.
 export function Footer() {
-  const [time, setTime] = useState('');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString('pt-BR', {
-        timeZone: siteConfig.brand.timezone,
-        hour: '2-digit',
-        minute: '2-digit',
-      });
-      setTime(timeStr);
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const year = new Date().getFullYear();
+  const time = useClock(brand.timezone);
+  const [year] = useState(() => new Date().getFullYear());
 
   return (
     <footer className={styles.footer}>
-      <div className="container">
-        <div className={styles.top}>
-          <div className={styles.column}>
-            <span className={styles.label}>Seções</span>
-            <nav className={styles.nav}>
-              {siteConfig.nav.map((item) => (
-                <a key={item.href} href={item.href} className={styles.link}>
-                  {item.label}
-                </a>
+      <div className={`container ${styles.inner}`}>
+        <div className={styles.cols}>
+          <div>
+            <h3>
+              <Mark /> / Seções
+            </h3>
+            <ul>
+              {nav.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href}>{item.label}</a>
+                </li>
               ))}
-            </nav>
+              <li>
+                <a href="#contato">Contato</a>
+              </li>
+            </ul>
           </div>
-
-          <div className={styles.column}>
-            <span className={styles.label}>Redes</span>
-            <div className={styles.nav}>
-              <a
-                href={getWhatsAppLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-              >
-                WhatsApp
-              </a>
-              <a
-                href={siteConfig.contact.instagram.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.link}
-              >
-                Instagram
-              </a>
-            </div>
+          <div>
+            <h3>
+              <Mark /> / Redes
+            </h3>
+            <ul>
+              <li>
+                <a href={contact.instagram.url} target="_blank" rel="noopener noreferrer">
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a href={whatsappUrl(contact.whatsapp.number, contact.whatsapp.defaultMessage)} target="_blank" rel="noopener noreferrer">
+                  WhatsApp
+                </a>
+              </li>
+            </ul>
           </div>
-
-          <div className={styles.column}>
-            <span className={styles.label}>Local</span>
-            <div className={styles.place}>
-              <Star className={styles.star} />
-              <span>{siteConfig.brand.location}</span>
-            </div>
-          </div>
+          <p className={styles.place}>
+            {brand.name}
+            <br />
+            {contact.city}
+          </p>
         </div>
 
-        <div className={styles.wordmarkWrap}>
-          <a href="#" className={styles.wordmark}>
-            {siteConfig.brand.name}
-          </a>
-        </div>
+        <p className={styles.word} aria-hidden="true">
+          {brand.name}
+        </p>
 
-        <div className={styles.bottom}>
-          <span className={styles.copyright}>
-            © {year} {siteConfig.brand.name}
+        <div className={styles.row}>
+          <span>
+            © {year} {brand.name}
           </span>
-          <div className={styles.hud}>
-            <span className={styles.hudLabel}>SP</span>
-            <span className={styles.hudTime}>{time}</span>
-          </div>
+          <span className={styles.hud}>
+            <b>SP</b> {time}
+          </span>
+          <a href="#">Voltar ao topo ↑</a>
         </div>
       </div>
     </footer>

@@ -12,7 +12,8 @@ import {
   Process,
   Pricing,
   FAQ,
-  FinalCTA,
+  Contact,
+  ExternalLoader,
   Footer,
 } from './components';
 
@@ -69,9 +70,10 @@ function App() {
         <Process />
         <Pricing />
         <FAQ />
-        <FinalCTA />
+        <Contact />
       </main>
       <Footer />
+      <ExternalLoader />
     </>
   );
 }

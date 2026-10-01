@@ -1,95 +1,60 @@
-import { useState, useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useState } from 'react';
 import { siteConfig } from '../data/site';
+import { InkReveal } from './InkReveal';
+import { Mark } from './Mark';
 import styles from './FAQ.module.css';
 
-gsap.registerPlugin(ScrollTrigger);
-
+// FAQ no layout do Galvão: coluna esquerda com tag + título empilhado (pintado pela tinta),
+// coluna direita com acordeão de linhas finas e ícone +. Uma pergunta aberta por vez.
 export function FAQ() {
-  const [openIndex, setOpenIndex] = useState(null);
-  const sectionRef = useRef(null);
-  const headerRef = useRef(null);
-  const itemsRef = useRef([]);
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: 'top 70%',
-        once: true,
-      },
-    });
-
-    tl.fromTo(
-      headerRef.current,
-      { opacity: 0, x: -30 },
-      { opacity: 1, x: 0, duration: 0.6, ease: 'expo.out' }
-    );
-
-    itemsRef.current.forEach((item) => {
-      if (!item) return;
-      tl.fromTo(
-        item,
-        { opacity: 0, x: -20 },
-        { opacity: 1, x: 0, duration: 0.4, ease: 'power2.out' },
-        `-=${0.25}`
-      );
-    });
-
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
-
-  const toggle = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
-  };
+  const [open, setOpen] = useState(null);
 
   return (
-    <section id="faq" ref={sectionRef} className={`${styles.section} section-muted`}>
-      <div className="container">
-        <div ref={headerRef} className={styles.header} style={{ opacity: 0 }}>
-          <span className={styles.eyebrow}>FAQ</span>
-          <h2 className={styles.title}>Perguntas frequentes</h2>
-        </div>
+    <section id="faq" className={`${styles.section} section-muted`}>
+      <div className={`container ${styles.layout}`}>
+        <header className={styles.head}>
+          <p className={styles.tag}>
+            <Mark /> <span>/ Dúvidas</span>
+            <span className={styles.index}>05</span>
+          </p>
+          <InkReveal as="h2" variant="letters" className={styles.titleInk} contentClassName={styles.title}>
+            <b>Antes</b>
+            <span>de</span>
+            <span>começar.</span>
+          </InkReveal>
+        </header>
 
         <div className={styles.list}>
-          {siteConfig.faq.map((item, i) => (
-            <article
-              key={i}
-              ref={(el) => (itemsRef.current[i] = el)}
-              className={`${styles.item} ${openIndex === i ? styles.open : ''}`}
-              style={{ opacity: 0 }}
-            >
-              <button
-                className={styles.question}
-                onClick={() => toggle(i)}
-                aria-expanded={openIndex === i}
-              >
-                <span className={styles.questionNumber}>
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span className={styles.questionText}>{item.question}</span>
-                <span className={styles.questionIcon}>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
+          {siteConfig.faq.map((item, i) => {
+            const isOpen = open === i;
+            return (
+              <div key={item.question} className={styles.item} data-open={isOpen}>
+                <h3 className={styles.heading}>
+                  <button
+                    type="button"
+                    id={`faq-q-${i}`}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-a-${i}`}
+                    onClick={() => setOpen(isOpen ? null : i)}
                   >
-                    <path d="M12 5v14M5 12h14" />
-                  </svg>
-                </span>
-              </button>
-              <div className={styles.answerWrapper}>
-                <p className={styles.answer}>{item.answer}</p>
+                    <span>{item.question}</span>
+                    <i aria-hidden="true" />
+                  </button>
+                </h3>
+                <div
+                  id={`faq-a-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-q-${i}`}
+                  className={styles.panel}
+                  inert={!isOpen}
+                >
+                  <div className={styles.inner}>
+                    <p>{item.answer}</p>
+                  </div>
+                </div>
               </div>
-            </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

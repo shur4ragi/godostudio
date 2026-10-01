@@ -4,6 +4,7 @@
 @import '@fontsource-variable/host-grotesk';
 @import '@fontsource/geist-mono/400.css';
 @import '@fontsource/geist-mono/500.css';
+@import '@fontsource/mrs-saint-delafield';
 
 :root {
   /* Colors — Pastel/Muted palette (no pure black, no lime green) */
@@ -30,6 +31,7 @@
   /* Typography */
   --font-display: 'Host Grotesk Variable', 'Inter', -apple-system, sans-serif;
   --font-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
+  --font-script: 'Mrs Saint Delafield', 'Brush Script MT', cursive;
   
   /* Type scale */
   --text-hero: clamp(3rem, 10vw, 8rem);

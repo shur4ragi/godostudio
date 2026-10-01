@@ -7,5 +7,6 @@ export { ProjectsCarousel } from './ProjectsCarousel';
 export { Process } from './Process';
 export { Pricing } from './Pricing';
 export { FAQ } from './FAQ';
-export { FinalCTA } from './FinalCTA';
+export { Contact } from './Contact';
+export { ExternalLoader } from './ExternalLoader';
 export { Footer } from './Footer';

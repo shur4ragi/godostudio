@@ -2,13 +2,14 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig, getWhatsAppLink } from '../data/site';
+import { InkReveal } from './InkReveal';
+import { Mark } from './Mark';
 import styles from './Pricing.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function Pricing() {
   const sectionRef = useRef(null);
-  const headerRef = useRef(null);
   const cardsRef = useRef([]);
 
   useEffect(() => {
@@ -22,12 +23,6 @@ export function Pricing() {
         once: true,
       },
     });
-
-    tl.fromTo(
-      headerRef.current,
-      { opacity: 0, y: 40 },
-      { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }
-    );
 
     cardsRef.current.forEach((card) => {
       if (!card) return;
@@ -55,15 +50,22 @@ export function Pricing() {
 
   return (
     <section id="planos" ref={sectionRef} className={`${styles.section} section-dark`}>
-      <div className="container">
-        <div ref={headerRef} className={styles.header} style={{ opacity: 0 }}>
-          <span className={styles.eyebrow}>Planos</span>
-          <h2 className={styles.title}>Escolha seu plano</h2>
-          <p className={styles.subtitle}>
-            Assinatura mensal sem contrato. Cancele quando quiser.
-          </p>
-        </div>
+      <InkReveal variant="band" className={styles.band} contentClassName={`container ${styles.bandLayout}`}>
+        <p className={styles.kicker}>
+          <Mark /> <span>/ Planos</span>
+          <span className={styles.kickerIndex}>04</span>
+        </p>
+        <h2 className={styles.bandTitle}>
+          Escolha
+          <br />
+          seu plano
+        </h2>
+        <p className={styles.bandText}>
+          Assinatura mensal sem contrato. Cancele quando quiser.
+        </p>
+      </InkReveal>
 
+      <div className="container">
         <div className={styles.grid}>
           {siteConfig.plans.map((plan, i) => (
             <article

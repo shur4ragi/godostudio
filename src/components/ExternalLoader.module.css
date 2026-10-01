@@ -1,0 +1,149 @@
+/* Tela de saída (ExternalLoader) — skeleton em tons pastel com acento coral */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: grid;
+  place-items: center;
+  padding: var(--space-lg);
+  background: rgba(227, 232, 235, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fade 0.3s var(--ease);
+}
+
+.card {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  width: min(360px, 100%);
+  padding: 28px 24px 22px;
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-xl);
+  background: var(--color-light);
+  color: var(--color-dark);
+  text-align: center;
+  box-shadow: 0 30px 80px -20px rgba(42, 42, 40, 0.25);
+  animation: rise 0.45s var(--ease);
+}
+
+.skeleton {
+  position: relative;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 12px 0 8px;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-light-2);
+}
+
+/* Brilho passando sobre o skeleton */
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(238, 242, 244, 0.7) 50%, transparent 70%);
+  transform: translateX(-100%);
+  animation: shine 1.4s var(--ease) infinite;
+}
+
+.art {
+  width: min(200px, 100%);
+  height: auto;
+  overflow: visible;
+}
+
+.draw {
+  fill: var(--color-light);
+  stroke: var(--color-dark);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw 1.1s var(--ease) 0.15s forwards;
+}
+
+.line {
+  fill: rgba(42, 42, 40, 0.12);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+.dot {
+  fill: rgba(42, 42, 40, 0.35);
+  animation: type 0.9s ease-in-out infinite;
+}
+
+.accentDot {
+  fill: var(--color-accent);
+}
+
+.title {
+  margin-top: 6px;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}
+
+.text {
+  color: var(--color-dark-muted);
+  font-size: var(--text-small);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.bar {
+  width: 100%;
+  height: 2px;
+  margin: 10px 0 6px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--color-light-2);
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  background: var(--color-accent);
+  transform-origin: left;
+  animation: grow linear forwards;
+}
+
+.cancel {
+  min-height: 44px;
+  padding: 0 var(--space-lg);
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-dark);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.cancel:hover {
+  border-color: var(--color-dark);
+  background: var(--color-light-2);
+}
+
+@keyframes fade { from { opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px) scale(0.98); } }
+@keyframes shine { to { transform: translateX(100%); } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes pulse { 50% { fill: rgba(42, 42, 40, 0.22); } }
+@keyframes type { 50% { fill: var(--color-accent); transform: translateY(-3px); } }
+@keyframes grow { from { transform: scaleX(0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .draw {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+
+  .skeleton::after,
+  .line,
+  .dot {
+    animation: none;
+  }
+}

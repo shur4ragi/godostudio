@@ -31,14 +31,32 @@ export const siteConfig = {
   contact: {
     whatsapp: {
       number: '5512991939876',
+      label: '+55 12 99193-9876',
       defaultMessage: 'Olá, Vitor! Vim pelo site da GodoStudio e quero um site para o meu negócio.',
     },
     instagram: {
       handle: '@vitor_godo',
       url: 'https://instagram.com/vitor_godo',
     },
+    // TODO: Vitor - confirmar horário de atendimento
+    hours: 'Pelo WhatsApp, com hora marcada',
+    city: 'Taubaté — SP',
   },
   
+  contactForm: {
+    businessTypes: [
+      'Cafeteria',
+      'Doceria / Confeitaria',
+      'Restaurante / Lanchonete',
+      'Estúdio / Tattoo',
+      'Salão / Barbearia',
+      'Loja / Comércio',
+      'Serviços',
+      'Outro',
+    ],
+    plans: ['Básico', 'Médio', 'Premium', 'Ainda não sei'],
+  },
+
   nav: [
     { label: 'Projetos', href: '#projetos' },
     { label: 'Processo', href: '#processo' },

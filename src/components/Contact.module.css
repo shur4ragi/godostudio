@@ -1,0 +1,257 @@
+/* Contato v4 — estrutura do Galvão Tattoo na paleta GodoStudio */
+
+.section {
+  padding: clamp(56px, 7vw, 96px) 0 clamp(48px, 6vw, 80px);
+  background: var(--color-dark);
+  color: var(--color-light);
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: clamp(24px, 3vw, 40px);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border-light);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.kicker svg {
+  color: var(--color-accent);
+}
+
+.kickerIndex {
+  margin-left: auto;
+  color: rgba(238, 242, 244, 0.6);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+
+/* Título leve com assinatura em script */
+.title {
+  font-size: clamp(2.1rem, 3.6vw, 3.25rem);
+  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.sign {
+  font-family: var(--font-script);
+  font-size: 1.05em;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+.lead {
+  max-width: 440px;
+  margin-top: 14px;
+  color: rgba(238, 242, 244, 0.68);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.info {
+  display: grid;
+  margin-top: 28px;
+}
+
+.info div {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 12px;
+  padding: 13px 0;
+  border-top: 1px solid rgba(238, 242, 244, 0.14);
+}
+
+.info div:last-child {
+  border-bottom: 1px solid rgba(238, 242, 244, 0.14);
+}
+
+.info dt {
+  padding-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(238, 242, 244, 0.5);
+}
+
+.info dd {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.info a {
+  border-bottom: 1px solid rgba(238, 242, 244, 0.3);
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.info a:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Formulário */
+.form {
+  display: grid;
+  gap: 18px;
+  padding: clamp(20px, 3vw, 32px);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-xl);
+  background: var(--color-dark-2);
+}
+
+.formTitle {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field > span {
+  font-size: 12px;
+  color: rgba(238, 242, 244, 0.65);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 1px solid rgba(238, 242, 244, 0.25);
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-light);
+  font: inherit;
+  font-size: 0.9375rem;
+  transition: border-color 0.3s var(--ease);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.45;
+}
+
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 28px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23eef2f4' stroke-width='1.4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 12px 8px;
+  cursor: pointer;
+}
+
+.field select option {
+  background: var(--color-dark-2);
+  color: var(--color-light);
+}
+
+.field .placeholder,
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgba(238, 242, 244, 0.4);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--color-accent);
+}
+
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible {
+  box-shadow: 0 1px 0 0 var(--color-accent);
+}
+
+.field [aria-invalid='true'] {
+  border-bottom-color: #f0a58a;
+}
+
+.field em {
+  font-style: normal;
+  font-size: 12px;
+  color: #f0a58a;
+}
+
+.submit {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 var(--space-xl);
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: var(--color-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: background 0.2s ease, transform 0.2s var(--ease);
+}
+
+.submit:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+}
+
+.hint {
+  font-size: 12px;
+  color: rgba(238, 242, 244, 0.5);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 520px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .info div {
+    grid-template-columns: 96px minmax(0, 1fr);
+  }
+
+  .submit {
+    justify-self: stretch;
+    justify-content: center;
+  }
+}
