@@ -29,9 +29,10 @@ const relPos = (i, c) => {
 };
 
 // Geometry per breakpoint. x in card widths, y in card heights (of the *scaled* card).
+// Offsets apertados (v5): o próximo card encosta/sobrepõe um pouco o atual, lendo como uma pilha só.
 const GEO = {
-  desktop: { k: 0.6, inX: [0.66, 1.5], inY: [-0.95, -2.1], stackX: 0.52, stackY: 0.68, stepX: 0.15, stepY: 0.22, depth: 3 },
-  mobile: { k: 0.6, inX: [0.7, 1.95], inY: [-0.48, -1.45], stackX: 0.62, stackY: 0.56, stepX: 0.15, stepY: 0.075, depth: 3 },
+  desktop: { k: 0.6, inX: [0.42, 0.86], inY: [-0.6, -1.22], stackX: 0.36, stackY: 0.48, stepX: 0.11, stepY: 0.16, depth: 3 },
+  mobile: { k: 0.6, inX: [0.5, 1.02], inY: [-0.34, -0.72], stackX: 0.44, stackY: 0.4, stepX: 0.11, stepY: 0.06, depth: 3 },
 };
 const TILT = 'rotateX(35deg) rotateZ(20deg)';
 const FLAT = 'rotateX(0deg) rotateZ(0deg)';
@@ -534,11 +535,11 @@ export function ProjectsCarousel() {
               <span className={styles.counter} aria-hidden="true">
                 {active.number} <span>/ {String(N).padStart(2, '0')}</span>
               </span>
-              <button type="button" className={styles.arrow} onClick={() => go(-1)} aria-label="Projeto anterior">
-                <span aria-hidden="true">←</span>
+              <button type="button" className={styles.arrow} data-dir="prev" onClick={() => go(-1)} aria-label="Projeto anterior">
+                <span className={styles.arrowIcon} aria-hidden="true">←</span>
               </button>
-              <button type="button" className={styles.arrow} onClick={() => go(1)} aria-label="Próximo projeto">
-                <span aria-hidden="true">→</span>
+              <button type="button" className={styles.arrow} data-dir="next" onClick={() => go(1)} aria-label="Próximo projeto">
+                <span className={styles.arrowIcon} aria-hidden="true">→</span>
               </button>
             </div>
 

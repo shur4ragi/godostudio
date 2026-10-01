@@ -2,7 +2,6 @@ export { Preloader } from './Preloader';
 export { Header } from './Header';
 export { Hero } from './Hero';
 export { Manifesto } from './Manifesto';
-export { Stats } from './Stats';
 export { ProjectsCarousel } from './ProjectsCarousel';
 export { Process } from './Process';
 export { Pricing } from './Pricing';

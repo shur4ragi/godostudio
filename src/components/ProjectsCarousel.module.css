@@ -237,8 +237,30 @@
 }
 
 .ctaPrimary {
+  position: relative;
   color: var(--color-light);
   background: var(--color-accent);
+}
+
+/* Pulso discreto: um anel coral que se expande e some. */
+.ctaPrimary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 0 rgba(224, 120, 80, 0.6);
+  animation: ctaRing 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@keyframes ctaRing {
+  0% {
+    box-shadow: 0 0 0 0 rgba(224, 120, 80, 0.6);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 14px rgba(224, 120, 80, 0);
+  }
 }
 
 .ctaPrimary:hover {
@@ -455,11 +477,68 @@
     color 0.2s ease;
 }
 
-.arrow:hover,
 .close:hover {
   background: var(--color-accent);
   border-color: var(--color-accent);
   color: var(--color-light);
+}
+
+/* Setas: círculo coral cresce do centro e a seta dá um passinho na sua direção. */
+.arrow {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition:
+    border-color 0.45s var(--ease-out-expo),
+    color 0.3s ease,
+    transform 0.45s var(--ease-out-expo);
+}
+
+.arrow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: 50%;
+  background: var(--color-accent);
+  transform: scale(0);
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.arrowIcon {
+  display: block;
+  line-height: 1;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.arrow:hover,
+.arrow:focus-visible {
+  border-color: var(--color-accent);
+  color: var(--color-light);
+}
+
+.arrow:hover::before,
+.arrow:focus-visible::before {
+  transform: scale(1);
+}
+
+.arrow[data-dir='prev']:hover .arrowIcon,
+.arrow[data-dir='prev']:focus-visible .arrowIcon {
+  transform: translateX(-4px);
+}
+
+.arrow[data-dir='next']:hover .arrowIcon,
+.arrow[data-dir='next']:focus-visible .arrowIcon {
+  transform: translateX(4px);
+}
+
+.arrow:active {
+  transform: scale(0.94);
+}
+
+.arrow:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 .close {
@@ -657,6 +736,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ctaPrimary::after {
+    animation: none;
+    box-shadow: none;
+  }
+
   .card,
   .panel,
   .detail,

@@ -3,6 +3,7 @@
 .section {
   --coral: var(--color-accent);
   --coral-text: #b9532f;
+  --ink-hot: #c95f3b;
   --gap: 24px;
   --ease-fly: cubic-bezier(0.65, 0, 0.35, 1);
   padding: var(--space-4xl) 0 var(--space-3xl);
@@ -62,8 +63,8 @@
 
 .stairs {
   --verb: min(120px, 8.3vw, calc((100svh - 300px) / 4.4));
-  /* Canto de cima: 5 colunas. Canto de baixo: até o início de "Construir" (2 degraus). */
-  --pw: calc((100% - 11 * var(--gap)) / 12 * 5 + 4 * var(--gap));
+  /* Canto de cima: 4 colunas. Canto de baixo: até o início de "Construir" (2 degraus). */
+  --pw: calc((100% - 11 * var(--gap)) / 12 * 4 + 3 * var(--gap));
   --pw-b: calc((100% + var(--gap)) / 3 - 22px);
   position: relative;
   flex: 1;
@@ -110,7 +111,7 @@
   line-height: 1;
   padding-top: calc(var(--verb, 44px) * 0.14);
   color: var(--color-dark-muted);
-  transition: color 0.4s ease;
+  transition: color 0.55s var(--ease-out-expo);
   white-space: nowrap;
 }
 
@@ -123,6 +124,7 @@
   display: block;
   overflow: hidden;
   padding-bottom: 0.08em;
+  transition: transform 0.55s var(--ease-out-expo);
 }
 
 .word {
@@ -133,27 +135,36 @@
   letter-spacing: -0.03em;
   white-space: nowrap;
   color: rgba(42, 42, 40, 0.15);
-  transition: color 0.4s ease;
+  /* só cor aqui: o transform da palavra é do GSAP (entrada pela máscara) */
+  transition: color 0.55s var(--ease-out-expo);
 }
 
 .row[data-state='done'] .word {
   color: rgba(42, 42, 40, 0.35);
 }
 
-.row[data-state='active'] .word {
-  color: var(--color-dark);
+/* Hover e passo ativo têm o mesmo estado: coral escuro + leve deslocamento, mesma transição. */
+.row[data-state='active'] .word,
+.verb:hover .word,
+.verb:focus-visible .word {
+  color: var(--ink-hot);
 }
 
-.row[data-state='active'] .index {
+.row[data-state='active'] .wordMask,
+.verb:hover .wordMask,
+.verb:focus-visible .wordMask {
+  transform: translateX(10px);
+}
+
+.row[data-state='active'] .index,
+.verb:hover .index,
+.verb:focus-visible .index {
   color: var(--coral-text);
 }
 
-.verb:hover .word {
-  color: rgba(42, 42, 40, 0.6);
-}
-
-.row[data-state='active'] .verb:hover .word {
-  color: var(--color-dark);
+.verb:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 6px;
 }
 
 /* Painel com cantos de visor: canto superior direito (01–02) → inferior esquerdo (03–04). */
@@ -548,11 +559,16 @@
   line-height: 1.05;
   letter-spacing: -0.03em;
   color: var(--color-dark);
-  transition: color 0.4s ease;
+  transition: color 0.55s var(--ease-out-expo);
 }
 
 .railStep[data-state='dim'] .railVerb {
   color: rgba(42, 42, 40, 0.35);
+}
+
+.railStep[data-current] .railVerb,
+.railVerb:hover {
+  color: var(--ink-hot);
 }
 
 .railVerb .index {

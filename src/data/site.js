@@ -21,13 +21,7 @@ export const siteConfig = {
     text: 'Criamos sites que transformam visitantes em clientes. Landing pages para cafés, estúdios e comércios — com foco em conversão.',
     highlight: 'transformam',
   },
-  
-  stats: [
-    { label: 'Projetos', value: '10', suffix: '+' },
-    { label: 'Clientes', value: '4', suffix: '' },
-    { label: 'Desde', value: '2024', suffix: '' },
-  ],
-  
+
   contact: {
     whatsapp: {
       number: '5512991939876',
@@ -164,10 +158,10 @@ export const siteConfig = {
       duration: '≈ 1 dia',
       rulerWeight: 2,
       art: 'chat',
-      headline: 'Um papo rápido sobre o seu negócio',
-      description: 'A gente conversa pelo WhatsApp (ou numa chamada de 20 minutos). Eu entendo o que você vende, quem é o seu cliente, como ele te encontra hoje e o que o site precisa resolver. No fim, você sabe qual plano faz sentido — sem empurrar nada.',
-      deliverables: ['Resumo do projeto em 1 página', 'Plano recomendado', 'Lista do que preciso de você'],
-      youDo: 'Me manda o que já tem: logo, fotos, cardápio ou lista de produtos, endereço e horários. Não tem foto boa? A gente resolve junto.',
+      headline: 'Um papo sobre o seu negócio',
+      description: 'Conversamos pelo WhatsApp sobre o que você vende e quem é o seu cliente. No fim, você sabe qual plano faz sentido.',
+      deliverables: ['Resumo do projeto', 'Plano recomendado'],
+      youDo: 'Me manda logo, fotos e cardápio — o que já tiver.',
     },
     {
       number: '02',
@@ -175,10 +169,10 @@ export const siteConfig = {
       duration: '≈ 2–3 dias',
       rulerWeight: 3,
       art: 'wireframe',
-      headline: 'Você vê o site antes de ele existir',
-      description: 'Monto uma prévia com as suas cores, seus textos e suas fotos de verdade — não um modelo genérico. Você abre o link no celular e navega como se o site já estivesse no ar.',
-      deliverables: ['Link da prévia', 'Paleta e fontes', 'Estrutura das seções', '2 rodadas de ajustes'],
-      youDo: 'Olha com calma e me diz o que mudar — pode ser por áudio. Aprovou? Partimos pra construção.',
+      headline: 'Você vê o site antes',
+      description: 'Monto uma prévia com as suas cores, textos e fotos. Você navega pelo celular como se já estivesse no ar.',
+      deliverables: ['Link da prévia', '2 rodadas de ajustes'],
+      youDo: 'Me diz o que mudar — pode ser por áudio.',
     },
     {
       number: '03',
@@ -186,10 +180,10 @@ export const siteConfig = {
       duration: '≈ 3–5 dias',
       rulerWeight: 5,
       art: 'code',
-      headline: 'Código leve, rápido e feito sob medida',
-      description: 'Desenvolvo o site de verdade: carregamento rápido no 4G, imagens otimizadas, botão de WhatsApp, mapa, formulários e o que o seu plano incluir. Testo em vários celulares e deixo tudo pronto para o Google encontrar você.',
-      deliverables: ['Versão final para revisar', 'Teste de velocidade (PageSpeed)', 'Textos revisados', 'SEO básico (título, descrição, mapa)'],
-      youDo: 'Quase nada: só uma última olhada na versão final e o ok.',
+      headline: 'Código leve e rápido',
+      description: 'Desenvolvo o site de verdade: rápido no 4G, com WhatsApp, mapa e o que o seu plano incluir.',
+      deliverables: ['Versão final', 'Teste de velocidade', 'SEO básico'],
+      youDo: 'Só uma última olhada e o ok.',
     },
     {
       number: '04',
@@ -198,10 +192,10 @@ export const siteConfig = {
       live: true,
       rulerWeight: 1,
       art: 'browser',
-      headline: 'No ar, com o seu domínio — e eu continuo por perto',
-      description: 'Coloco o site no ar com domínio próprio (seunegocio.com.br), hospedagem e cadeado de segurança (HTTPS). Depois disso, a manutenção mensal está inclusa: pediu, eu ajusto.',
-      deliverables: ['Site publicado', 'Domínio e hospedagem configurados', 'Guia rápido: como pedir alterações', 'Manutenção mensal'],
-      youDo: 'Compartilha o link na bio do Instagram, no Google Meu Negócio e no status do WhatsApp. Pronto! 🎉',
+      headline: 'No ar, com o seu domínio',
+      description: 'Publico com domínio próprio e cadeado de segurança (HTTPS). Depois, a manutenção mensal está inclusa.',
+      deliverables: ['Site publicado', 'Domínio e hospedagem', 'Manutenção mensal'],
+      youDo: 'Compartilha o link no Instagram e no Google. Pronto! 🎉',
     },
   ],
 

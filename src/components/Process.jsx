@@ -79,7 +79,8 @@ function Stair() {
         end: () => `+=${window.innerHeight * 3}`,
         pin: true,
         anticipatePin: 1,
-        snap: { snapTo: 1 / 3, duration: { min: 0.2, max: 0.6 }, delay: 0.08, ease: 'power2.inOut' },
+        // Sem snap: o snap brigava com a rolagem do usuário e às vezes puxava de volta ao passo
+        // anterior. O passo segue só a posição da rolagem (limiares em 1/6, 1/2 e 5/6).
         onUpdate: (self) => {
           rulerRef.current?.style.setProperty('--p', self.progress.toFixed(4));
           setActive(Math.min(3, Math.round(self.progress * 3)));
@@ -310,6 +311,7 @@ function Rail() {
             key={s.number}
             className={styles.railStep}
             data-state={reduce || i <= reached ? 'lit' : 'dim'}
+            data-current={!reduce && i === reached ? '' : undefined}
             style={{ '--indent': `${Math.min(i * 16, 48)}px` }}
           >
             <span className={styles.node} data-node aria-hidden="true" />
