@@ -1,37 +1,18 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { siteConfig, getWhatsAppLink } from '../data/site';
 import styles from './Header.module.css';
 
 export function Header() {
-  const [stuck, setStuck] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const headerRef = useRef(null);
-  const [time, setTime] = useState('');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      const timeStr = now.toLocaleTimeString('pt-BR', {
-        timeZone: siteConfig.brand.timezone,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-      });
-      setTime(timeStr);
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroHeight = window.innerHeight;
-      setStuck(window.scrollY > heroHeight - 80);
+      setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -62,13 +43,11 @@ export function Header() {
   };
 
   return (
-    <header 
-      ref={headerRef}
-      className={`${styles.header} ${stuck ? styles.stuck : ''}`}
-    >
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.inner}>
         <a href="#" className={styles.logo}>
           <span className={styles.logoIcon}>G</span>
+          <span className={styles.logoText}>{siteConfig.brand.name}</span>
         </a>
 
         <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
@@ -90,7 +69,7 @@ export function Header() {
                 className={styles.navLink}
                 onClick={handleNavClick}
               >
-                <span className={styles.navLinkLabel}>{item.label}</span>
+                {item.label}
               </a>
             ))}
           </div>
@@ -106,22 +85,14 @@ export function Header() {
           </a>
         </nav>
 
-        <div className={styles.rightSection}>
-          <span className={styles.clock}>
-            <span className={styles.clockLabel}>SP</span>
-            {time}
-          </span>
-
-          <a
-            href={getWhatsAppLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.cta}
-          >
-            <span className={styles.ctaDot} />
-            Contato
-          </a>
-        </div>
+        <a
+          href={getWhatsAppLink()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.cta}
+        >
+          Contato
+        </a>
 
         <button
           className={`${styles.menuBtn} ${menuOpen ? styles.menuOpen : ''}`}

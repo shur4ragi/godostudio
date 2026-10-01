@@ -26,15 +26,13 @@ export function Manifesto() {
 
     gsap.fromTo(wordInners,
       { 
-        yPercent: 100,
-        opacity: 0,
+        opacity: 0.2,
       },
       {
-        yPercent: 0,
         opacity: 1,
-        duration: 0.8,
-        ease: 'expo.out',
-        stagger: 0.02,
+        duration: 0.4,
+        ease: 'power2.out',
+        stagger: 0.03,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top 70%',
@@ -49,7 +47,7 @@ export function Manifesto() {
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.section}>
+    <section ref={sectionRef} className={`${styles.section} section-dark`}>
       <div className="container">
         <p ref={textRef} className={styles.text}>
           {siteConfig.manifesto.text}

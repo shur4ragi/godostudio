@@ -9,34 +9,39 @@ gsap.registerPlugin(ScrollTrigger);
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState(null);
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
   const itemsRef = useRef([]);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    itemsRef.current.forEach((item, i) => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 70%',
+        once: true,
+      },
+    });
+
+    tl.fromTo(
+      headerRef.current,
+      { opacity: 0, x: -30 },
+      { opacity: 1, x: 0, duration: 0.6, ease: 'expo.out' }
+    );
+
+    itemsRef.current.forEach((item) => {
       if (!item) return;
-      
-      gsap.fromTo(item,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 85%',
-            once: true,
-          },
-          delay: i * 0.05,
-        }
+      tl.fromTo(
+        item,
+        { opacity: 0, x: -20 },
+        { opacity: 1, x: 0, duration: 0.4, ease: 'power2.out' },
+        `-=${0.25}`
       );
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
@@ -45,18 +50,18 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" ref={sectionRef} className={styles.section}>
+    <section id="faq" ref={sectionRef} className={`${styles.section} section-muted`}>
       <div className="container">
-        <div className={styles.header}>
+        <div ref={headerRef} className={styles.header} style={{ opacity: 0 }}>
           <span className={styles.eyebrow}>FAQ</span>
-          <h2 className={styles.title}>Perguntas<br/>frequentes</h2>
+          <h2 className={styles.title}>Perguntas frequentes</h2>
         </div>
 
         <div className={styles.list}>
           {siteConfig.faq.map((item, i) => (
             <article
               key={i}
-              ref={el => itemsRef.current[i] = el}
+              ref={(el) => (itemsRef.current[i] = el)}
               className={`${styles.item} ${openIndex === i ? styles.open : ''}`}
               style={{ opacity: 0 }}
             >
@@ -70,7 +75,12 @@ export function FAQ() {
                 </span>
                 <span className={styles.questionText}>{item.question}</span>
                 <span className={styles.questionIcon}>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  >
                     <path d="M12 5v14M5 12h14" />
                   </svg>
                 </span>

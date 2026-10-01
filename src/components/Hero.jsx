@@ -1,44 +1,42 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { siteConfig } from '../data/site';
+import { siteConfig, getWhatsAppLink } from '../data/site';
 import styles from './Hero.module.css';
 
 export function Hero({ ready }) {
   const headlineRef = useRef(null);
-  const labelsRef = useRef([]);
-  const hintRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const ctaRef = useRef(null);
 
   useEffect(() => {
     if (!ready) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
-      gsap.set([headlineRef.current, ...labelsRef.current, hintRef.current], { 
+      gsap.set([headlineRef.current, subtitleRef.current, ctaRef.current], { 
         opacity: 1, 
         y: 0,
-        filter: 'blur(0px)'
+        clipPath: 'inset(0% 0% 0% 0%)'
       });
       return;
     }
 
-    const tl = gsap.timeline({ delay: 0.2 });
+    const tl = gsap.timeline({ delay: 0.1 });
 
     tl.fromTo(headlineRef.current, 
-      { opacity: 0, y: 60, filter: 'blur(8px)' },
-      { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.2, ease: 'expo.out' }
+      { clipPath: 'inset(100% 0% 0% 0%)' },
+      { clipPath: 'inset(0% 0% 0% 0%)', duration: 1, ease: 'expo.out' }
     );
 
-    labelsRef.current.forEach((label) => {
-      tl.fromTo(label,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out' },
-        `-=${0.6}`
-      );
-    });
+    tl.fromTo(subtitleRef.current,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out' },
+      '-=0.5'
+    );
 
-    tl.fromTo(hintRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.6, ease: 'power2.out' },
+    tl.fromTo(ctaRef.current,
+      { opacity: 0, scale: 0.9 },
+      { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.5)' },
       '-=0.4'
     );
 
@@ -47,47 +45,24 @@ export function Hero({ ready }) {
 
   return (
     <section className={styles.hero}>
-      <div className={styles.background}>
-        <div className={styles.grid} />
-      </div>
-
       <div className={styles.content}>
-        <div className={styles.labels}>
-          {siteConfig.hero.labels.map((label, i) => (
-            <span 
-              key={i} 
-              ref={el => labelsRef.current[i] = el}
-              className={styles.label}
-              style={{ opacity: 0 }}
-            >
-              {label}
-            </span>
-          ))}
-        </div>
-
-        <h1 
-          ref={headlineRef} 
-          className={styles.headline}
-          style={{ opacity: 0 }}
-        >
+        <h1 ref={headlineRef} className={styles.headline}>
           {siteConfig.hero.headline}
         </h1>
 
-        <div 
-          ref={hintRef} 
-          className={styles.hint}
-          style={{ opacity: 0 }}
-        >
-          <span className={styles.hintText}>{siteConfig.hero.scrollHint}</span>
-          <div className={styles.hintLine} />
-        </div>
-      </div>
+        <p ref={subtitleRef} className={styles.subtitle}>
+          {siteConfig.hero.subtitle}
+        </p>
 
-      <div className={styles.corners}>
-        <span className={styles.corner} data-pos="tl" />
-        <span className={styles.corner} data-pos="tr" />
-        <span className={styles.corner} data-pos="bl" />
-        <span className={styles.corner} data-pos="br" />
+        <a
+          ref={ctaRef}
+          href={getWhatsAppLink()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.cta}
+        >
+          Quero meu site
+        </a>
       </div>
     </section>
   );

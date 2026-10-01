@@ -14,36 +14,36 @@ export function FinalCTA() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    gsap.fromTo(contentRef.current,
-      { opacity: 0, y: 60 },
+    gsap.fromTo(
+      contentRef.current,
+      { opacity: 0, y: 40 },
       {
         opacity: 1,
         y: 0,
-        duration: 1,
+        duration: 0.8,
         ease: 'expo.out',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 70%',
+          start: 'top 75%',
           once: true,
         },
       }
     );
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
   return (
-    <section ref={sectionRef} className={styles.section}>
+    <section ref={sectionRef} className={`${styles.section} section-light`}>
       <div className="container">
         <div ref={contentRef} className={styles.content} style={{ opacity: 0 }}>
           <span className={styles.eyebrow}>Vamos começar?</span>
           <h2 className={styles.title}>
-            Seu site<br/>
-            <span className={styles.highlight}>está aqui.</span>
+            Seu site <span className={styles.highlight}>está aqui.</span>
           </h2>
-          
+
           <div className={styles.ctas}>
             <a
               href={getWhatsAppLink()}

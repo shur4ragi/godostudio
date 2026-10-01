@@ -8,34 +8,39 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Pricing() {
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
   const cardsRef = useRef([]);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    cardsRef.current.forEach((card, i) => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 70%',
+        once: true,
+      },
+    });
+
+    tl.fromTo(
+      headerRef.current,
+      { opacity: 0, y: 40 },
+      { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }
+    );
+
+    cardsRef.current.forEach((card) => {
       if (!card) return;
-      
-      gsap.fromTo(card,
-        { opacity: 0, y: 60 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 80%',
-            once: true,
-          },
-          delay: i * 0.1,
-        }
+      tl.fromTo(
+        card,
+        { opacity: 0, y: 50, rotateX: 10 },
+        { opacity: 1, y: 0, rotateX: 0, duration: 0.6, ease: 'expo.out' },
+        `-=${0.4}`
       );
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
@@ -49,26 +54,26 @@ export function Pricing() {
   };
 
   return (
-    <section id="planos" ref={sectionRef} className={styles.section}>
+    <section id="planos" ref={sectionRef} className={`${styles.section} section-dark`}>
       <div className="container">
-        <div className={styles.header}>
+        <div ref={headerRef} className={styles.header} style={{ opacity: 0 }}>
           <span className={styles.eyebrow}>Planos</span>
-          <h2 className={styles.title}>Escolha seu<br/>plano</h2>
-          <p className={styles.subtitle}>Assinatura mensal sem contrato. Cancele quando quiser.</p>
+          <h2 className={styles.title}>Escolha seu plano</h2>
+          <p className={styles.subtitle}>
+            Assinatura mensal sem contrato. Cancele quando quiser.
+          </p>
         </div>
 
         <div className={styles.grid}>
           {siteConfig.plans.map((plan, i) => (
             <article
               key={plan.id}
-              ref={el => cardsRef.current[i] = el}
+              ref={(el) => (cardsRef.current[i] = el)}
               className={`${styles.card} ${plan.highlighted ? styles.highlighted : ''}`}
               style={{ opacity: 0 }}
             >
-              {plan.badge && (
-                <span className={styles.badge}>{plan.badge}</span>
-              )}
-              
+              {plan.badge && <span className={styles.badge}>{plan.badge}</span>}
+
               <div className={styles.cardHeader}>
                 <h3 className={styles.planName}>{plan.name}</h3>
                 <div className={styles.priceRow}>

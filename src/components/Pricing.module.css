@@ -1,10 +1,12 @@
+/* Pricing v3 — Dark section with stagger animation */
+
 .section {
-  padding: var(--space-5xl) 0;
-  background: var(--color-bg);
+  padding: var(--space-4xl) 0;
 }
 
 .header {
-  margin-bottom: var(--space-4xl);
+  text-align: center;
+  margin-bottom: var(--space-3xl);
 }
 
 .eyebrow {
@@ -14,21 +16,21 @@
   text-transform: uppercase;
   color: var(--color-accent);
   display: block;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 .title {
-  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 500;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: var(--color-text);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-light);
   margin-bottom: var(--space-md);
 }
 
 .subtitle {
-  font-size: var(--text-body);
-  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  color: var(--color-light-muted);
 }
 
 .grid {
@@ -40,16 +42,17 @@
 .card {
   position: relative;
   padding: var(--space-xl);
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
+  background: var(--color-dark-2);
+  border: 1px solid var(--color-border-light);
   border-radius: var(--radius-xl);
   display: flex;
   flex-direction: column;
-  transition: border-color 0.3s ease, transform 0.3s var(--ease-out-expo);
+  transition: border-color 0.3s ease, transform 0.3s var(--ease);
 }
 
 .card:hover {
-  border-color: var(--color-border-hover);
+  border-color: var(--color-accent);
+  transform: translateY(-4px);
 }
 
 .card.highlighted {
@@ -57,13 +60,8 @@
   background: linear-gradient(
     180deg,
     var(--color-accent-dim) 0%,
-    var(--color-bg-elevated) 30%
+    var(--color-dark-2) 40%
   );
-  transform: translateY(-8px);
-}
-
-.card.highlighted:hover {
-  transform: translateY(-12px);
 }
 
 .badge {
@@ -75,7 +73,7 @@
   font-size: 10px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-bg);
+  color: var(--color-dark);
   background: var(--color-accent);
   padding: var(--space-xs) var(--space-md);
   border-radius: var(--radius-full);
@@ -84,7 +82,7 @@
 
 .cardHeader {
   padding-bottom: var(--space-lg);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border-light);
   margin-bottom: var(--space-lg);
 }
 
@@ -93,7 +91,7 @@
   font-size: var(--text-xs);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--color-light-muted);
   margin-bottom: var(--space-md);
 }
 
@@ -104,11 +102,11 @@
 }
 
 .price {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: var(--color-text);
+  color: var(--color-light);
 }
 
 .highlighted .price {
@@ -117,7 +115,7 @@
 
 .period {
   font-size: var(--text-small);
-  color: var(--color-text-muted);
+  color: var(--color-light-muted);
 }
 
 .features {
@@ -133,7 +131,7 @@
   align-items: flex-start;
   gap: var(--space-sm);
   font-size: var(--text-small);
-  color: var(--color-text-muted);
+  color: var(--color-light-muted);
   line-height: 1.5;
 }
 
@@ -153,26 +151,26 @@
   text-transform: uppercase;
   padding: var(--space-md) var(--space-lg);
   border-radius: var(--radius-md);
-  background: var(--color-bg-surface);
-  color: var(--color-text);
-  border: 1px solid var(--color-border);
+  background: var(--color-dark-3);
+  color: var(--color-light);
+  border: 1px solid var(--color-border-light);
   transition: background 0.2s ease, border-color 0.2s ease;
   min-height: 44px;
 }
 
 .cta:hover {
-  background: var(--color-bg);
-  border-color: var(--color-border-hover);
+  background: var(--color-dark);
+  border-color: var(--color-light-muted);
 }
 
 .cta.ctaHighlighted {
   background: var(--color-accent);
-  color: var(--color-bg);
+  color: var(--color-dark);
   border-color: var(--color-accent);
 }
 
 .cta.ctaHighlighted:hover {
-  background: #c4e635;
+  background: var(--color-accent-hover);
 }
 
 @media (max-width: 1024px) {
@@ -181,13 +179,5 @@
     max-width: 400px;
     margin: 0 auto;
     gap: var(--space-xl);
-  }
-
-  .card.highlighted {
-    transform: none;
-  }
-
-  .card.highlighted:hover {
-    transform: none;
   }
 }

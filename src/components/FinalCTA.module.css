@@ -1,11 +1,14 @@
+/* FinalCTA v3 — Light section */
+
 .section {
-  padding: var(--space-5xl) 0;
-  background: var(--color-bg);
-  border-top: 1px solid var(--color-border);
+  padding: var(--space-4xl) 0;
+  border-top: 1px solid var(--color-border-dark);
 }
 
 .content {
-  max-width: 700px;
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .eyebrow {
@@ -15,16 +18,16 @@
   text-transform: uppercase;
   color: var(--color-accent);
   display: block;
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 .title {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 500;
-  line-height: 1.0;
-  letter-spacing: -0.03em;
-  color: var(--color-text);
-  margin-bottom: var(--space-2xl);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-dark);
+  margin-bottom: var(--space-xl);
 }
 
 .highlight {
@@ -34,6 +37,7 @@
 .ctas {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-lg);
   flex-wrap: wrap;
 }
@@ -46,37 +50,42 @@
   font-size: var(--text-small);
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: var(--color-bg);
+  color: var(--color-light);
   background: var(--color-accent);
   padding: var(--space-md) var(--space-xl);
   border-radius: var(--radius-full);
-  transition: background 0.2s ease, transform 0.2s var(--ease-out-expo);
+  transition: background 0.2s ease, transform 0.2s var(--ease);
   min-height: 44px;
 }
 
 .ctaPrimary:hover {
-  background: #c4e635;
+  background: var(--color-accent-hover);
   transform: translateY(-2px);
 }
 
 .ctaDot {
   width: 8px;
   height: 8px;
-  background: var(--color-bg);
+  background: var(--color-light);
   border-radius: 50%;
   animation: pulse 2s ease-in-out infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .ctaSecondary {
   font-family: var(--font-mono);
   font-size: var(--text-small);
   letter-spacing: 0.02em;
-  color: var(--color-text-muted);
+  color: var(--color-dark-muted);
   padding: var(--space-md) 0;
   transition: color 0.2s ease;
   min-height: 44px;
@@ -85,12 +94,11 @@
 }
 
 .ctaSecondary:hover {
-  color: var(--color-text);
+  color: var(--color-dark);
 }
 
 @media (max-width: 640px) {
   .ctas {
     flex-direction: column;
-    align-items: flex-start;
   }
 }

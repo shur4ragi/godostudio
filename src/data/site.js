@@ -1,5 +1,5 @@
 /**
- * GodoStudio v2 — Configuração de conteúdo
+ * GodoStudio v3 — Configuração de conteúdo
  * Edite este arquivo para atualizar textos, projetos, planos e contato.
  * Linhas marcadas com TODO: precisam de confirmação do Vitor.
  */
@@ -14,18 +14,17 @@ export const siteConfig = {
   
   hero: {
     headline: 'GodoStudio',
-    labels: ['Engenharia', 'Interfaces', 'Resultados'],
-    scrollHint: '/// role para explorar',
+    subtitle: 'Sites profissionais para negócios locais',
   },
   
   manifesto: {
-    text: 'Criamos sites que transformam visitantes em clientes. Landing pages profissionais para negócios locais — cafés, estúdios, comércios — com foco em conversão e simplicidade.',
+    text: 'Criamos sites que transformam visitantes em clientes. Landing pages para cafés, estúdios e comércios — com foco em conversão.',
     highlight: 'transformam',
   },
   
   stats: [
-    { label: 'Projetos entregues', value: '10+', suffix: '' },
-    { label: 'Clientes ativos', value: '4', suffix: '' },
+    { label: 'Projetos', value: '10', suffix: '+' },
+    { label: 'Clientes', value: '4', suffix: '' },
     { label: 'Desde', value: '2024', suffix: '' },
   ],
   
@@ -54,9 +53,19 @@ export const siteConfig = {
       segment: 'Cafeteria',
       description: 'Cardápio e encomenda pelo WhatsApp',
       url: 'https://fryda-cafe.vercel.app/',
-      screenshot: '/screenshots/fryda-desktop.webp',
-      screenshotMobile: '/screenshots/fryda-mobile.webp',
       number: '01',
+      preview: {
+        desktop: {
+          webm: '/previews/fryda-desktop.webm',
+          mp4: '/previews/fryda-desktop.mp4',
+          poster: '/previews/fryda-desktop-poster.webp',
+        },
+        mobile: {
+          webm: '/previews/fryda-mobile.webm',
+          mp4: '/previews/fryda-mobile.mp4',
+          poster: '/previews/fryda-mobile-poster.webp',
+        },
+      },
     },
     {
       id: 'leyas',
@@ -64,9 +73,19 @@ export const siteConfig = {
       segment: 'Cafeteria',
       description: 'Cardápio, carrinho e pedido pelo WhatsApp',
       url: 'https://leyas-cafe.vercel.app/',
-      screenshot: '/screenshots/leyas-desktop.webp',
-      screenshotMobile: '/screenshots/leyas-mobile.webp',
       number: '02',
+      preview: {
+        desktop: {
+          webm: '/previews/leyas-desktop.webm',
+          mp4: '/previews/leyas-desktop.mp4',
+          poster: '/previews/leyas-desktop-poster.webp',
+        },
+        mobile: {
+          webm: '/previews/leyas-mobile.webm',
+          mp4: '/previews/leyas-mobile.mp4',
+          poster: '/previews/leyas-mobile-poster.webp',
+        },
+      },
     },
     {
       id: 'nanica',
@@ -74,20 +93,35 @@ export const siteConfig = {
       segment: 'Doceria',
       description: 'Cardápio, carrinho e pedido',
       url: 'https://nanica-ten.vercel.app/',
-      screenshot: '/screenshots/nanica-desktop.webp',
-      screenshotMobile: '/screenshots/nanica-mobile.webp',
       number: '03',
+      preview: {
+        desktop: {
+          webm: '/previews/nanica-desktop.webm',
+          mp4: '/previews/nanica-desktop.mp4',
+          poster: '/previews/nanica-desktop-poster.webp',
+        },
+        mobile: {
+          webm: '/previews/nanica-mobile.webm',
+          mp4: '/previews/nanica-mobile.mp4',
+          poster: '/previews/nanica-mobile-poster.webp',
+        },
+      },
     },
     {
       id: 'galvao',
       name: 'Galvão Tattoo',
       segment: 'Estúdio',
       description: 'Portfólio e orçamento',
-      // TODO: Vitor - confirmar URL live do projeto Galvão Tattoo (repo: github.com/shur4ragi/galvao-tattoo)
-      url: null,
-      screenshot: '/screenshots/galvao-desktop.webp',
-      screenshotMobile: '/screenshots/galvao-mobile.webp',
+      url: 'https://galvao-tattoo.vercel.app',
       number: '04',
+      preview: {
+        desktop: {
+          webm: '/previews/galvao-desktop.webm',
+          mp4: '/previews/galvao-desktop.mp4',
+          poster: '/previews/galvao-desktop-poster.webp',
+        },
+        mobile: null, // No mobile version - use desktop with object-fit
+      },
     },
   ],
   
@@ -95,22 +129,22 @@ export const siteConfig = {
     {
       number: '01',
       title: 'Descobrir',
-      description: 'Entendo seu negócio, público e objetivos numa conversa rápida pelo WhatsApp.',
+      description: 'Entendo seu negócio numa conversa rápida pelo WhatsApp.',
     },
     {
       number: '02',
       title: 'Prototipar',
-      description: 'Em poucos dias você recebe um preview do site para aprovar ou pedir ajustes.',
+      description: 'Você recebe um preview para aprovar ou ajustar.',
     },
     {
       number: '03',
       title: 'Construir',
-      description: 'Desenvolvo o site com código otimizado, rápido e pronto para conversão.',
+      description: 'Desenvolvo com código otimizado e rápido.',
     },
     {
       number: '04',
       title: 'Lançar',
-      description: 'Site no ar com domínio próprio. Manutenção e atualizações inclusas no plano.',
+      description: 'Site no ar com domínio próprio e manutenção inclusa.',
     },
   ],
   

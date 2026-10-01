@@ -1,8 +1,10 @@
+/* Preloader v3 — Coral accent colors */
+
 .preloader {
   position: fixed;
   inset: 0;
   z-index: var(--z-preloader);
-  background: var(--color-bg);
+  background: var(--color-light);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,7 +21,7 @@
   width: 36px;
   height: 36px;
   background: var(--color-accent);
-  color: var(--color-bg);
+  color: var(--color-light);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -33,7 +35,7 @@
   font-size: var(--text-small);
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--color-dark-muted);
 }
 
 .counter {
@@ -45,7 +47,7 @@
   font-size: clamp(4rem, 15vw, 10rem);
   font-weight: 500;
   line-height: 1;
-  color: var(--color-text);
+  color: var(--color-dark);
   overflow: hidden;
   height: 1em;
 }
@@ -70,7 +72,7 @@
   left: 0;
   right: 0;
   height: 8px;
-  background: var(--color-bg-elevated);
+  background: var(--color-light-2);
   overflow: hidden;
 }
 
@@ -80,9 +82,7 @@
   background: linear-gradient(
     90deg,
     var(--color-accent) 0%,
-    #a8e063 25%,
-    var(--color-accent) 50%,
-    #a8e063 75%,
+    var(--color-accent-hover) 50%,
     var(--color-accent) 100%
   );
   background-size: 200% 100%;
@@ -92,8 +92,12 @@
 }
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 @media (max-width: 768px) {

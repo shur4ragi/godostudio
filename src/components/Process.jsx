@@ -8,61 +8,62 @@ gsap.registerPlugin(ScrollTrigger);
 
 export function Process() {
   const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const gridRef = useRef(null);
   const itemsRef = useRef([]);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
-    itemsRef.current.forEach((item, i) => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 75%',
+        once: true,
+      },
+    });
+
+    tl.fromTo(
+      headerRef.current,
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out' }
+    );
+
+    itemsRef.current.forEach((item) => {
       if (!item) return;
-      
-      gsap.fromTo(item,
-        { opacity: 0, x: i % 2 === 0 ? -60 : 60 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 1,
-          ease: 'expo.out',
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 80%',
-            once: true,
-          },
-        }
+      tl.fromTo(
+        item,
+        { opacity: 0, scale: 0.9 },
+        { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.4)' },
+        `-=${0.35}`
       );
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 
   return (
-    <section id="processo" ref={sectionRef} className={styles.section}>
+    <section id="processo" ref={sectionRef} className={`${styles.section} section-light`}>
       <div className="container">
-        <div className={styles.header}>
+        <div ref={headerRef} className={styles.header} style={{ opacity: 0 }}>
           <span className={styles.eyebrow}>Processo</span>
-          <h2 className={styles.title}>Como<br/>funciona</h2>
+          <h2 className={styles.title}>Como funciona</h2>
         </div>
 
-        <div className={styles.list}>
+        <div ref={gridRef} className={styles.grid}>
           {siteConfig.process.map((step, i) => (
             <article
               key={step.number}
-              ref={el => itemsRef.current[i] = el}
+              ref={(el) => (itemsRef.current[i] = el)}
               className={styles.item}
-              style={{ 
-                opacity: 0,
-                '--offset': i % 2 === 0 ? '0%' : '20%',
-              }}
+              style={{ opacity: 0 }}
             >
-              <div className={styles.itemLine} />
-              <div className={styles.itemContent}>
-                <span className={styles.itemNumber}>{step.number}</span>
-                <h3 className={styles.itemTitle}>{step.title}</h3>
-                <p className={styles.itemDesc}>{step.description}</p>
-              </div>
+              <span className={styles.number}>{step.number}</span>
+              <h3 className={styles.itemTitle}>{step.title}</h3>
+              <p className={styles.itemDesc}>{step.description}</p>
             </article>
           ))}
         </div>
