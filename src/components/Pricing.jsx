@@ -1,26 +1,42 @@
 import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig, getWhatsAppLink } from '../data/site';
 import styles from './Pricing.module.css';
 
+gsap.registerPlugin(ScrollTrigger);
+
 export function Pricing() {
   const sectionRef = useRef(null);
+  const cardsRef = useRef([]);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add(styles.visible);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
 
-    const cards = sectionRef.current?.querySelectorAll(`.${styles.card}`);
-    cards?.forEach((card) => observer.observe(card));
+    cardsRef.current.forEach((card, i) => {
+      if (!card) return;
+      
+      gsap.fromTo(card,
+        { opacity: 0, y: 60 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'expo.out',
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 80%',
+            once: true,
+          },
+          delay: i * 0.1,
+        }
+      );
+    });
 
-    return () => observer.disconnect();
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
   }, []);
 
   const formatPrice = (price) => {
@@ -33,48 +49,38 @@ export function Pricing() {
   };
 
   return (
-    <section id="planos" className={styles.section} ref={sectionRef}>
+    <section id="planos" ref={sectionRef} className={styles.section}>
       <div className="container">
         <div className={styles.header}>
           <span className={styles.eyebrow}>Planos</span>
-          <h2 className={styles.title}>Escolha o plano ideal para seu negócio</h2>
-          <p className={styles.description}>
-            Assinatura mensal sem contrato. Cancele quando quiser.
-          </p>
+          <h2 className={styles.title}>Escolha seu<br/>plano</h2>
+          <p className={styles.subtitle}>Assinatura mensal sem contrato. Cancele quando quiser.</p>
         </div>
 
         <div className={styles.grid}>
-          {siteConfig.plans.map((plan, index) => (
+          {siteConfig.plans.map((plan, i) => (
             <article
               key={plan.id}
+              ref={el => cardsRef.current[i] = el}
               className={`${styles.card} ${plan.highlighted ? styles.highlighted : ''}`}
-              style={{ '--delay': `${index * 100}ms` }}
+              style={{ opacity: 0 }}
             >
               {plan.badge && (
-                <div className={styles.badge}>{plan.badge}</div>
+                <span className={styles.badge}>{plan.badge}</span>
               )}
+              
               <div className={styles.cardHeader}>
                 <h3 className={styles.planName}>{plan.name}</h3>
-                <div className={styles.priceWrapper}>
+                <div className={styles.priceRow}>
                   <span className={styles.price}>{formatPrice(plan.price)}</span>
                   <span className={styles.period}>/mês</span>
                 </div>
               </div>
 
               <ul className={styles.features}>
-                {plan.features.map((feature, i) => (
-                  <li key={i} className={styles.feature}>
-                    <svg
-                      className={styles.checkIcon}
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                {plan.features.map((feature, j) => (
+                  <li key={j} className={styles.feature}>
+                    <span className={styles.featureCheck}>✓</span>
                     {feature}
                   </li>
                 ))}

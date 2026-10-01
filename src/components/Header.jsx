@@ -1,14 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { siteConfig, getWhatsAppLink } from '../data/site';
 import styles from './Header.module.css';
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const [stuck, setStuck] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const headerRef = useRef(null);
+  const [time, setTime] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const timeStr = now.toLocaleTimeString('pt-BR', {
+        timeZone: siteConfig.brand.timezone,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      });
+      setTime(timeStr);
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const heroHeight = window.innerHeight;
+      setStuck(window.scrollY > heroHeight - 80);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -42,16 +62,18 @@ export function Header() {
   };
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+    <header 
+      ref={headerRef}
+      className={`${styles.header} ${stuck ? styles.stuck : ''}`}
+    >
       <div className={styles.inner}>
         <a href="#" className={styles.logo}>
           <span className={styles.logoIcon}>G</span>
-          <span className={styles.logoText}>{siteConfig.brand.name}</span>
         </a>
 
         <nav className={`${styles.nav} ${menuOpen ? styles.navOpen : ''}`}>
           <button
-            className={styles.closeButton}
+            className={styles.closeBtn}
             onClick={() => setMenuOpen(false)}
             aria-label="Fechar menu"
           >
@@ -59,16 +81,20 @@ export function Header() {
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
-          {siteConfig.nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className={styles.navLink}
-              onClick={handleNavClick}
-            >
-              {item.label}
-            </a>
-          ))}
+
+          <div className={styles.navLinks}>
+            {siteConfig.nav.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={styles.navLink}
+                onClick={handleNavClick}
+              >
+                <span className={styles.navLinkLabel}>{item.label}</span>
+              </a>
+            ))}
+          </div>
+
           <a
             href={getWhatsAppLink()}
             target="_blank"
@@ -76,26 +102,33 @@ export function Header() {
             className={styles.ctaMobile}
             onClick={handleNavClick}
           >
-            {siteConfig.cta.primary}
+            Quero meu site
           </a>
         </nav>
 
-        <a
-          href={getWhatsAppLink()}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.cta}
-        >
-          {siteConfig.cta.primary}
-        </a>
+        <div className={styles.rightSection}>
+          <span className={styles.clock}>
+            <span className={styles.clockLabel}>SP</span>
+            {time}
+          </span>
+
+          <a
+            href={getWhatsAppLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.cta}
+          >
+            <span className={styles.ctaDot} />
+            Contato
+          </a>
+        </div>
 
         <button
-          className={`${styles.menuButton} ${menuOpen ? styles.menuOpen : ''}`}
+          className={`${styles.menuBtn} ${menuOpen ? styles.menuOpen : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={menuOpen}
         >
-          <span className={styles.menuLine} />
           <span className={styles.menuLine} />
           <span className={styles.menuLine} />
         </button>

@@ -1,57 +1,40 @@
 .section {
+  padding: var(--space-5xl) 0;
   background: var(--color-bg);
-  padding: var(--space-4xl) 0;
-}
-
-.card {
-  position: relative;
-  padding: var(--space-4xl) var(--space-xl);
-  background: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  text-align: center;
-  overflow: hidden;
-}
-
-.glow {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 300px;
-  background: radial-gradient(
-    ellipse at center top,
-    rgba(99, 102, 241, 0.15) 0%,
-    transparent 70%
-  );
-  pointer-events: none;
+  border-top: 1px solid var(--color-border);
 }
 
 .content {
-  position: relative;
-  z-index: 1;
+  max-width: 700px;
 }
 
-.title {
-  font-size: clamp(1.5rem, 4vw, 2rem);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  display: block;
   margin-bottom: var(--space-md);
 }
 
-.description {
-  font-size: 1.0625rem;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-xl);
+.title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: var(--color-text);
+  margin-bottom: var(--space-2xl);
+}
+
+.highlight {
+  color: var(--color-accent);
 }
 
 .ctas {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--space-md);
+  gap: var(--space-lg);
   flex-wrap: wrap;
 }
 
@@ -59,58 +42,55 @@
   display: inline-flex;
   align-items: center;
   gap: var(--space-sm);
-  background: #25D366;
-  color: var(--color-text);
-  padding: 0.875rem 1.75rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-bg);
+  background: var(--color-accent);
+  padding: var(--space-md) var(--space-xl);
   border-radius: var(--radius-full);
-  font-weight: 600;
-  font-size: 1rem;
-  transition: background var(--transition-fast), transform var(--transition-fast);
+  transition: background 0.2s ease, transform 0.2s var(--ease-out-expo);
+  min-height: 44px;
 }
 
 .ctaPrimary:hover {
-  background: #20bd5a;
+  background: #c4e635;
   transform: translateY(-2px);
 }
 
-.whatsappIcon {
-  width: 20px;
-  height: 20px;
+.ctaDot {
+  width: 8px;
+  height: 8px;
+  background: var(--color-bg);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 .ctaSecondary {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.02em;
   color: var(--color-text-muted);
-  padding: 0.875rem 1.75rem;
-  font-weight: 500;
-  font-size: 1rem;
-  transition: color var(--transition-fast);
+  padding: var(--space-md) 0;
+  transition: color 0.2s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 .ctaSecondary:hover {
   color: var(--color-text);
 }
 
-.instaIcon {
-  width: 20px;
-  height: 20px;
-}
-
 @media (max-width: 640px) {
-  .card {
-    padding: var(--space-3xl) var(--space-lg);
-  }
-
   .ctas {
     flex-direction: column;
-    width: 100%;
-  }
-
-  .ctaPrimary,
-  .ctaSecondary {
-    width: 100%;
-    justify-content: center;
+    align-items: flex-start;
   }
 }

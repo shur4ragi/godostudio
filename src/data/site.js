@@ -1,5 +1,5 @@
 /**
- * GodoStudio - Configuração de conteúdo
+ * GodoStudio v2 — Configuração de conteúdo
  * Edite este arquivo para atualizar textos, projetos, planos e contato.
  * Linhas marcadas com TODO: precisam de confirmação do Vitor.
  */
@@ -8,9 +8,26 @@ export const siteConfig = {
   brand: {
     name: 'GodoStudio',
     tagline: 'Sites que vendem.',
-    headline: ['Seu negócio online.', 'Simples assim.'],
-    subtitle: 'Landing pages profissionais para negócios locais em Taubaté e região. Sem complicação, sem dor de cabeça — só resultados.',
+    location: 'Taubaté, SP',
+    timezone: 'America/Sao_Paulo',
   },
+  
+  hero: {
+    headline: 'GodoStudio',
+    labels: ['Engenharia', 'Interfaces', 'Resultados'],
+    scrollHint: '/// role para explorar',
+  },
+  
+  manifesto: {
+    text: 'Criamos sites que transformam visitantes em clientes. Landing pages profissionais para negócios locais — cafés, estúdios, comércios — com foco em conversão e simplicidade.',
+    highlight: 'transformam',
+  },
+  
+  stats: [
+    { label: 'Projetos entregues', value: '10+', suffix: '' },
+    { label: 'Clientes ativos', value: '4', suffix: '' },
+    { label: 'Desde', value: '2024', suffix: '' },
+  ],
   
   contact: {
     whatsapp: {
@@ -24,80 +41,76 @@ export const siteConfig = {
   },
   
   nav: [
-    { label: 'Portfólio', href: '#portfolio' },
-    { label: 'Como funciona', href: '#como-funciona' },
+    { label: 'Projetos', href: '#projetos' },
+    { label: 'Processo', href: '#processo' },
     { label: 'Planos', href: '#planos' },
     { label: 'FAQ', href: '#faq' },
-  ],
-  
-  cta: {
-    primary: 'Quero meu site',
-    secondary: 'Ver projetos',
-  },
-  
-  clients: [
-    'Fryda Café',
-    'Leya\'s Café',
-    'Nanica',
-    'Galvão Tattoo',
   ],
   
   projects: [
     {
       id: 'fryda',
       name: 'Fryda Café',
-      description: 'Cafeteria • Cardápio e encomenda pelo WhatsApp',
+      segment: 'Cafeteria',
+      description: 'Cardápio e encomenda pelo WhatsApp',
       url: 'https://fryda-cafe.vercel.app/',
       screenshot: '/screenshots/fryda-desktop.webp',
       screenshotMobile: '/screenshots/fryda-mobile.webp',
+      number: '01',
     },
     {
       id: 'leyas',
-      name: 'Leya\'s Café',
-      description: 'Cafeteria • Cardápio, carrinho e pedido pelo WhatsApp',
+      name: "Leya's Café",
+      segment: 'Cafeteria',
+      description: 'Cardápio, carrinho e pedido pelo WhatsApp',
       url: 'https://leyas-cafe.vercel.app/',
       screenshot: '/screenshots/leyas-desktop.webp',
       screenshotMobile: '/screenshots/leyas-mobile.webp',
+      number: '02',
     },
     {
       id: 'nanica',
       name: 'Nanica',
-      description: 'Doceria/Café • Cardápio, carrinho e pedido',
+      segment: 'Doceria',
+      description: 'Cardápio, carrinho e pedido',
       url: 'https://nanica-ten.vercel.app/',
       screenshot: '/screenshots/nanica-desktop.webp',
       screenshotMobile: '/screenshots/nanica-mobile.webp',
+      number: '03',
     },
     {
       id: 'galvao',
       name: 'Galvão Tattoo',
-      description: 'Estúdio de tatuagem • Portfólio e orçamento',
+      segment: 'Estúdio',
+      description: 'Portfólio e orçamento',
       // TODO: Vitor - confirmar URL live do projeto Galvão Tattoo (repo: github.com/shur4ragi/galvao-tattoo)
       url: null,
       screenshot: '/screenshots/galvao-desktop.webp',
       screenshotMobile: '/screenshots/galvao-mobile.webp',
+      number: '04',
     },
   ],
   
-  steps: [
+  process: [
     {
       number: '01',
-      title: 'Conversa inicial',
-      description: 'Entendo seu negócio, público e objetivos. Sem formulário chato — é só uma conversa no WhatsApp.',
+      title: 'Descobrir',
+      description: 'Entendo seu negócio, público e objetivos numa conversa rápida pelo WhatsApp.',
     },
     {
       number: '02',
-      title: 'Protótipo rápido',
-      description: 'Em poucos dias você recebe um preview do site pra aprovar ou pedir ajustes.',
+      title: 'Prototipar',
+      description: 'Em poucos dias você recebe um preview do site para aprovar ou pedir ajustes.',
     },
     {
       number: '03',
-      title: 'Publicação',
-      description: 'Site no ar com domínio próprio, pronto pra receber clientes.',
+      title: 'Construir',
+      description: 'Desenvolvo o site com código otimizado, rápido e pronto para conversão.',
     },
     {
       number: '04',
-      title: 'Manutenção contínua',
-      description: 'Atualizações, ajustes e suporte inclusos enquanto durar o plano.',
+      title: 'Lançar',
+      description: 'Site no ar com domínio próprio. Manutenção e atualizações inclusas no plano.',
     },
   ],
   
@@ -177,11 +190,6 @@ export const siteConfig = {
       answer: 'Na Vercel, uma das melhores plataformas do mundo. Seu site carrega rápido e fica no ar 24 horas.',
     },
   ],
-  
-  footer: {
-    copyright: '© 2024 GodoStudio. Feito com ☕ em Taubaté-SP.',
-    location: 'Taubaté, São Paulo',
-  },
 
   seo: {
     title: 'GodoStudio — Sites para Negócios Locais em Taubaté',

@@ -1,0 +1,104 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-preloader);
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-xl);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.logoIcon {
+  width: 36px;
+  height: 36px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.logoText {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.counter {
+  position: absolute;
+  bottom: var(--space-3xl);
+  right: var(--space-xl);
+  display: flex;
+  font-family: var(--font-mono);
+  font-size: clamp(4rem, 15vw, 10rem);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--color-text);
+  overflow: hidden;
+  height: 1em;
+}
+
+.digit {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.digit span {
+  flex-shrink: 0;
+  height: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.barWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: var(--color-bg-elevated);
+  overflow: hidden;
+}
+
+.bar {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-accent) 0%,
+    #a8e063 25%,
+    var(--color-accent) 50%,
+    #a8e063 75%,
+    var(--color-accent) 100%
+  );
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (max-width: 768px) {
+  .counter {
+    bottom: var(--space-2xl);
+    right: var(--space-lg);
+  }
+}
