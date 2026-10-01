@@ -2,6 +2,7 @@ import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig, getWhatsAppLink, planFeatureIds } from '../data/site';
+import { useLang } from '../i18n';
 import { InkReveal } from './InkReveal';
 import { Mark } from './Mark';
 import { PlanIcon } from './PlanIcon';
@@ -12,10 +13,18 @@ gsap.registerPlugin(ScrollTrigger);
 // Planos — "Cards + Comparar tudo": 3 cards com persona (Itaú contas) e uma tabela completa
 // com ✓ / — / texto e cabeçalho fixo com CTA (Bradesco "Compare os cartões").
 // Mobile: carrossel com snap abrindo no Médio, tabela de 2 planos com seletor e barra fixa.
-const { plans, planFeatures, pricing, compare } = siteConfig;
+// Structure comes from siteConfig; copy comes from the active language (useLang().site).
+// WhatsApp links always use the Portuguese plan name (waName).
 const MOBILE_QUERY = '(max-width: 899px)';
-const byId = Object.fromEntries(plans.map((p) => [p.id, p]));
-const featureSets = Object.fromEntries(plans.map((p) => [p.id, new Set(planFeatureIds(p.id))]));
+const featureSets = Object.fromEntries(siteConfig.plans.map((p) => [p.id, new Set(planFeatureIds(p.id))]));
+const waName = Object.fromEntries(siteConfig.plans.map((p) => [p.id, p.name]));
+const planLink = (plan) => getWhatsAppLink(waName[plan.id]);
+function usePlans() {
+  const { t, site } = useLang();
+  const { plans, planFeatures, pricing, compare } = site;
+  const byId = Object.fromEntries(plans.map((p) => [p.id, p]));
+  return { t, plans, planFeatures, pricing, compare, byId };
+}
 const reduceMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const scrollBehavior = () => (reduceMotion() ? 'auto' : 'smooth');
 
@@ -39,9 +48,10 @@ function useMedia(query) {
 }
 
 function Note({ mark }) {
+  const { t } = useLang();
   if (!mark) return null;
   return (
-    <a className={styles.note} href="#planos-notas" aria-label={`Nota ${mark}`}>
+    <a className={styles.note} href="#planos-notas" aria-label={t('pricing.noteAria', { mark })}>
       {mark}
     </a>
   );
@@ -49,13 +59,14 @@ function Note({ mark }) {
 
 function Tip({ text, label }) {
   const id = useId();
+  const { t } = useLang();
   const [open, setOpen] = useState(false);
   return (
     <span className={styles.tipWrap}>
       <button
         type="button"
         className={styles.tipBtn}
-        aria-label={`O que é: ${label}`}
+        aria-label={t('pricing.tipAria', { label })}
         aria-expanded={open}
         aria-describedby={id}
         onClick={() => setOpen((o) => !o)}
@@ -72,29 +83,31 @@ function Tip({ text, label }) {
 }
 
 function Cell({ has }) {
+  const { t } = useLang();
   return has ? (
     <span className={styles.yes}>
       <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
         <circle cx="10" cy="10" r="10" />
         <path d="M5.8 10.4l2.7 2.7 5.7-5.9" />
       </svg>
-      <span className="sr-only">Incluso</span>
+      <span className="sr-only">{t('pricing.included')}</span>
     </span>
   ) : (
     <span className={styles.no}>
       <span aria-hidden="true">—</span>
-      <span className="sr-only">Não incluso</span>
+      <span className="sr-only">{t('pricing.notIncluded')}</span>
     </span>
   );
 }
 
 function PlanCard({ plan, onSeeAll, cardRef }) {
+  const { t, planFeatures, byId } = usePlans();
   return (
     <article
       ref={cardRef}
       className={`${styles.card} ${plan.highlighted ? styles.highlighted : ''}`}
       data-plan={plan.id}
-      aria-label={`Plano ${plan.name}`}
+      aria-label={t('pricing.planAria', { name: plan.name })}
     >
       {plan.badge && <span className={styles.badge}>{plan.badge}</span>}
       <div className={styles.cardDim}>
@@ -102,7 +115,7 @@ function PlanCard({ plan, onSeeAll, cardRef }) {
         <p className={styles.persona}>{plan.persona}</p>
         <div className={styles.priceRow}>
           <span className={styles.price}>{formatPrice(plan.price)}</span>
-          <span className={styles.period}>/mês</span>
+          <span className={styles.period}>{t('pricing.perMonth')}</span>
         </div>
         <p className={styles.anchor}>
           {plan.anchor}
@@ -111,7 +124,7 @@ function PlanCard({ plan, onSeeAll, cardRef }) {
         <ul className={styles.features}>
           {plan.includes && (
             <li className={styles.includes}>
-              <PlanIcon name="plus" size={14} /> Tudo do plano {byId[plan.includes].name}
+              <PlanIcon name="plus" size={14} /> {t('pricing.allOf', { name: byId[plan.includes].name })}
             </li>
           )}
           {plan.features.map((id) => (
@@ -126,21 +139,22 @@ function PlanCard({ plan, onSeeAll, cardRef }) {
         </ul>
       </div>
       <a
-        href={getWhatsAppLink(plan.name)}
+        href={planLink(plan)}
         target="_blank"
         rel="noopener noreferrer"
         className={`${styles.cta} ${plan.highlighted ? styles.ctaHighlighted : ''}`}
       >
-        Quero o {plan.name}
+        {t('pricing.want', { name: plan.name })}
       </a>
       <a href="#planos-comparar" className={styles.seeAll} onClick={(e) => onSeeAll(e, plan.id)}>
-        Ver tudo que está incluso <span aria-hidden="true">↓</span>
+        {t('pricing.seeAll')} <span aria-hidden="true">↓</span>
       </a>
     </article>
   );
 }
 
 function CompareTable({ mobile, pair, setPair, compareRef }) {
+  const { t, plans, planFeatures, compare, byId } = usePlans();
   const sentinelRef = useRef(null);
   const [stuck, setStuck] = useState(false);
   const [open, setOpen] = useState(() => compare.groups.map((_, i) => !mobile || i === 0));
@@ -184,15 +198,15 @@ function CompareTable({ mobile, pair, setPair, compareRef }) {
         <h3 className={styles.compareTitle}>{compare.title}</h3>
         {mobile && (
           <div className={styles.picker}>
-            <span>Comparar</span>
-            <label className="sr-only" htmlFor="cmp-a">Primeiro plano</label>
+            <span>{t('pricing.compareLabel')}</span>
+            <label className="sr-only" htmlFor="cmp-a">{t('pricing.firstPlan')}</label>
             <select id="cmp-a" value={pair[0]} onChange={(e) => pick(0, e.target.value)}>
               {plans.map((p) => (
                 <option key={p.id} value={p.id}>{p.name}</option>
               ))}
             </select>
-            <span>com</span>
-            <label className="sr-only" htmlFor="cmp-b">Segundo plano</label>
+            <span>{t('pricing.with')}</span>
+            <label className="sr-only" htmlFor="cmp-b">{t('pricing.secondPlan')}</label>
             <select id="cmp-b" value={pair[1]} onChange={(e) => pick(1, e.target.value)}>
               {plans.map((p) => (
                 <option key={p.id} value={p.id}>{p.name}</option>
@@ -203,34 +217,34 @@ function CompareTable({ mobile, pair, setPair, compareRef }) {
       </div>
       <div ref={sentinelRef} aria-hidden="true" />
       <table className={`${styles.table} ${stuck ? styles.stuck : ''}`}>
-        <caption className="sr-only">Comparação dos recursos dos planos</caption>
+        <caption className="sr-only">{t('pricing.caption')}</caption>
         <thead>
           <tr>
             <th scope="col" className={styles.corner}>
-              <span>Recursos</span>
+              <span>{t('pricing.features')}</span>
             </th>
             {cols.map((p) => (
               <th key={p.id} scope="col" data-plan={p.id} className={p.highlighted ? styles.colHot : undefined}>
                 <span className={styles.thName}>{p.name}</span>
                 <span className={styles.thPrice}>
                   {formatPrice(p.price)}
-                  <small>/mês</small>
+                  <small>{t('pricing.perMonth')}</small>
                 </span>
                 <a
                   className={`${styles.mini} ${p.highlighted ? styles.miniHot : ''}`}
-                  href={getWhatsAppLink(p.name)}
+                  href={planLink(p)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Quero o plano ${p.name}`}
+                  aria-label={t('pricing.wantPlanAria', { name: p.name })}
                 >
-                  Quero
+                  {t('pricing.wantShort')}
                 </a>
               </th>
             ))}
           </tr>
         </thead>
         {compare.groups.map((g, gi) => (
-          <tbody key={g.title} className={open[gi] ? undefined : styles.closed}>
+          <tbody key={gi} className={open[gi] ? undefined : styles.closed}>
             <tr className={styles.groupRow}>
               <th scope="colgroup" colSpan={cols.length + 1}>
                 <button type="button" aria-expanded={open[gi]} onClick={() => toggle(gi)}>
@@ -270,7 +284,7 @@ function CompareTable({ mobile, pair, setPair, compareRef }) {
             </th>
           </tr>
           {compare.conditions.rows.map((r) => (
-            <tr key={r.label} className={styles.featureRow}>
+            <tr key={r.label + r.values.basico} className={styles.featureRow}>
               <th scope="row">
                 <span className={styles.rowLabel}>
                   <span>
@@ -293,6 +307,7 @@ function CompareTable({ mobile, pair, setPair, compareRef }) {
 }
 
 export function Pricing() {
+  const { t, plans, pricing } = usePlans();
   const mobile = useMedia(MOBILE_QUERY);
   const sectionRef = useRef(null);
   const trackRef = useRef(null);
@@ -399,13 +414,13 @@ export function Pricing() {
     <section id="planos" ref={sectionRef} className={`${styles.section} section-dark`}>
       <InkReveal variant="band" className={styles.band} contentClassName={`container ${styles.bandLayout}`}>
         <p className={styles.kicker}>
-          <Mark /> <span>/ Planos</span>
+          <Mark /> <span>{t('pricing.kicker')}</span>
           <span className={styles.kickerIndex}>04</span>
         </p>
         <h2 className={styles.bandTitle}>
-          Escolha
+          {t('pricing.titleA')}
           <br />
-          seu plano
+          {t('pricing.titleB')}
         </h2>
         <div className={styles.bandSide}>
           <p className={styles.bandText}>{pricing.subtitle}</p>
@@ -414,10 +429,10 @@ export function Pricing() {
       </InkReveal>
 
       <div className="container">
-        <div className={styles.switch} role="group" aria-label="Ver planos">
+        <div className={styles.switch} role="group" aria-label={t('pricing.viewAria')}>
           {[
-            ['resumo', 'Resumo'],
-            ['comparar', 'Comparar tudo'],
+            ['resumo', t('pricing.summary')],
+            ['comparar', t('pricing.compareAll')],
           ].map(([key, label]) => (
             <button key={key} type="button" aria-pressed={view === key} onClick={() => jump(key)}>
               {label}
@@ -434,7 +449,7 @@ export function Pricing() {
           </div>
           {mobile && (
             <div className={styles.pager}>
-              <button type="button" onClick={() => goCard(current - 1)} disabled={current === 0} aria-label="Plano anterior">
+              <button type="button" onClick={() => goCard(current - 1)} disabled={current === 0} aria-label={t('pricing.prevPlan')}>
                 ‹
               </button>
               <span aria-live="polite">
@@ -444,7 +459,7 @@ export function Pricing() {
                 type="button"
                 onClick={() => goCard(current + 1)}
                 disabled={current === plans.length - 1}
-                aria-label="Próximo plano"
+                aria-label={t('pricing.nextPlan')}
               >
                 ›
               </button>
@@ -455,13 +470,13 @@ export function Pricing() {
         <CompareTable mobile={mobile} pair={pair} setPair={setPair} compareRef={compareRef} />
 
         <ul className={styles.trust}>
-          {pricing.trust.map((t) => (
-            <li key={t.text}>
-              <PlanIcon name={t.icon} size={16} /> {t.text}
+          {pricing.trust.map((item) => (
+            <li key={item.icon}>
+              <PlanIcon name={item.icon} size={16} /> {item.text}
             </li>
           ))}
           <li>
-            <a href="#faq">Dúvidas frequentes →</a>
+            <a href="#faq">{t('pricing.faqLink')}</a>
           </li>
         </ul>
 
@@ -477,11 +492,12 @@ export function Pricing() {
       {mobile && (
         <div className={`${styles.bar} ${barOn ? styles.barOn : ''}`} inert={!barOn} data-plan-bar={barPlan.id}>
           <p>
-            <strong>{barPlan.name}</strong> · {formatPrice(barPlan.price)}/mês
+            <strong>{barPlan.name}</strong> · {formatPrice(barPlan.price)}
+            {t('pricing.perMonth')}
             {barPlan.barNote && <span> · {barPlan.barNote}</span>}
           </p>
-          <a href={getWhatsAppLink(barPlan.name)} target="_blank" rel="noopener noreferrer">
-            Quero esse
+          <a href={planLink(barPlan)} target="_blank" rel="noopener noreferrer">
+            {t('pricing.wantThis')}
           </a>
         </div>
       )}

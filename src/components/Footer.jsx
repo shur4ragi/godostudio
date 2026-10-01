@@ -1,26 +1,28 @@
 import { useEffect, useState } from 'react';
 import { siteConfig } from '../data/site';
+import { useLang } from '../i18n';
 import { whatsappUrl } from '../utils/external';
 import { Mark } from './Mark';
 import styles from './Footer.module.css';
 
-const { contact, brand, nav } = siteConfig;
+const { contact, brand } = siteConfig;
 
-const fmt = (timeZone) =>
-  new Date().toLocaleTimeString('pt-BR', { timeZone, hour: '2-digit', minute: '2-digit' });
+const fmt = (timeZone, locale) =>
+  new Date().toLocaleTimeString(locale, { timeZone, hour: '2-digit', minute: '2-digit', hour12: false });
 
-function useClock(timeZone) {
-  const [time, setTime] = useState(() => fmt(timeZone));
+function useClock(timeZone, locale) {
+  const [, setTick] = useState(0);
   useEffect(() => {
-    const id = setInterval(() => setTime(fmt(timeZone)), 15000);
+    const id = setInterval(() => setTick((n) => n + 1), 15000);
     return () => clearInterval(id);
-  }, [timeZone]);
-  return time;
+  }, []);
+  return fmt(timeZone, locale);
 }
 
 // Rodapé no formato do Galvão Tattoo (/ Seções, / Redes, local à direita) + wordmark e linha final.
 export function Footer() {
-  const time = useClock(brand.timezone);
+  const { t, site, meta } = useLang();
+  const time = useClock(brand.timezone, meta.locale);
   const [year] = useState(() => new Date().getFullYear());
 
   return (
@@ -29,22 +31,22 @@ export function Footer() {
         <div className={styles.cols}>
           <div>
             <h3>
-              <Mark /> / Seções
+              <Mark /> {t('footer.sections')}
             </h3>
             <ul>
-              {nav.map((item) => (
+              {site.nav.map((item) => (
                 <li key={item.href}>
                   <a href={item.href}>{item.label}</a>
                 </li>
               ))}
               <li>
-                <a href="#contato">Contato</a>
+                <a href="#contato">{t('common.contact')}</a>
               </li>
             </ul>
           </div>
           <div>
             <h3>
-              <Mark /> / Redes
+              <Mark /> {t('footer.social')}
             </h3>
             <ul>
               <li>
@@ -77,7 +79,7 @@ export function Footer() {
           <span className={styles.hud}>
             <b>SP</b> {time}
           </span>
-          <a href="#">Voltar ao topo ↑</a>
+          <a href="#">{t('footer.top')}</a>
         </div>
       </div>
     </footer>

@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { siteConfig, getWhatsAppLink } from '../data/site';
+import { useLang } from '../i18n';
+import { LangSwitch } from './LangSwitch';
 import styles from './Header.module.css';
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const { t, site } = useLang();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +57,7 @@ export function Header() {
           <button
             className={styles.closeBtn}
             onClick={() => setMenuOpen(false)}
-            aria-label="Fechar menu"
+            aria-label={t('header.closeMenu')}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6L6 18M6 6l12 12" />
@@ -62,7 +65,7 @@ export function Header() {
           </button>
 
           <div className={styles.navLinks}>
-            {siteConfig.nav.map((item) => (
+            {site.nav.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -81,9 +84,13 @@ export function Header() {
             className={styles.ctaMobile}
             onClick={handleNavClick}
           >
-            Quero meu site
+            {t('common.wantSite')}
           </a>
+          <LangSwitch className={styles.langMobile} />
         </nav>
+
+        <div className={styles.actions}>
+          <LangSwitch className={styles.langDesktop} />
 
         <a
           href={getWhatsAppLink()}
@@ -91,13 +98,14 @@ export function Header() {
           rel="noopener noreferrer"
           className={styles.cta}
         >
-          Contato
+          {t('common.contact')}
         </a>
+        </div>
 
         <button
           className={`${styles.menuBtn} ${menuOpen ? styles.menuOpen : ''}`}
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+          aria-label={menuOpen ? t('header.closeMenu') : t('header.openMenu')}
           aria-expanded={menuOpen}
         >
           <span className={styles.menuLine} />

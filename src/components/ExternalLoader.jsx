@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { EXTERNAL_EVENT, kindOf, openExternal } from '../utils/external';
+import { useLang } from '../i18n';
 import styles from './ExternalLoader.module.css';
 
 const WAIT_MS = 1600;
@@ -13,9 +14,9 @@ function hostOf(href) {
 }
 
 const COPY = {
-  whatsapp: () => ({ title: 'Abrindo o WhatsApp', text: 'Sua mensagem já vai pronta, é só enviar.' }),
-  instagram: () => ({ title: 'Abrindo o Instagram', text: 'O perfil do Vitor no @vitor_godo.' }),
-  site: (href) => ({ title: 'Abrindo o site ao vivo', text: hostOf(href) }),
+  whatsapp: (t) => ({ title: t('loader.waTitle'), text: t('loader.waText') }),
+  instagram: (t) => ({ title: t('loader.igTitle'), text: t('loader.igText') }),
+  site: (t, href) => ({ title: t('loader.siteTitle'), text: hostOf(href) }),
 };
 
 // Tela de carregamento antes de sair do site. Intercepta cliques em qualquer link externo da
@@ -23,6 +24,7 @@ const COPY = {
 // clique continua abrindo direto. Esc ou "Cancelar" desistem.
 export function ExternalLoader() {
   const [pending, setPending] = useState(null); // { href, kind }
+  const { t } = useLang();
   const cancelRef = useRef(null);
   const lastFocus = useRef(null);
 
@@ -79,7 +81,7 @@ export function ExternalLoader() {
   }, [pending]);
 
   if (!pending) return null;
-  const copy = COPY[pending.kind](pending.href);
+  const copy = COPY[pending.kind](t, pending.href);
 
   return (
     <div
@@ -108,7 +110,7 @@ export function ExternalLoader() {
           <i style={{ animationDuration: `${WAIT_MS}ms` }} />
         </span>
         <button ref={cancelRef} type="button" className={styles.cancel} onClick={() => setPending(null)}>
-          Cancelar
+          {t('loader.cancel')}
         </button>
       </div>
     </div>

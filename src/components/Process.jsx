@@ -2,6 +2,7 @@ import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig } from '../data/site';
+import { useLang } from '../i18n';
 import { whatsappUrl } from '../utils/external';
 import { Mark } from './Mark';
 import styles from './Process.module.css';
@@ -13,9 +14,12 @@ gsap.registerPlugin(ScrollTrigger);
 // Uma linha coral em ângulo reto (Dialed) liga o verbo ativo ao painel. Mobile, telas baixas e
 // prefers-reduced-motion: trilho vertical sem pin.
 const STAIR_QUERY = '(min-width: 1200px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)';
-const steps = siteConfig.process;
-const intro = siteConfig.processIntro;
-const ctaHref = () => whatsappUrl(siteConfig.contact.whatsapp.number, intro.ctaMessage);
+// WhatsApp message stays in Portuguese in every language.
+const ctaHref = () => whatsappUrl(siteConfig.contact.whatsapp.number, siteConfig.processIntro.ctaMessage);
+const useProcess = () => {
+  const { t, site, lang } = useLang();
+  return { t, lang, steps: site.process, intro: site.processIntro };
+};
 
 function useMedia(query) {
   const [match, setMatch] = useState(() => window.matchMedia(query).matches);
@@ -29,7 +33,7 @@ function useMedia(query) {
 }
 
 const stateOf = (i, active) => (i < active ? 'done' : i === active ? 'active' : 'next');
-const STATUS = { done: '✓ Feito', active: '● Em andamento', next: '· A seguir' };
+const STATUS_KEY = { done: 'process.done', active: 'process.active', next: 'process.next' };
 
 function Corners() {
   return (
@@ -40,25 +44,27 @@ function Corners() {
 }
 
 function StepBody({ step }) {
+  const { t } = useLang();
   return (
     <>
       <h3 className={styles.headline}>{step.headline}</h3>
-      <p className={styles.label}>O que acontece</p>
+      <p className={styles.label}>{t('process.happens')}</p>
       <p className={styles.desc}>{step.description}</p>
-      <p className={styles.label}>Você recebe</p>
+      <p className={styles.label}>{t('process.youGet')}</p>
       <ul className={styles.chips}>
         {step.deliverables.map((d, i) => (
           <li key={d} style={{ '--i': i }}>{d}</li>
         ))}
       </ul>
       <p className={styles.youDo}>
-        <span className={styles.label}>Você faz</span> {step.youDo}
+        <span className={styles.label}>{t('process.youDo')}</span> {step.youDo}
       </p>
     </>
   );
 }
 
 function Stair() {
+  const { t, lang, steps } = useProcess();
   const stageRef = useRef(null);
   const stairsRef = useRef(null);
   const panelRef = useRef(null);
@@ -145,7 +151,8 @@ function Stair() {
       d = `M${sx} ${vy} H${Math.min(sx - 8, ex + 18)} V${ey} H${ex}`;
     }
     setWire({ d, w: b.width, h: b.height });
-  }, [active, slot]);
+    // lang: word widths change with the language
+  }, [active, slot, lang]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useLayoutEffect(() => {
     measure();
@@ -181,7 +188,7 @@ function Stair() {
                   <span className={styles.index}>
                     {s.number}
                     {st === 'done' && <span className={styles.tick}>✓</span>}
-                    <span className="sr-only"> — {STATUS[st]}</span>
+                    <span className="sr-only"> — {t(STATUS_KEY[st])}</span>
                   </span>
                   <span className={styles.wordMask}>
                     <span ref={(el) => (wordRefs.current[i] = el)} className={styles.word} data-word>
@@ -209,7 +216,7 @@ function Stair() {
             <Corners />
             <p className={styles.hud}>
               <span>
-                Passo{' '}
+                {t('process.step')}{' '}
                 <span className={styles.roll} aria-hidden="true">
                   <span style={{ transform: `translateY(${-active * 1.3}em)` }}>
                     {steps.map((s) => (
@@ -220,9 +227,9 @@ function Stair() {
                 <span className="sr-only">{step.number}</span>/0{steps.length}
               </span>
               <span className={step.live ? styles.live : styles.status}>
-                {step.live ? '● Ao vivo' : '● Em andamento'}
+                {step.live ? t('process.liveNow') : t('process.active')}
               </span>
-              <span className={styles.hudRight}>Duração {step.duration}</span>
+              <span className={styles.hudRight}>{t('process.duration')} {step.duration}</span>
             </p>
             <div key={step.number} className={styles.panelBody}>
               <StepBody step={step} />
@@ -238,9 +245,10 @@ function Stair() {
 }
 
 function Ruler({ ref, active }) {
+  const { t, steps, intro } = useProcess();
   return (
     <div ref={ref} className={styles.ruler}>
-      <ol className={styles.segments} aria-label="Tempo de cada passo">
+      <ol className={styles.segments} aria-label={t('process.rulerAria')}>
         {steps.map((s, i) => (
           <li
             key={s.number}
@@ -268,6 +276,7 @@ function Ruler({ ref, active }) {
 
 // Mobile / reduced motion: trilho vertical; a linha coral "enche" até o passo que está na tela.
 function Rail() {
+  const { t, steps, intro } = useProcess();
   const listRef = useRef(null);
   const [fill, setFill] = useState(0);
   const [reached, setReached] = useState(-1);
@@ -322,7 +331,7 @@ function Rail() {
               <Corners />
               <p className={styles.hud}>
                 <span>{s.number}/0{steps.length}</span>
-                {s.live && <span className={styles.live}>● Ao vivo</span>}
+                {s.live && <span className={styles.live}>{t('process.liveNow')}</span>}
                 <span className={styles.hudRight}>{s.duration}</span>
               </p>
               <StepBody step={s} />
@@ -332,7 +341,7 @@ function Rail() {
       </ol>
       <div className={styles.railFoot}>
         <p className={styles.total}>
-          Total <strong>{intro.total}</strong>
+          {t('process.total')} <strong>{intro.total}</strong>
         </p>
         <p className={styles.closing}>{intro.closing}</p>
         <a className={styles.cta} href={ctaHref()} target="_blank" rel="noopener noreferrer">
@@ -344,12 +353,13 @@ function Rail() {
 }
 
 export function Process() {
+  const { t, intro } = useProcess();
   const stair = useMedia(STAIR_QUERY);
   return (
     <section id="processo" className={`${styles.section} section-light`}>
       <div className={`container ${styles.header}`}>
         <p className={styles.kicker}>
-          <Mark /> <span>/ Processo</span>
+          <Mark /> <span>{t('process.kicker')}</span>
           <span className={styles.kickerIndex}>03</span>
         </p>
         <h2 className={styles.title}>

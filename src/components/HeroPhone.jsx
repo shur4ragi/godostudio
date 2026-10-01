@@ -6,7 +6,7 @@ const SIZES = '(max-width: 899px) 184px, 275px';
 const srcset = (ext) => `/hero/site-mobile-400.${ext} 400w, /hero/site-mobile-600.${ext} 600w`;
 
 // CSS-built iPhone, tilted in 3D, floating, with a light pointer parallax on desktop.
-export function HeroPhone() {
+export function HeroPhone({ cta }) {
   const sceneRef = useRef(null);
 
   // Pause float/scroll animations while the hero is offscreen (or the tab is hidden).
@@ -119,7 +119,7 @@ export function HeroPhone() {
               </div>
               <div className={styles.appbar}>
                 <span className={styles.logo}>GodoStudio</span>
-                <span className={styles.pill}>Quero meu site</span>
+                <span className={styles.pill}>{cta}</span>
               </div>
               <span className={styles.homebar} />
               <span className={styles.glare} />

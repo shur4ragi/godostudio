@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useState, useCallback } from 'react';
 import { siteConfig, getWhatsAppLink } from '../data/site';
+import { useLang } from '../i18n';
 import { HeroPhone } from './HeroPhone';
 import styles from './Hero.module.css';
 
@@ -11,7 +12,6 @@ const OPEN_AT = 2500;
 const DONE_AFTER_OPEN = 2600;
 const VISITED_KEY = 'godostudio-visited';
 
-const LABELS = ['Sites', 'Negócios locais', siteConfig.brand.location];
 
 function initialPhase() {
   if (typeof window === 'undefined') return 'done';
@@ -33,7 +33,10 @@ function splitTitle(text, highlight) {
 export function Hero() {
   const [phase, setPhase] = useState(initialPhase);
   const [withIntro] = useState(() => phase === 'intro');
-  const { headline, subtitle, highlight, lead } = siteConfig.hero;
+  const { t, site } = useLang();
+  const { headline, subtitle, highlight, lead } = site.hero;
+  const labels = [...site.hero.labels, siteConfig.brand.location];
+  const tagline = site.brand.tagline;
   const letters = headline.split('');
   const words = splitTitle(subtitle, highlight);
   const loading = phase === 'intro' || phase === 'out';
@@ -93,7 +96,7 @@ export function Hero() {
   }, [phase]);
 
   return (
-    <section className={styles.hero} data-phase={phase} aria-label="Início">
+    <section className={styles.hero} data-phase={phase} aria-label={t('common.heroAria')}>
       {withIntro && phase !== 'done' && (
         <div className={styles.intro} aria-hidden="true">
           <p className={styles.word}>
@@ -103,7 +106,7 @@ export function Hero() {
               </span>
             ))}
           </p>
-          <p className={styles.introTag}>{siteConfig.brand.tagline}</p>
+          <p className={styles.introTag}>{tagline}</p>
         </div>
       )}
 
@@ -111,7 +114,7 @@ export function Hero() {
         <div className={styles.grid}>
           <div className={styles.copy}>
             <ul className={styles.labels} data-in="eyebrow">
-              {LABELS.map((l) => (
+              {labels.map((l) => (
                 <li key={l} className={styles.label}>
                   {l}
                 </li>
@@ -135,22 +138,22 @@ export function Hero() {
             <div className={styles.actions} data-in="actions">
               <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className={styles.cta}>
                 <span className={styles.ctaDot} aria-hidden="true" />
-                Quero meu site
+                {t('common.wantSite')}
               </a>
               <a href="#projetos" className={styles.scroll}>
-                <span aria-hidden="true">///</span> Role para explorar
+                <span aria-hidden="true">///</span> {t('common.scroll')}
               </a>
             </div>
           </div>
 
           <div className={styles.visual} data-in="phone">
-            <HeroPhone />
+            <HeroPhone cta={t('common.wantSite')} />
           </div>
         </div>
 
         <div className={styles.meta} data-in="meta" aria-hidden="true">
           <span>{headline}</span>
-          <span>{siteConfig.brand.tagline}</span>
+          <span>{tagline}</span>
         </div>
       </div>
     </section>

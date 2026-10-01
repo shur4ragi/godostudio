@@ -107,6 +107,16 @@
   display: none;
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.langMobile {
+  display: none !important;
+}
+
 .closeBtn {
   display: none;
 }
@@ -192,6 +202,19 @@
 
   .cta {
     display: none;
+  }
+
+  .langDesktop {
+    display: none !important;
+  }
+
+  .langMobile {
+    display: inline-flex !important;
+    margin-top: var(--space-md);
+  }
+
+  .actions {
+    margin-left: auto;
   }
 
   .ctaMobile {

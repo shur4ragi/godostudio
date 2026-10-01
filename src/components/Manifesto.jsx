@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { siteConfig } from '../data/site';
+import { useLang } from '../i18n';
 import styles from './Manifesto.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -9,16 +9,18 @@ gsap.registerPlugin(ScrollTrigger);
 export function Manifesto() {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
+  const { lang, site } = useLang();
+  const { text: copy, highlight } = site.manifesto;
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     const text = textRef.current;
-    const words = siteConfig.manifesto.text.split(' ');
+    const words = copy.split(' ');
     
     text.innerHTML = words.map(word => {
-      const isHighlight = word.toLowerCase().includes(siteConfig.manifesto.highlight.toLowerCase());
+      const isHighlight = word.toLowerCase().includes(highlight.toLowerCase());
       return `<span class="${styles.word} ${isHighlight ? styles.highlight : ''}"><span class="${styles.wordInner}">${word}</span></span>`;
     }).join(' ');
 
@@ -45,13 +47,14 @@ export function Manifesto() {
       tween.scrollTrigger?.kill();
       tween.kill();
     };
-  }, []);
+  }, [copy, highlight]);
 
   return (
     <section ref={sectionRef} className={`${styles.section} section-dark`}>
       <div className="container">
-        <p ref={textRef} className={styles.text}>
-          {siteConfig.manifesto.text}
+        {/* key: React must not reconcile into the words injected below on a language switch */}
+        <p key={lang} ref={textRef} className={styles.text}>
+          {copy}
         </p>
       </div>
     </section>

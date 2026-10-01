@@ -1,27 +1,20 @@
 /**
- * GodoStudio v3 — Configuração de conteúdo
- * Edite este arquivo para atualizar textos, projetos, planos e contato.
- * Linhas marcadas com TODO: precisam de confirmação do Vitor.
+ * GodoStudio v3 — Estrutura do conteúdo (ids, links, preços, mídia, mensagens do WhatsApp).
+ * Os TEXTOS do site ficam em src/i18n/{pt,en,es}.json (pt = padrão) e são mesclados aqui por
+ * useLang().site — arrays por índice, objetos por chave.
+ * As mensagens pré-preenchidas do WhatsApp ficam aqui, sempre em português (negócio brasileiro).
+ * Linhas marcadas com TODO: precisam de confirmação do Vitor (o texto correspondente está nos JSON).
  */
 
 export const siteConfig = {
   brand: {
     name: 'GodoStudio',
-    tagline: 'Sites que vendem.',
     location: 'Taubaté, SP',
     timezone: 'America/Sao_Paulo',
   },
   
   hero: {
     headline: 'GodoStudio',
-    subtitle: 'Sites profissionais para negócios locais',
-    highlight: 'negócios locais',
-    lead: 'Landing pages para cafés, estúdios e comércios locais, com foco em conversão. Assinatura mensal a partir de R$ 100.',
-  },
-  
-  manifesto: {
-    text: 'Criamos sites que transformam visitantes em clientes. Landing pages para cafés, estúdios e comércios — com foco em conversão.',
-    highlight: 'transformam',
   },
 
   contact: {
@@ -34,38 +27,21 @@ export const siteConfig = {
       handle: '@vitor_godo',
       url: 'https://instagram.com/vitor_godo',
     },
-    // TODO: Vitor - confirmar horário de atendimento
-    hours: 'Pelo WhatsApp, com hora marcada',
+    // TODO: Vitor - confirmar horário de atendimento (content.contact.hours)
     city: 'Taubaté — SP',
   },
   
-  contactForm: {
-    businessTypes: [
-      'Cafeteria',
-      'Doceria / Confeitaria',
-      'Restaurante / Lanchonete',
-      'Estúdio / Tattoo',
-      'Salão / Barbearia',
-      'Loja / Comércio',
-      'Serviços',
-      'Outro',
-    ],
-    plans: ['Básico', 'Médio', 'Premium', 'Ainda não sei'],
-  },
-
   nav: [
-    { label: 'Projetos', href: '#projetos' },
-    { label: 'Processo', href: '#processo' },
-    { label: 'Planos', href: '#planos' },
-    { label: 'FAQ', href: '#faq' },
+    { href: '#projetos' },
+    { href: '#processo' },
+    { href: '#planos' },
+    { href: '#faq' },
   ],
   
   projects: [
     {
       id: 'fryda',
       name: 'Fryda Café',
-      segment: 'Cafeteria',
-      description: 'Cardápio e encomenda pelo WhatsApp',
       url: 'https://fryda-cafe.vercel.app/',
       number: '01',
       preview: {
@@ -84,8 +60,6 @@ export const siteConfig = {
     {
       id: 'leyas',
       name: "Leya's Café",
-      segment: 'Cafeteria',
-      description: 'Cardápio, carrinho e pedido pelo WhatsApp',
       url: 'https://leyas-cafe.vercel.app/',
       number: '02',
       preview: {
@@ -104,8 +78,6 @@ export const siteConfig = {
     {
       id: 'nanica',
       name: 'Nanica',
-      segment: 'Doceria',
-      description: 'Cardápio, carrinho e pedido',
       url: 'https://nanica-ten.vercel.app/',
       number: '03',
       preview: {
@@ -124,8 +96,6 @@ export const siteConfig = {
     {
       id: 'galvao',
       name: 'Galvão Tattoo',
-      segment: 'Estúdio',
-      description: 'Portfólio e orçamento',
       url: 'https://galvao-tattoo.vercel.app',
       number: '04',
       preview: {
@@ -141,205 +111,75 @@ export const siteConfig = {
   
   // Processo — "A escada". Durações, entregáveis e rodadas são SUGESTÕES da pesquisa.
   // TODO: Vitor - confirmar durações, entregáveis ("Você recebe") e nº de rodadas de ajustes.
+  // TODO: Vitor - confirmar prazo total (content.processIntro.total; a soma das durações dá ≈ 6–9 dias)
   // rulerWeight = tamanho do trecho do passo na régua de tempo (proporcional à duração).
   processIntro: {
-    title: 'Como funciona',
-    subtitle: 'do primeiro oi ao site no ar',
-    // TODO: Vitor - confirmar prazo total (a soma das durações abaixo dá ≈ 6–9 dias)
-    total: '≈ 7–10 dias',
-    rulerLabel: 'Do primeiro oi ao site no ar',
-    closing: 'Do primeiro oi ao site no ar em cerca de 7 a 10 dias.',
-    cta: 'Começar pelo passo 01',
     ctaMessage: 'Oi, Vitor! Quero começar o meu site. Meu negócio é ',
   },
 
   process: [
-    {
-      number: '01',
-      title: 'Descobrir',
-      duration: '≈ 1 dia',
-      rulerWeight: 2,
-      art: 'chat',
-      headline: 'Um papo sobre o seu negócio',
-      description: 'Conversamos pelo WhatsApp sobre o que você vende e quem é o seu cliente. No fim, você sabe qual plano faz sentido.',
-      deliverables: ['Resumo do projeto', 'Plano recomendado'],
-      youDo: 'Me manda logo, fotos e cardápio — o que já tiver.',
-    },
-    {
-      number: '02',
-      title: 'Prototipar',
-      duration: '≈ 2–3 dias',
-      rulerWeight: 3,
-      art: 'wireframe',
-      headline: 'Você vê o site antes',
-      description: 'Monto uma prévia com as suas cores, textos e fotos. Você navega pelo celular como se já estivesse no ar.',
-      deliverables: ['Link da prévia', '2 rodadas de ajustes'],
-      youDo: 'Me diz o que mudar — pode ser por áudio.',
-    },
-    {
-      number: '03',
-      title: 'Construir',
-      duration: '≈ 3–5 dias',
-      rulerWeight: 5,
-      art: 'code',
-      headline: 'Código leve e rápido',
-      description: 'Desenvolvo o site de verdade: rápido no 4G, com WhatsApp, mapa e o que o seu plano incluir.',
-      deliverables: ['Versão final', 'Teste de velocidade', 'SEO básico'],
-      youDo: 'Só uma última olhada e o ok.',
-    },
-    {
-      number: '04',
-      title: 'Lançar',
-      duration: 'Contínuo',
-      live: true,
-      rulerWeight: 1,
-      art: 'browser',
-      headline: 'No ar, com o seu domínio',
-      description: 'Publico com domínio próprio e cadeado de segurança (HTTPS). Depois, a manutenção mensal está inclusa.',
-      deliverables: ['Site publicado', 'Domínio e hospedagem', 'Manutenção mensal'],
-      youDo: 'Compartilha o link no Instagram e no Google. Pronto! 🎉',
-    },
+    { number: '01', rulerWeight: 2, art: 'chat' },
+    { number: '02', rulerWeight: 3, art: 'wireframe' },
+    { number: '03', rulerWeight: 5, art: 'code' },
+    { number: '04', rulerWeight: 1, art: 'browser', live: true },
   ],
 
   // Planos — cards (Resumo) e tabela (Comparar tudo) saem daqui.
+  // TODO: Vitor - confirmar a data de vigência dos preços (content.pricing.validFrom)
+  // TODO: Vitor - confirmar "o domínio é seu", o aviso de 30 dias antes de reajuste e a nota ³
   pricing: {
-    subtitle: 'Assinatura mensal, sem fidelidade. Cancele quando quiser.',
-    // TODO: Vitor - confirmar a data de vigência dos preços
-    validFrom: 'Preços válidos desde 10/2026',
-    // {plan} vira o nome do plano na mensagem do WhatsApp
+    // {plan} vira o nome do plano (em português) na mensagem do WhatsApp
     planMessage: 'Olá, Vitor! Vim pelo site da GodoStudio e tenho interesse no plano {plan}.',
-    // Faixa de confiança abaixo da tabela.
-    trust: [
-      { icon: 'unlock', text: 'Sem fidelidade' },
-      // TODO: Vitor - confirmar "o domínio é seu" (registrado no nome do cliente)
-      { icon: 'key', text: 'O domínio é seu' },
-      // TODO: Vitor - confirmar o aviso de 30 dias antes de reajuste
-      { icon: 'bell', text: 'Aviso com 30 dias se o preço mudar' },
-    ],
+    trust: [{ icon: 'unlock' }, { icon: 'key' }, { icon: 'bell' }],
     // Notas de rodapé (as marcas ¹ ² ³ nos cards e na tabela apontam para cá).
-    footnotes: [
-      { mark: '¹', text: 'Plano Médio: você usa o site completo durante 30 dias sem pagar nada. A cobrança começa no segundo mês. Sem compromisso.' },
-      { mark: '²', text: 'Sem fidelidade nem multa. Para pausar ou cancelar, é só avisar.' },
-      // TODO: Vitor - confirmar (sugestão da pesquisa)
-      { mark: '³', text: 'Domínio próprio (seunegocio.com.br) registrado no seu nome.' },
-    ],
+    footnotes: [{ mark: '¹' }, { mark: '²' }, { mark: '³' }],
   },
 
-  // Recursos dos planos. icon = nome do ícone em PlanIcon.jsx; tip = explicação no "?" da tabela.
+  // Recursos dos planos. icon = nome do ícone em PlanIcon.jsx; label/tip ficam nos JSON.
   planFeatures: {
-    landing: { label: 'Landing page de uma página', icon: 'page', tip: 'Um site de uma página só, com tudo o que o seu cliente precisa ver antes de chamar no WhatsApp.' },
-    whatsapp: { label: 'Botão WhatsApp flutuante', icon: 'whatsapp' },
-    map: { label: 'Mapa e localização', icon: 'pin' },
-    hosting: { label: 'Hospedagem e domínio inclusos', icon: 'globe', note: '³', tip: 'O endereço seunegocio.com.br e o servidor onde o site fica no ar.' },
-    tweaks: { label: 'Ajustes simples sob demanda', icon: 'wrench' },
-    catalog: { label: 'Cardápio ou catálogo completo', icon: 'menu' },
-    gallery: { label: 'Galeria de fotos/portfólio', icon: 'image' },
-    form: { label: 'Formulário de orçamento/contato', icon: 'form' },
-    updates: { label: 'Atualizações mensais inclusas', icon: 'refresh' },
-    cart: { label: 'Carrinho com pedido pelo WhatsApp', icon: 'cart' },
-    tour: { label: 'Tour guiado interativo', icon: 'compass' },
-    priority: { label: 'Prioridade em alterações', icon: 'bolt' },
-    custom: { label: 'Recursos sob medida', icon: 'spark' },
+    landing: { icon: 'page' },
+    whatsapp: { icon: 'whatsapp' },
+    map: { icon: 'pin' },
+    hosting: { icon: 'globe', note: '³' },
+    tweaks: { icon: 'wrench' },
+    catalog: { icon: 'menu' },
+    gallery: { icon: 'image' },
+    form: { icon: 'form' },
+    updates: { icon: 'refresh' },
+    cart: { icon: 'cart' },
+    tour: { icon: 'compass' },
+    priority: { icon: 'bolt' },
+    custom: { icon: 'spark' },
   },
 
+  // TODO: Vitor - confirmar "sem taxa de adesão" e os recursos de cada plano
   plans: [
-    {
-      id: 'basico',
-      name: 'Básico',
-      price: 100,
-      highlighted: false,
-      badge: null,
-      persona: 'Pra quem precisa existir no Google e no WhatsApp.',
-      // TODO: Vitor - confirmar "sem taxa de adesão"
-      anchor: 'Sem taxa de adesão',
-      // TODO: Vitor - confirmar recursos do plano Básico
-      features: ['landing', 'whatsapp', 'map', 'hosting', 'tweaks'],
-    },
-    {
-      id: 'medio',
-      name: 'Médio',
-      price: 175,
-      highlighted: true,
-      badge: 'Mais escolhido',
-      persona: 'Pra quem quer mostrar o cardápio/catálogo e receber pedidos de orçamento.',
-      anchor: '1º mês: R$ 0 · você economiza R$ 175',
-      anchorNote: '¹',
-      barNote: '1º mês grátis',
-      // Tudo do plano indicado + os recursos abaixo.
-      includes: 'basico',
-      // TODO: Vitor - confirmar recursos do plano Médio
-      features: ['catalog', 'gallery', 'form', 'updates'],
-    },
-    {
-      id: 'premium',
-      name: 'Premium',
-      price: 250,
-      highlighted: false,
-      badge: null,
-      persona: 'Pra quem quer vender pelo site e ter prioridade.',
-      // TODO: Vitor - confirmar "sem taxa de adesão"
-      anchor: 'Sem taxa de adesão',
-      includes: 'medio',
-      // TODO: Vitor - confirmar recursos do plano Premium
-      features: ['cart', 'tour', 'priority', 'custom'],
-    },
+    { id: 'basico', name: 'Básico', price: 100, highlighted: false, features: ['landing', 'whatsapp', 'map', 'hosting', 'tweaks'] },
+    // Tudo do plano indicado em `includes` + os recursos abaixo.
+    { id: 'medio', name: 'Médio', price: 175, highlighted: true, anchorNote: '¹', includes: 'basico', features: ['catalog', 'gallery', 'form', 'updates'] },
+    { id: 'premium', name: 'Premium', price: 250, highlighted: false, includes: 'medio', features: ['cart', 'tour', 'priority', 'custom'] },
   ],
 
   // Tabela "Comparar tudo": grupos com os recursos acima (só o que já está nos planos).
   compare: {
-    title: 'Compare todos os recursos',
     groups: [
-      { title: 'O site', rows: ['landing', 'catalog', 'gallery', 'tour'] },
-      { title: 'Contato e vendas', rows: ['whatsapp', 'map', 'form', 'cart'] },
-      { title: 'Hospedagem e manutenção', rows: ['hosting', 'tweaks', 'updates', 'priority', 'custom'] },
+      { rows: ['landing', 'catalog', 'gallery', 'tour'] },
+      { rows: ['whatsapp', 'map', 'form', 'cart'] },
+      { rows: ['hosting', 'tweaks', 'updates', 'priority', 'custom'] },
     ],
-    // Linhas de texto (valor por plano). {price} = preço do plano.
     conditions: {
-      title: 'Condições',
-      rows: [
-        { label: 'Mensalidade', values: { basico: 'R$ 100', medio: 'R$ 175', premium: 'R$ 250' } },
-        { label: 'Primeiro mês', note: '¹', values: { basico: 'R$ 100', medio: 'R$ 0', premium: 'R$ 250' } },
-        { label: 'Fidelidade', note: '²', values: { basico: 'Nenhuma', medio: 'Nenhuma', premium: 'Nenhuma' } },
-      ],
+      rows: [{}, { note: '¹' }, { note: '²' }],
     },
   },
 
-  faq: [
-    {
-      question: 'Qual o prazo de entrega do site?',
-      // TODO: Vitor - confirmar prazo médio de entrega
-      answer: 'Sites simples ficam prontos em até 7 dias úteis. Projetos maiores podem levar de 2 a 3 semanas, dependendo da complexidade.',
-    },
-    {
-      question: 'Posso usar meu próprio domínio?',
-      answer: 'Sim! Se você já tem um domínio, configuramos tudo pra você. Se não tem, ajudo a registrar um novo.',
-    },
-    {
-      question: 'Posso cancelar quando quiser?',
-      answer: 'Pode sim. Não tem fidelidade nem multa. Se quiser pausar ou cancelar, é só avisar.',
-    },
-    {
-      question: 'Quem atualiza o conteúdo do site?',
-      answer: 'Eu cuido das atualizações pra você. Basta mandar as alterações por WhatsApp e faço a mudança.',
-    },
-    {
-      question: 'Como funciona o mês grátis do plano Médio?',
-      // TODO: Vitor - confirmar detalhes da promoção do mês grátis
-      answer: 'Você usa o site completo durante 30 dias sem pagar nada. Se gostar, a cobrança começa no segundo mês. Sem compromisso.',
-    },
-    {
-      question: 'O site fica hospedado onde?',
-      answer: 'Na Vercel, uma das melhores plataformas do mundo. Seu site carrega rápido e fica no ar 24 horas.',
-    },
-  ],
+  // TODO: Vitor - confirmar prazo médio de entrega e detalhes do mês grátis (content.faq)
 
   seo: {
-    title: 'GodoStudio — Sites para Negócios Locais em Taubaté',
-    description: 'Landing pages profissionais para cafés, estúdios e comércios locais. Assinatura mensal a partir de R$ 100. Sem complicação.',
     ogImage: '/og-image.png',
   },
 };
 
+// planName: nome do plano em português (siteConfig.plans[].name), a mensagem é sempre em pt.
 export const getWhatsAppLink = (planName = null) => {
   const { whatsapp } = siteConfig.contact;
   const message = planName

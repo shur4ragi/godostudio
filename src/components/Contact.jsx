@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { siteConfig } from '../data/site';
+import { DICTS, useLang } from '../i18n';
 import { openWithLoader, whatsappUrl } from '../utils/external';
 import { Mark } from './Mark';
 import styles from './Contact.module.css';
 
-const { contact, contactForm } = siteConfig;
+const { contact } = siteConfig;
+// Select values stay in Portuguese (they go into the WhatsApp message); labels are translated.
+const PT_FORM = DICTS.pt.content.contactForm;
 
 // (12) 99193-9876 enquanto digita.
 function maskPhone(value) {
@@ -15,6 +18,7 @@ function maskPhone(value) {
   return `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
 }
 
+// WhatsApp message is always in Portuguese (the business is Brazilian).
 function buildMessage({ name, phone, business, plan, idea }) {
   return [
     'Olá, Vitor! Vim pelo site da GodoStudio e quero um site para o meu negócio.',
@@ -52,7 +56,9 @@ function WhatsAppIcon() {
 // O envio monta a mensagem e abre o WhatsApp pela tela de carregamento (ExternalLoader).
 export function Contact() {
   const [form, setForm] = useState(EMPTY);
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({}); // field -> i18n key
+  const { t, site } = useLang();
+  const form_ = site.contactForm;
 
   const set = (field) => (e) => {
     const value = field === 'phone' ? maskPhone(e.target.value) : e.target.value;
@@ -63,9 +69,9 @@ export function Contact() {
   const submit = (e) => {
     e.preventDefault();
     const next = {};
-    if (form.name.trim().length < 2) next.name = 'Conte como podemos te chamar.';
-    if (form.phone && form.phone.replace(/\D/g, '').length < 10) next.phone = 'Confira o número com DDD.';
-    if (form.idea.trim().length < 8) next.idea = 'Escreva um pouco sobre o seu negócio e o site.';
+    if (form.name.trim().length < 2) next.name = 'contact.errName';
+    if (form.phone && form.phone.replace(/\D/g, '').length < 10) next.phone = 'contact.errPhone';
+    if (form.idea.trim().length < 8) next.idea = 'contact.errIdea';
     setErrors(next);
     const first = Object.keys(next)[0];
     if (first) {
@@ -86,18 +92,17 @@ export function Contact() {
     <section id="contato" className={styles.section}>
       <div className="container">
         <p className={styles.kicker}>
-          <Mark /> <span>/ Contato</span>
+          <Mark /> <span>{t('contact.kicker')}</span>
           <span className={styles.kickerIndex}>06</span>
         </p>
 
         <div className={styles.grid}>
           <div className={styles.side}>
             <h2 className={styles.title}>
-              Vamos criar seu site <span className={styles.sign}>agora</span>
+              {t('contact.titleA')} <span className={styles.sign}>{t('contact.titleSign')}</span>
             </h2>
             <p className={styles.lead}>
-              Conte o que o seu negócio faz e o que precisa no site. O Vitor responde pelo WhatsApp com a
-              proposta e o plano ideal.
+              {t('contact.lead')}
             </p>
 
             <dl className={styles.info}>
@@ -118,11 +123,11 @@ export function Contact() {
                 </dd>
               </div>
               <div>
-                <dt>Atendimento</dt>
-                <dd>{contact.hours}</dd>
+                <dt>{t('contact.hours')}</dt>
+                <dd>{site.contact.hours}</dd>
               </div>
               <div>
-                <dt>Local</dt>
+                <dt>{t('contact.place')}</dt>
                 <dd>{contact.city}</dd>
               </div>
             </dl>
@@ -130,14 +135,14 @@ export function Contact() {
 
           <form className={styles.form} onSubmit={submit} noValidate aria-labelledby="orcamento-titulo">
             <p id="orcamento-titulo" className={styles.formTitle}>
-              Pedir orçamento
+              {t('contact.formTitle')}
             </p>
 
             <div className={styles.row}>
               <label className={styles.field}>
-                <span>Nome *</span>
-                <input {...errorProps('name')} value={form.name} onChange={set('name')} autoComplete="name" placeholder="Como te chamamos" required />
-                {errors.name && <em id="erro-name">{errors.name}</em>}
+                <span>{t('contact.name')}</span>
+                <input {...errorProps('name')} value={form.name} onChange={set('name')} autoComplete="name" placeholder={t('contact.namePh')} required />
+                {errors.name && <em id="erro-name">{t(errors.name)}</em>}
               </label>
               <label className={styles.field}>
                 <span>WhatsApp</span>
@@ -150,29 +155,29 @@ export function Contact() {
                   autoComplete="tel-national"
                   placeholder="(12) 99999-9999"
                 />
-                {errors.phone && <em id="erro-phone">{errors.phone}</em>}
+                {errors.phone && <em id="erro-phone">{t(errors.phone)}</em>}
               </label>
             </div>
 
             <div className={styles.row}>
               <label className={styles.field}>
-                <span>Tipo de negócio</span>
+                <span>{t('contact.business')}</span>
                 <select value={form.business} onChange={set('business')} className={form.business ? '' : styles.placeholder}>
-                  <option value="">Escolha</option>
-                  {contactForm.businessTypes.map((o) => (
+                  <option value="">{t('contact.choose')}</option>
+                  {PT_FORM.businessTypes.map((o, i) => (
                     <option key={o} value={o}>
-                      {o}
+                      {form_.businessTypes[i]}
                     </option>
                   ))}
                 </select>
               </label>
               <label className={styles.field}>
-                <span>Plano</span>
+                <span>{t('contact.plan')}</span>
                 <select value={form.plan} onChange={set('plan')} className={form.plan ? '' : styles.placeholder}>
-                  <option value="">Escolha</option>
-                  {contactForm.plans.map((o) => (
+                  <option value="">{t('contact.choose')}</option>
+                  {PT_FORM.plans.map((o, i) => (
                     <option key={o} value={o}>
-                      {o}
+                      {form_.plans[i]}
                     </option>
                   ))}
                 </select>
@@ -180,23 +185,23 @@ export function Contact() {
             </div>
 
             <label className={styles.field}>
-              <span>Sua ideia *</span>
+              <span>{t('contact.idea')}</span>
               <textarea
                 {...errorProps('idea')}
                 value={form.idea}
                 onChange={set('idea')}
                 rows={4}
-                placeholder="O que o seu negócio faz e o que o site precisa ter."
+                placeholder={t('contact.ideaPh')}
                 required
               />
-              {errors.idea && <em id="erro-idea">{errors.idea}</em>}
+              {errors.idea && <em id="erro-idea">{t(errors.idea)}</em>}
             </label>
 
             <button type="submit" className={styles.submit}>
               <WhatsAppIcon />
-              Enviar pelo WhatsApp
+              {t('contact.submit')}
             </button>
-            <p className={styles.hint}>A mensagem abre pronta no WhatsApp. Fotos e referências você manda por lá.</p>
+            <p className={styles.hint}>{t('contact.hint')}</p>
           </form>
         </div>
       </div>

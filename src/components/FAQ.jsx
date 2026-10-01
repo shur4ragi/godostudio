@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { siteConfig } from '../data/site';
+import { useLang } from '../i18n';
 import { InkReveal } from './InkReveal';
 import { Mark } from './Mark';
 import styles from './FAQ.module.css';
@@ -8,27 +8,28 @@ import styles from './FAQ.module.css';
 // coluna direita com acordeão de linhas finas e ícone +. Uma pergunta aberta por vez.
 export function FAQ() {
   const [open, setOpen] = useState(null);
+  const { t, site } = useLang();
 
   return (
     <section id="faq" className={`${styles.section} section-muted`}>
       <div className={`container ${styles.layout}`}>
         <header className={styles.head}>
           <p className={styles.tag}>
-            <Mark /> <span>/ Dúvidas</span>
+            <Mark /> <span>{t('faq.kicker')}</span>
             <span className={styles.index}>05</span>
           </p>
           <InkReveal as="h2" variant="letters" className={styles.titleInk} contentClassName={styles.title}>
-            <b>Antes</b>
-            <span>de</span>
-            <span>começar.</span>
+            <b>{t('faq.t1')}</b>
+            <span>{t('faq.t2')}</span>
+            <span>{t('faq.t3')}</span>
           </InkReveal>
         </header>
 
         <div className={styles.list}>
-          {siteConfig.faq.map((item, i) => {
+          {site.faq.map((item, i) => {
             const isOpen = open === i;
             return (
-              <div key={item.question} className={styles.item} data-open={isOpen}>
+              <div key={i} className={styles.item} data-open={isOpen}>
                 <h3 className={styles.heading}>
                   <button
                     type="button"

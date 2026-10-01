@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { siteConfig } from '../data/site';
 import { prefersAv1, shouldLimitData } from '../utils/media';
+import { useLang } from '../i18n';
 import styles from './ProjectsCarousel.module.css';
 
 /*
@@ -162,6 +163,8 @@ export function ProjectsCarousel() {
   const [hovered, setHovered] = useState(false);
   const [focusWithin, setFocusWithin] = useState(false);
 
+  const { t, site } = useLang();
+  const projects = site.projects; // localized segment/description
   const activeIndex = mod(cursor, N);
   const active = projects[activeIndex];
 
@@ -413,23 +416,23 @@ export function ProjectsCarousel() {
       <h3 className={styles.detailTitle}>{active.name}</h3>
       <dl className={styles.detailList}>
         <div>
-          <dt>Segmento</dt>
+          <dt>{t('carousel.segment')}</dt>
           <dd>{active.segment}</dd>
         </div>
         <div>
-          <dt>O que foi feito</dt>
+          <dt>{t('carousel.whatDone')}</dt>
           <dd>{active.description}</dd>
         </div>
       </dl>
       <div className={styles.detailCtas}>
         {active.url && (
           <a className={styles.ctaGhost} href={active.url} target="_blank" rel="noopener noreferrer">
-            Ver site ao vivo <span aria-hidden="true">↗</span>
+            {t('carousel.live')} <span aria-hidden="true">↗</span>
           </a>
         )}
         <a className={styles.ctaPrimary} href={projectWhatsApp(active)} target="_blank" rel="noopener noreferrer">
           <span className={styles.ctaDot} aria-hidden="true" />
-          Quero um site assim
+          {t('carousel.wantLike')}
         </a>
       </div>
     </>
@@ -440,8 +443,8 @@ export function ProjectsCarousel() {
       id="projetos"
       ref={sectionRef}
       className={`${styles.section} section-muted ${expanded ? styles.isExpanded : ''}`}
-      aria-roledescription="carrossel"
-      aria-label="Projetos"
+      aria-roledescription={t('carousel.roledesc')}
+      aria-label={t('carousel.sectionAria')}
       onKeyDown={onKeyDown}
       onFocus={onFocus}
       onBlur={onBlur}
@@ -451,8 +454,8 @@ export function ProjectsCarousel() {
       <div className={styles.inner}>
         <div className={styles.side}>
           <div className={styles.panel} inert={expanded} aria-hidden={expanded}>
-            <span className={styles.eyebrow}>Projetos</span>
-            <h2 className={styles.title}>Trabalhos recentes</h2>
+            <span className={styles.eyebrow}>{t('carousel.eyebrow')}</span>
+            <h2 className={styles.title}>{t('carousel.title')}</h2>
             <ol className={styles.list}>
               {projects.map((project, j) => (
                 <li key={project.id}>
@@ -479,10 +482,10 @@ export function ProjectsCarousel() {
             inert={!expanded}
             aria-hidden={!expanded}
             role="region"
-            aria-label={`Detalhes do projeto ${active.name}`}
+            aria-label={t('carousel.detailsAria', { name: active.name })}
           >
             <button type="button" className={styles.back} onClick={close}>
-              <span aria-hidden="true">←</span> Todos os projetos
+              <span aria-hidden="true">←</span> {t('carousel.back')}
             </button>
             {detail}
           </div>
@@ -494,7 +497,7 @@ export function ProjectsCarousel() {
             className={`${styles.stage} ${sheet ? styles.sheet : ''}`}
             role={sheet ? 'dialog' : undefined}
             aria-modal={sheet ? 'true' : undefined}
-            aria-label={sheet ? `Projeto ${active.name}` : undefined}
+            aria-label={sheet ? t('carousel.sheetAria', { name: active.name }) : undefined}
             data-lenis-prevent={sheet ? '' : undefined}
             onPointerDown={onPointerDown}
             onPointerUp={onPointerUp}
@@ -520,7 +523,7 @@ export function ProjectsCarousel() {
                     style={{ '--tint': TINTS[i % TINTS.length] }}
                     tabIndex={isCentre && !expanded ? 0 : -1}
                     aria-hidden={!isCentre}
-                    aria-label={`${project.name}: ver detalhes do projeto`}
+                    aria-label={t('carousel.cardAria', { name: project.name })}
                     onClick={() => onCardClick(i)}
                   >
                     <span className={styles.media}>
@@ -555,10 +558,10 @@ export function ProjectsCarousel() {
               <span className={styles.counter} aria-hidden="true">
                 {active.number} <span>/ {String(N).padStart(2, '0')}</span>
               </span>
-              <button type="button" className={styles.arrow} onClick={() => go(-1)} aria-label="Projeto anterior">
+              <button type="button" className={styles.arrow} onClick={() => go(-1)} aria-label={t('carousel.prev')}>
                 <span aria-hidden="true">←</span>
               </button>
-              <button type="button" className={styles.arrow} onClick={() => go(1)} aria-label="Próximo projeto">
+              <button type="button" className={styles.arrow} onClick={() => go(1)} aria-label={t('carousel.next')} data-carousel-next>
                 <span aria-hidden="true">→</span>
               </button>
             </div>
@@ -568,7 +571,7 @@ export function ProjectsCarousel() {
               type="button"
               className={styles.close}
               onClick={close}
-              aria-label="Fechar projeto"
+              aria-label={t('carousel.close')}
               tabIndex={expanded ? 0 : -1}
               aria-hidden={!expanded}
             >
@@ -584,7 +587,7 @@ export function ProjectsCarousel() {
         </div>
       </div>
       <p className={styles.srOnly} aria-live="polite">
-        {`Projeto ${active.number}: ${active.name}`}
+        {t('carousel.announce', { number: active.number, name: active.name })}
       </p>
     </section>
   );
