@@ -1,12 +1,36 @@
 import { useEffect, useRef } from 'react';
 import styles from './HeroPhone.module.css';
 
-const SCREEN_SRC = '/hero/site-mobile.webp';
+// Mobile render of the site, 600w and 400w (AVIF with WebP fallback). Screen is ~0.915 x phone width.
+const SIZES = '(max-width: 899px) 184px, 275px';
+const srcset = (ext) => `/hero/site-mobile-400.${ext} 400w, /hero/site-mobile-600.${ext} 600w`;
 
 // CSS-built iPhone, tilted in 3D, floating, with a light pointer parallax on desktop.
 export function HeroPhone() {
   const sceneRef = useRef(null);
 
+  // Pause float/scroll animations while the hero is offscreen (or the tab is hidden).
+  useEffect(() => {
+    const scene = sceneRef.current;
+    if (!scene) return undefined;
+    let visible = true;
+    const apply = () => {
+      if (visible && !document.hidden) delete scene.dataset.paused;
+      else scene.dataset.paused = '';
+    };
+    const io = new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      apply();
+    });
+    io.observe(scene);
+    document.addEventListener('visibilitychange', apply);
+    return () => {
+      io.disconnect();
+      document.removeEventListener('visibilitychange', apply);
+    };
+  }, []);
+
+  // Pointer parallax (desktop, fine pointer): one rAF-throttled lerp, idle when settled or offscreen.
   useEffect(() => {
     const scene = sceneRef.current;
     if (!scene) return undefined;
@@ -21,21 +45,24 @@ export function HeroPhone() {
     let raf = 0;
 
     const tick = () => {
-      x += (tx - x) * 0.06;
-      y += (ty - y) * 0.06;
-      scene.style.setProperty('--px', x.toFixed(4));
-      scene.style.setProperty('--py', y.toFixed(4));
-      raf = Math.abs(tx - x) + Math.abs(ty - y) > 0.0005 ? requestAnimationFrame(tick) : 0;
+      x += (tx - x) * 0.08;
+      y += (ty - y) * 0.08;
+      scene.style.setProperty('--px', x.toFixed(3));
+      scene.style.setProperty('--py', y.toFixed(3));
+      raf = Math.abs(tx - x) + Math.abs(ty - y) > 0.002 ? requestAnimationFrame(tick) : 0;
+    };
+    const kick = () => {
+      if (!raf && !('paused' in scene.dataset)) raf = requestAnimationFrame(tick);
     };
     const onMove = (e) => {
       tx = (e.clientX / window.innerWidth) * 2 - 1;
       ty = (e.clientY / window.innerHeight) * 2 - 1;
-      if (!raf) raf = requestAnimationFrame(tick);
+      kick();
     };
     const onLeave = () => {
       tx = 0;
       ty = 0;
-      if (!raf) raf = requestAnimationFrame(tick);
+      kick();
     };
     window.addEventListener('pointermove', onMove, { passive: true });
     document.documentElement.addEventListener('pointerleave', onLeave);
@@ -66,7 +93,20 @@ export function HeroPhone() {
           <div className={styles.frame}>
             <div className={styles.screen}>
               <div className={styles.feed}>
-                <img src={SCREEN_SRC} alt="" width="600" height="6346" decoding="async" draggable="false" />
+                <picture>
+                  <source type="image/avif" srcSet={srcset('avif')} sizes={SIZES} />
+                  <img
+                    src="/hero/site-mobile-600.webp"
+                    srcSet={srcset('webp')}
+                    sizes={SIZES}
+                    alt=""
+                    width="600"
+                    height="6346"
+                    decoding="async"
+                    fetchPriority="low"
+                    draggable="false"
+                  />
+                </picture>
               </div>
               <div className={styles.status}>
                 <span className={styles.time}>9:41</span>

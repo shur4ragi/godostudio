@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { siteConfig } from '../data/site';
+import { prefersAv1, shouldLimitData } from '../utils/media';
 import styles from './ProjectsCarousel.module.css';
 
 /*
@@ -79,6 +80,58 @@ function projectWhatsApp(project) {
   return `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;
 }
 
+// Only the centre card ever has a <video>; every card shows its poster <img> underneath.
+// Mounting a single decoder at a time keeps memory and decode work flat while stepping.
+function PreviewVideo({ preview, allowSoftwareAv1 }) {
+  const ref = useRef(null);
+  const [src, setSrc] = useState(null);
+  const [shown, setShown] = useState(false);
+
+  useEffect(() => {
+    let alive = true;
+    prefersAv1(allowSoftwareAv1).then((av1) => {
+      if (alive) setSrc(av1 ? preview.webm : preview.mp4);
+    });
+    return () => {
+      alive = false;
+    };
+  }, [preview, allowSoftwareAv1]);
+
+  useEffect(() => {
+    const video = ref.current;
+    if (!video || !src) return undefined;
+    const sync = () => {
+      if (document.hidden) video.pause();
+      else {
+        const pr = video.play();
+        if (pr && pr.catch) pr.catch(() => {});
+      }
+    };
+    sync();
+    document.addEventListener('visibilitychange', sync);
+    return () => {
+      document.removeEventListener('visibilitychange', sync);
+      video.pause();
+      video.removeAttribute('src');
+      video.load(); // release the decoder
+    };
+  }, [src]);
+
+  return (
+    <video
+      ref={ref}
+      className={`${styles.video} ${styles.videoLayer} ${shown ? styles.videoShown : ''}`}
+      src={src || undefined}
+      muted
+      playsInline
+      loop
+      preload="none"
+      onPlaying={() => setShown(true)}
+      aria-hidden="true"
+    />
+  );
+}
+
 const prefersReduced = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -89,7 +142,6 @@ export function ProjectsCarousel() {
   const deckRef = useRef(null);
   const closeRef = useRef(null);
   const cardsRef = useRef([]);
-  const videosRef = useRef([]);
   const prevPosRef = useRef([]);
   const cursorRef = useRef(0);
   const queueRef = useRef(null);
@@ -106,6 +158,7 @@ export function ProjectsCarousel() {
   );
   const [reduced, setReduced] = useState(prefersReduced);
   const [inView, setInView] = useState(false);
+  const [limitData] = useState(shouldLimitData);
   const [hovered, setHovered] = useState(false);
   const [focusWithin, setFocusWithin] = useState(false);
 
@@ -135,7 +188,7 @@ export function ProjectsCarousel() {
 
   // ---- in-view ----
   useEffect(() => {
-    const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.3 });
+    const io = new IntersectionObserver(([entry]) => setInView(entry.isIntersecting), { threshold: 0.25 });
     io.observe(sectionRef.current);
     return () => io.disconnect();
   }, []);
@@ -175,39 +228,6 @@ export function ProjectsCarousel() {
       });
     };
   }, [cursor, expanded, isMobile]);
-
-  // ---- video: only the centre card plays ----
-  useEffect(() => {
-    const centre = mod(cursor, SLOTS);
-    videosRef.current.forEach((video, i) => {
-      if (!video) return;
-      const shouldPlay = i === centre && !reduced && (inView || expanded);
-      if (shouldPlay) {
-        if (!video.dataset.loaded) {
-          const src = video.canPlayType('video/webm') ? video.dataset.webm : video.dataset.mp4;
-          if (src) {
-            video.src = src;
-            video.dataset.loaded = '1';
-          }
-        }
-        const pr = video.play();
-        if (pr && pr.catch) pr.catch(() => {});
-      } else if (!video.paused) {
-        video.pause();
-      }
-    });
-  }, [cursor, reduced, inView, expanded, isMobile]);
-
-  // Reset loaded sources when the breakpoint swaps video files.
-  useEffect(() => {
-    videosRef.current.forEach((video) => {
-      if (video && video.dataset.loaded) {
-        delete video.dataset.loaded;
-        video.removeAttribute('src');
-        video.load();
-      }
-    });
-  }, [isMobile]);
 
   // ---- navigation ----
   const go = useCallback((delta) => {
@@ -487,6 +507,8 @@ export function ProjectsCarousel() {
                 const project = projects[i % N];
                 const preview = previewFor(project, isMobile);
                 const isCentre = i === centreSlot;
+                // Data saver / 2G: posters only until the project is opened (tap).
+                const playVideo = isCentre && !reduced && (expanded || (inView && !limitData));
                 return (
                   <button
                     key={i}
@@ -503,20 +525,19 @@ export function ProjectsCarousel() {
                   >
                     <span className={styles.media}>
                       {preview ? (
-                        <video
-                          ref={(el) => {
-                            videosRef.current[i] = el;
-                          }}
-                          className={styles.video}
-                          muted
-                          playsInline
-                          loop
-                          preload="none"
-                          poster={preview.poster}
-                          data-webm={preview.webm}
-                          data-mp4={preview.mp4}
-                          aria-hidden="true"
-                        />
+                        <>
+                          <img
+                            className={styles.video}
+                            src={preview.poster}
+                            alt=""
+                            width={isMobile ? 432 : 768}
+                            height={isMobile ? 936 : 432}
+                            loading="lazy"
+                            decoding="async"
+                            draggable="false"
+                          />
+                          {playVideo && <PreviewVideo key={preview.mp4} preview={preview} allowSoftwareAv1={!isMobile} />}
+                        </>
                       ) : (
                         <span className={styles.typo}>{project.name}</span>
                       )}

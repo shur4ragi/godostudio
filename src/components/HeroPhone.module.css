@@ -19,7 +19,6 @@
   inset: 0;
   transform-style: preserve-3d;
   animation: phoneFloat 6.5s ease-in-out infinite alternate;
-  will-change: transform;
 }
 
 .device {
@@ -98,7 +97,6 @@
   padding-top: 8.4em;
   background: #eef2f4;
   animation: feedScroll 34s cubic-bezier(0.65, 0, 0.35, 1) 3.2s infinite alternate both;
-  will-change: transform;
 }
 
 .feed img {
@@ -330,6 +328,14 @@
   100% { transform: translateY(calc(-100% + 59.2em)); }
 }
 
+/* Offscreen / hidden tab: freeze every loop (set by HeroPhone.jsx) */
+.scene[data-paused] .float,
+.scene[data-paused] .feed,
+.scene[data-paused] .shape,
+.scene[data-paused] .shadow {
+  animation-play-state: paused;
+}
+
 @media (max-width: 899px) {
   .scene {
     --pw: 200px;
@@ -346,4 +352,8 @@
   .shadow {
     animation: none !important;
   }
+}
+
+.feed picture {
+  display: block;
 }
