@@ -8,7 +8,7 @@ import {
   Hero,
   Manifesto,
   Stats,
-  ProjectsDrum,
+  ProjectsCarousel,
   Process,
   Pricing,
   FAQ,
@@ -65,7 +65,7 @@ function App() {
         <Hero ready={ready} />
         <Manifesto />
         <Stats />
-        <ProjectsDrum />
+        <ProjectsCarousel />
         <Process />
         <Pricing />
         <FAQ />

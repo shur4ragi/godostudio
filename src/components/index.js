@@ -3,7 +3,7 @@ export { Header } from './Header';
 export { Hero } from './Hero';
 export { Manifesto } from './Manifesto';
 export { Stats } from './Stats';
-export { ProjectsDrum } from './ProjectsDrum';
+export { ProjectsCarousel } from './ProjectsCarousel';
 export { Process } from './Process';
 export { Pricing } from './Pricing';
 export { FAQ } from './FAQ';
