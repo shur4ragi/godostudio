@@ -264,7 +264,7 @@ export function ProjectsCarousel() {
     const d = deck.getBoundingClientRect();
     const dx = w.left + w.width / 2 - (d.left + d.width / 2);
     const dy = w.top + w.height / 2 - (d.top + d.height / 2);
-    const fromClip = `inset(${w.top}px ${vw - w.right}px ${vh - w.bottom}px ${w.left}px round 28px)`;
+    const fromClip = `inset(${w.top}px ${vw - w.right}px ${vh - w.bottom}px ${w.left}px round 0px)`;
     const toClip = 'inset(0px 0px 0px 0px round 0px)';
     const opts = { duration: reduced ? 1 : 700, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'both' };
 

@@ -11,6 +11,17 @@
   padding: var(--space-xl);
 }
 
+.inner {
+  position: absolute;
+  inset: 0;
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform-origin: 50% 50%;
+  will-change: transform;
+}
+
 .logo {
   display: flex;
   align-items: center;
