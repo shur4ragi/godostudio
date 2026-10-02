@@ -4,21 +4,16 @@
   padding: 0 0 var(--space-4xl);
 }
 
-/* Faixa de abertura pintada pela tinta (porta do "Mentorias" do Galvão Tattoo).
-   Antes: papel com texto carvão. A tinta coral escorre e pinta fundo e letras. */
+/* Faixa de abertura: terracota escura fixa (branco e laranja leem bem, nos dois temas).
+   O conteúdo entra com o mesmo fade/subida (data-reveal) das outras seções. */
 .band {
-  /* Deep terracotta so both title tones read: white and a bright coral-orange. */
-  --ink-color: #a8432a;
-  --ink-text: #fff;
   --title-orange: #ff9a6c;
-  background: var(--t-paper-2);
-  color: var(--t-ink);
+  background: #a8432a;
+  color: #fff;
   margin-bottom: var(--space-4xl);
 }
 
-/* Two-tone title once painted (the ink copy and the final state); before the pour it is plain ink. */
-.band[data-ink='done'] .titleB,
-.band [aria-hidden='true'] .titleB {
+.titleB {
   color: var(--title-orange);
 }
 

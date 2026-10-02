@@ -3,7 +3,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteConfig, getWhatsAppLink, planFeatureIds } from '../data/site';
 import { useLang } from '../i18n';
-import { InkReveal } from './InkReveal';
 import { Mark } from './Mark';
 import { PlanIcon } from './PlanIcon';
 import styles from './Pricing.module.css';
@@ -422,21 +421,23 @@ export function Pricing() {
 
   return (
     <section id="planos" ref={sectionRef} className={`${styles.section} section-dark tone-flip`}>
-      <InkReveal variant="band" className={styles.band} contentClassName={`container ${styles.bandLayout}`}>
-        <p className={styles.kicker}>
-          <Mark /> <span>{t('pricing.kicker')}</span>
-          <span className={styles.kickerIndex}>04</span>
-        </p>
-        <h2 className={styles.bandTitle}>
-          <span className={styles.titleA}>{t('pricing.titleA')}</span>
-          <br />
-          <span className={styles.titleB}>{t('pricing.titleB')}</span>
-        </h2>
-        <div className={styles.bandSide}>
-          <p className={styles.bandText}>{pricing.subtitle}</p>
-          <p className={styles.validFrom}>{pricing.validFrom}</p>
+      <div className={styles.band}>
+        <div className={`container ${styles.bandLayout}`}>
+          <p className={styles.kicker} data-reveal>
+            <Mark /> <span>{t('pricing.kicker')}</span>
+            <span className={styles.kickerIndex}>04</span>
+          </p>
+          <h2 className={styles.bandTitle} data-reveal>
+            <span className={styles.titleA}>{t('pricing.titleA')}</span>
+            <br />
+            <span className={styles.titleB}>{t('pricing.titleB')}</span>
+          </h2>
+          <div className={styles.bandSide} data-reveal>
+            <p className={styles.bandText}>{pricing.subtitle}</p>
+            <p className={styles.validFrom}>{pricing.validFrom}</p>
+          </div>
         </div>
-      </InkReveal>
+      </div>
 
       <div className="container">
         <div className={styles.switch} data-reveal role="group" aria-label={t('pricing.viewAria')}>
