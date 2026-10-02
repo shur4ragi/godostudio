@@ -38,9 +38,9 @@ export const siteConfig = {
     { href: '#faq' },
   ],
   
-  // Carousel previews: Vitor's 30 s ads (muted). `fit: 'contain'` = the clip's aspect differs
-  // from the card, so it is centred over a tiny pre-blurred `backdrop` image (no black bars,
-  // no second video). Clips are only fetched for the active card (see ProjectsCarousel).
+  // Carousel previews: Vitor's 30 s ads (muted). Desktop/tablet (>768px) uses the 16:9 cut,
+  // mobile the 9:16 one. `fit: 'contain'` = the clip's aspect differs from the card (only
+  // Galvão on mobile now), so it is centred over a tiny pre-blurred `backdrop` image. Clips are only fetched for the active card (see ProjectsCarousel).
   projects: [
     {
       id: 'fryda',
@@ -49,13 +49,11 @@ export const siteConfig = {
       number: '01',
       preview: {
         desktop: {
-          webm: '/previews/fryda-ad.webm',
-          mp4: '/previews/fryda-ad.mp4',
-          poster: '/previews/fryda-ad-poster.webp',
-          backdrop: '/previews/fryda-ad-backdrop.webp',
-          fit: 'contain',
-          w: 432,
-          h: 768,
+          webm: '/previews/fryda-ad-desktop.webm',
+          mp4: '/previews/fryda-ad-desktop.mp4',
+          poster: '/previews/fryda-ad-desktop-poster.webp',
+          w: 768,
+          h: 432,
         },
         mobile: {
           webm: '/previews/fryda-ad.webm',
@@ -73,13 +71,11 @@ export const siteConfig = {
       number: '02',
       preview: {
         desktop: {
-          webm: '/previews/leyas-ad.webm',
-          mp4: '/previews/leyas-ad.mp4',
-          poster: '/previews/leyas-ad-poster.webp',
-          backdrop: '/previews/leyas-ad-backdrop.webp',
-          fit: 'contain',
-          w: 432,
-          h: 768,
+          webm: '/previews/leyas-ad-desktop.webm',
+          mp4: '/previews/leyas-ad-desktop.mp4',
+          poster: '/previews/leyas-ad-desktop-poster.webp',
+          w: 768,
+          h: 432,
         },
         mobile: {
           webm: '/previews/leyas-ad.webm',
