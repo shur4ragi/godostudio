@@ -38,6 +38,9 @@ export const siteConfig = {
     { href: '#faq' },
   ],
   
+  // Carousel previews: Vitor's 30 s ads (muted). `fit: 'contain'` = the clip's aspect differs
+  // from the card, so it is centred over a tiny pre-blurred `backdrop` image (no black bars,
+  // no second video). Clips are only fetched for the active card (see ProjectsCarousel).
   projects: [
     {
       id: 'fryda',
@@ -46,14 +49,20 @@ export const siteConfig = {
       number: '01',
       preview: {
         desktop: {
-          webm: '/previews/fryda-desktop.webm',
-          mp4: '/previews/fryda-desktop.mp4',
-          poster: '/previews/fryda-desktop-poster.webp',
+          webm: '/previews/fryda-ad.webm',
+          mp4: '/previews/fryda-ad.mp4',
+          poster: '/previews/fryda-ad-poster.webp',
+          backdrop: '/previews/fryda-ad-backdrop.webp',
+          fit: 'contain',
+          w: 432,
+          h: 768,
         },
         mobile: {
-          webm: '/previews/fryda-mobile.webm',
-          mp4: '/previews/fryda-mobile.mp4',
-          poster: '/previews/fryda-mobile-poster.webp',
+          webm: '/previews/fryda-ad.webm',
+          mp4: '/previews/fryda-ad.mp4',
+          poster: '/previews/fryda-ad-poster.webp',
+          w: 432,
+          h: 768,
         },
       },
     },
@@ -64,14 +73,20 @@ export const siteConfig = {
       number: '02',
       preview: {
         desktop: {
-          webm: '/previews/leyas-desktop.webm',
-          mp4: '/previews/leyas-desktop.mp4',
-          poster: '/previews/leyas-desktop-poster.webp',
+          webm: '/previews/leyas-ad.webm',
+          mp4: '/previews/leyas-ad.mp4',
+          poster: '/previews/leyas-ad-poster.webp',
+          backdrop: '/previews/leyas-ad-backdrop.webp',
+          fit: 'contain',
+          w: 432,
+          h: 768,
         },
         mobile: {
-          webm: '/previews/leyas-mobile.webm',
-          mp4: '/previews/leyas-mobile.mp4',
-          poster: '/previews/leyas-mobile-poster.webp',
+          webm: '/previews/leyas-ad.webm',
+          mp4: '/previews/leyas-ad.mp4',
+          poster: '/previews/leyas-ad-poster.webp',
+          w: 432,
+          h: 768,
         },
       },
     },
@@ -82,14 +97,18 @@ export const siteConfig = {
       number: '03',
       preview: {
         desktop: {
-          webm: '/previews/nanica-desktop.webm',
-          mp4: '/previews/nanica-desktop.mp4',
-          poster: '/previews/nanica-desktop-poster.webp',
+          webm: '/previews/nanica-ad-desktop.webm',
+          mp4: '/previews/nanica-ad-desktop.mp4',
+          poster: '/previews/nanica-ad-desktop-poster.webp',
+          w: 768,
+          h: 432,
         },
         mobile: {
-          webm: '/previews/nanica-mobile.webm',
-          mp4: '/previews/nanica-mobile.mp4',
-          poster: '/previews/nanica-mobile-poster.webp',
+          webm: '/previews/nanica-ad-mobile.webm',
+          mp4: '/previews/nanica-ad-mobile.mp4',
+          poster: '/previews/nanica-ad-mobile-poster.webp',
+          w: 432,
+          h: 768,
         },
       },
     },
@@ -100,11 +119,21 @@ export const siteConfig = {
       number: '04',
       preview: {
         desktop: {
-          webm: '/previews/galvao-desktop.webm',
-          mp4: '/previews/galvao-desktop.mp4',
-          poster: '/previews/galvao-desktop-poster.webp',
+          webm: '/previews/galvao-ad.webm',
+          mp4: '/previews/galvao-ad.mp4',
+          poster: '/previews/galvao-ad-poster.webp',
+          w: 768,
+          h: 432,
         },
-        mobile: null, // No mobile version - use desktop with object-fit
+        mobile: {
+          webm: '/previews/galvao-ad.webm',
+          mp4: '/previews/galvao-ad.mp4',
+          poster: '/previews/galvao-ad-poster.webp',
+          backdrop: '/previews/galvao-ad-backdrop.webp',
+          fit: 'contain',
+          w: 768,
+          h: 432,
+        },
       },
     },
   ],

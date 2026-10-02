@@ -390,6 +390,27 @@
   pointer-events: none;
 }
 
+/* Clip with a different aspect than the card (vertical ad on a 16:9 desktop card, or 16:9 on a
+   tall mobile card): centred whole, over a tiny pre-blurred still of the same ad (static
+   image, so no extra decode), never black bars. */
+.backdrop {
+  position: absolute;
+  inset: -6%;
+  width: 112%;
+  max-width: none;
+  height: 112%;
+  object-fit: cover;
+  opacity: 0.92;
+  pointer-events: none;
+}
+
+.contain {
+  position: relative;
+  z-index: 1;
+  object-fit: contain;
+  object-position: center;
+}
+
 /* Live preview sits over the poster and fades in once frames are actually playing. */
 .videoLayer {
   position: absolute;
@@ -604,8 +625,8 @@
 
   /* Flat row (see rowState in the component): cards are separate flat planes, never crossing. */
   .card {
-    --cw: min(50vw, 24svh);
-    aspect-ratio: 540 / 1100;
+    --cw: min(50vw, 26svh);
+    aspect-ratio: 9 / 16;
     border-radius: 20px;
     transition:
       transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),

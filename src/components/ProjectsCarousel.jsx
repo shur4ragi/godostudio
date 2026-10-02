@@ -44,7 +44,7 @@ const FLAT = 'rotateX(0deg) rotateZ(0deg)';
 // off-stage and invisible. Neighbours are spaced wider than the cards, and every card is its
 // own flat plane (no preserve-3d), so no two cards ever overlap or cut through each other,
 // even mid-transition (they move in lock-step along the same line).
-const ROW = { side: 0.8, hidden: 0.62, gap: 0.12, park: 0.45, turn: 16, lift: -4 };
+const ROW = { side: 0.8, hidden: 0.62, gap: 0.12, park: 0.65, turn: 16, lift: -4 };
 const rowX = (n) => {
   // centre-to-centre distance (in active-card widths) for |p| = n. Parked cards (|p| >= 2)
   // each get their own off-stage slot, so cards never converge on one spot during fast steps.
@@ -114,8 +114,11 @@ function projectWhatsApp(project) {
 }
 
 // Only the centre card ever has a <video>; every card shows its poster <img> underneath.
-// Mounting a single decoder at a time keeps memory and decode work flat while stepping.
-function PreviewVideo({ preview, allowSoftwareAv1 }) {
+// Mounting a single decoder at a time keeps memory and decode work flat while stepping, and
+// the (30 s) clip is never requested before its card is the active one (preload="none", no
+// src until mounted). The ad plays to the end; `onEnded` returns true when the carousel
+// advanced, otherwise the clip restarts.
+function PreviewVideo({ preview, allowSoftwareAv1, contain, onPlaying, onEnded }) {
   const ref = useRef(null);
   const [src, setSrc] = useState(null);
   const [shown, setShown] = useState(false);
@@ -153,13 +156,22 @@ function PreviewVideo({ preview, allowSoftwareAv1 }) {
   return (
     <video
       ref={ref}
-      className={`${styles.video} ${styles.videoLayer} ${shown ? styles.videoShown : ''}`}
+      className={`${styles.video} ${contain ? styles.contain : ''} ${styles.videoLayer} ${shown ? styles.videoShown : ''}`}
       src={src || undefined}
       muted
       playsInline
-      loop
       preload="none"
-      onPlaying={() => setShown(true)}
+      onPlaying={() => {
+        setShown(true);
+        onPlaying?.();
+      }}
+      onEnded={(e) => {
+        if (onEnded?.()) return;
+        const v = e.currentTarget;
+        v.currentTime = 0;
+        const pr = v.play();
+        if (pr && pr.catch) pr.catch(() => {});
+      }}
       aria-hidden="true"
     />
   );
@@ -295,11 +307,25 @@ export function ProjectsCarousel() {
   );
 
   // ---- auto-advance ----
+  // While the active card's ad is actually playing, the carousel waits for it to end
+  // (onVideoEnded); the timer only drives poster-only states (data saver, video not started).
+  const autoOn = !reduced && !expanded && inView && !hovered && !focusWithin;
+  const autoOnRef = useRef(autoOn);
   useEffect(() => {
-    if (reduced || expanded || !inView || hovered || focusWithin) return undefined;
+    autoOnRef.current = autoOn;
+  }, [autoOn]);
+  const [playingAt, setPlayingAt] = useState(null); // cursor value whose clip is playing
+  const activePlaying = playingAt === cursor;
+  useEffect(() => {
+    if (!autoOn || activePlaying) return undefined;
     const t = setTimeout(() => setCursor((c) => c + 1), AUTO_DELAY);
     return () => clearTimeout(t);
-  }, [cursor, reduced, expanded, inView, hovered, focusWithin]);
+  }, [cursor, autoOn, activePlaying]);
+  const onVideoEnded = useCallback(() => {
+    if (!autoOnRef.current) return false;
+    setCursor((c) => c + 1);
+    return true;
+  }, []);
 
   // ---- expand / close ----
   const open = useCallback(() => {
@@ -556,6 +582,7 @@ export function ProjectsCarousel() {
                 const isCentre = i === centreSlot;
                 // Data saver / 2G: posters only until the project is opened (tap).
                 const playVideo = isCentre && !reduced && (expanded || (inView && !limitData));
+                const contain = preview?.fit === 'contain' && !!preview.backdrop;
                 return (
                   <button
                     key={i}
@@ -573,17 +600,36 @@ export function ProjectsCarousel() {
                     <span className={styles.media}>
                       {preview ? (
                         <>
+                          {contain && (
+                            <img
+                              className={styles.backdrop}
+                              src={preview.backdrop}
+                              alt=""
+                              loading="lazy"
+                              decoding="async"
+                              draggable="false"
+                            />
+                          )}
                           <img
-                            className={styles.video}
+                            className={`${styles.video} ${contain ? styles.contain : ''}`}
                             src={preview.poster}
                             alt=""
-                            width={isMobile ? 432 : 768}
-                            height={isMobile ? 936 : 432}
+                            width={preview.w}
+                            height={preview.h}
                             loading="lazy"
                             decoding="async"
                             draggable="false"
                           />
-                          {playVideo && <PreviewVideo key={preview.mp4} preview={preview} allowSoftwareAv1={!isMobile} />}
+                          {playVideo && (
+                            <PreviewVideo
+                              key={preview.mp4}
+                              preview={preview}
+                              allowSoftwareAv1={!isMobile}
+                              contain={contain}
+                              onPlaying={() => setPlayingAt(cursorRef.current)}
+                              onEnded={onVideoEnded}
+                            />
+                          )}
                         </>
                       ) : (
                         <span className={styles.typo}>{project.name}</span>
