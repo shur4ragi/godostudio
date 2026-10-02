@@ -10,13 +10,16 @@
   /* Theme primitives. Light is the default; html[data-theme='dark'] swaps them.
      Components keep using the --color-* names below (tone roles: "light" = paper,
      "dark" = ink); .tone-flip sections invert the roles locally (see below). */
-  --t-paper: #eef2f4;
-  --t-paper-rgb: 238 242 244;
-  --t-paper-2: #e3e8eb;
-  --t-paper-2-rgb: 227 232 235;
-  --t-sand: #ece6df; /* warm pastel block (sections that used to be dark) */
-  --t-surface: #f8f9fa; /* cards, glass panels */
-  --t-surface-rgb: 248 249 250;
+  /* One white everywhere: the page, the hero and the former dark sections share --t-paper
+     (the hero's white); cards sit on it in --t-surface, separated by hairlines. */
+  --t-paper: #f8f9fa;
+  --t-paper-rgb: 248 249 250;
+  --t-paper-2: #eef1f3;
+  --t-paper-2-rgb: 238 241 243;
+  --t-sand: var(--t-paper); /* sections that used to be dark */
+  --t-surface: #ffffff; /* cards, glass panels */
+  --t-surface-rgb: 255 255 255;
+  --t-line: rgb(42 42 40 / 0.09); /* section separators */
   --t-ink: #2a2a28;
   --t-ink-rgb: 42 42 40;
   --t-ink-2: #353532;
@@ -107,7 +110,8 @@ html[data-theme='dark'] {
   --t-paper-rgb: 31 34 38;
   --t-paper-2: #262a2f;
   --t-paper-2-rgb: 38 42 47;
-  --t-sand: #2a2826;
+  --t-sand: var(--t-paper);
+  --t-line: rgb(232 235 237 / 0.08);
   --t-surface: #2d3137;
   --t-surface-rgb: 45 49 55;
   --t-ink: #e8ebed;
@@ -316,8 +320,15 @@ html[data-entrance='reveal'] [data-site-header] {
 }
 
 .section-muted {
-  background: var(--color-light-2);
+  background: var(--color-light);
   color: var(--color-dark);
+}
+
+/* All sections share one white now, so a hairline marks where each one starts. */
+.section-light,
+.section-muted,
+.section-dark {
+  box-shadow: inset 0 1px 0 var(--t-line);
 }
 
 /* Texto só para leitores de tela */

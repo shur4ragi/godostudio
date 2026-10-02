@@ -1,7 +1,7 @@
 // Light is the default theme. Dark mode is opt-in from the header toggle and the choice
 // is saved in localStorage (index.html applies it before first paint to avoid a flash).
 export const THEME_KEY = 'godostudio-theme';
-const META = { light: '#eef2f4', dark: '#1f2226' };
+const META = { light: '#f8f9fa', dark: '#1f2226' };
 
 export function getTheme() {
   return document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';

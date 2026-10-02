@@ -318,6 +318,7 @@ export function Pricing() {
   const [current, setCurrent] = useState(startIndex);
   const [view, setView] = useState('resumo');
   const [barOn, setBarOn] = useState(false);
+  const [settled, setSettled] = useState(false);
   const [pair, setPair] = useState(() => [plans[0].id, plans[startIndex === 0 ? 1 : startIndex].id]);
 
   // Entrada dos cards em stagger.
@@ -370,14 +371,12 @@ export function Pricing() {
     track.scrollTo({ left: card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2, behavior: scrollBehavior() });
   };
 
-  // Resumo / Comparar tudo segue a rolagem; a barra fixa (mobile) só aparece dentro da seção.
+  // A barra fixa (mobile) só aparece dentro da seção.
   useEffect(() => {
     let raf = 0;
     const update = () => {
       raf = 0;
       const vh = window.innerHeight;
-      const cmp = compareRef.current?.getBoundingClientRect();
-      if (cmp) setView(cmp.top < vh * 0.5 && cmp.bottom > 0 ? 'comparar' : 'resumo');
       const res = resumoRef.current?.getBoundingClientRect();
       const sec = sectionRef.current?.getBoundingClientRect();
       if (res && sec) setBarOn(res.top < vh * 0.75 && sec.bottom > vh * 0.6);
@@ -395,9 +394,20 @@ export function Pricing() {
     };
   }, []);
 
+  // Resumo / Comparar tudo: a tabela fica fechada e só abre (animada) em "Comparar tudo".
   const jump = (target) => {
-    const el = target === 'comparar' ? compareRef.current : resumoRef.current;
-    el?.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
+    if (target === 'comparar') {
+      setView('comparar');
+      // espera a abertura começar e rola até o início da tabela
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => compareRef.current?.scrollIntoView({ behavior: scrollBehavior(), block: 'start' }))
+      );
+      return;
+    }
+    setSettled(false);
+    const res = resumoRef.current;
+    if (res && res.getBoundingClientRect().top < 0) res.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
+    setView('resumo');
   };
 
   const onSeeAll = (e, planId) => {
@@ -418,9 +428,9 @@ export function Pricing() {
           <span className={styles.kickerIndex}>04</span>
         </p>
         <h2 className={styles.bandTitle}>
-          {t('pricing.titleA')}
+          <span className={styles.titleA}>{t('pricing.titleA')}</span>
           <br />
-          {t('pricing.titleB')}
+          <span className={styles.titleB}>{t('pricing.titleB')}</span>
         </h2>
         <div className={styles.bandSide}>
           <p className={styles.bandText}>{pricing.subtitle}</p>
@@ -467,7 +477,17 @@ export function Pricing() {
           )}
         </div>
 
-        <CompareTable mobile={mobile} pair={pair} setPair={setPair} compareRef={compareRef} />
+        <div
+          className={`${styles.compareWrap} ${view === 'comparar' ? styles.compareOpen : ''} ${settled ? styles.compareSettled : ''}`}
+          onTransitionEnd={(e) => {
+            if (e.target === e.currentTarget && e.propertyName === 'grid-template-rows') setSettled(view === 'comparar');
+          }}
+          inert={view !== 'comparar'}
+        >
+          <div className={styles.compareClip}>
+            <CompareTable mobile={mobile} pair={pair} setPair={setPair} compareRef={compareRef} />
+          </div>
+        </div>
 
         <ul className={styles.trust}>
           {pricing.trust.map((item) => (
