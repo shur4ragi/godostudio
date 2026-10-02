@@ -1,0 +1,414 @@
+{
+  "meta": {
+    "code": "es",
+    "label": "ES",
+    "name": "Español",
+    "htmlLang": "es",
+    "ogLocale": "es_ES",
+    "locale": "es-ES"
+  },
+  "content": {
+    "brand": {
+      "tagline": "Sitios que venden."
+    },
+    "hero": {
+      "subtitle": "Sitios web profesionales para negocios locales",
+      "highlight": "negocios locales",
+      "lead": "Landing pages para cafés, estudios y comercios locales, pensadas para convertir. Suscripción mensual desde R$ 100.",
+      "labels": [
+        "Sitios web",
+        "Negocios locales"
+      ]
+    },
+    "manifesto": {
+      "text": "Creamos sitios que convierten visitantes en clientes. Landing pages para cafés, estudios y comercios — pensadas para convertir.",
+      "highlight": "convierten"
+    },
+    "contact": {
+      "hours": "Por WhatsApp, con cita previa"
+    },
+    "contactForm": {
+      "businessTypes": [
+        "Cafetería",
+        "Dulcería / Pastelería",
+        "Restaurante / Cafetín",
+        "Estudio / Tatuajes",
+        "Peluquería / Barbería",
+        "Tienda / Comercio",
+        "Servicios",
+        "Otro"
+      ],
+      "plans": [
+        "Básico",
+        "Medio",
+        "Premium",
+        "Aún no lo sé"
+      ]
+    },
+    "nav": [
+      {
+        "label": "Proyectos"
+      },
+      {
+        "label": "Proceso"
+      },
+      {
+        "label": "Planes"
+      },
+      {
+        "label": "FAQ"
+      }
+    ],
+    "projects": [
+      {
+        "segment": "Cafetería",
+        "description": "Menú y pedidos por WhatsApp"
+      },
+      {
+        "segment": "Cafetería",
+        "description": "Menú, carrito y pedido por WhatsApp"
+      },
+      {
+        "segment": "Dulcería",
+        "description": "Menú, carrito y pedido"
+      },
+      {
+        "segment": "Estudio",
+        "description": "Portafolio y presupuesto"
+      }
+    ],
+    "processIntro": {
+      "title": "Cómo funciona",
+      "subtitle": "del primer hola al sitio en línea",
+      "total": "≈ 7–10 días",
+      "rulerLabel": "Del primer hola al sitio en línea",
+      "closing": "Del primer hola al sitio en línea en unos 7 a 10 días.",
+      "cta": "Empezar por el paso 01"
+    },
+    "process": [
+      {
+        "title": "Descubrir",
+        "duration": "≈ 1 día",
+        "headline": "Una charla sobre tu negocio",
+        "description": "Hablamos por WhatsApp sobre lo que vendes y quién es tu cliente. Al final, sabes qué plan tiene sentido.",
+        "deliverables": [
+          "Resumen del proyecto",
+          "Plan recomendado"
+        ],
+        "youDo": "Envíame logo, fotos y menú — lo que ya tengas."
+      },
+      {
+        "title": "Prototipar",
+        "duration": "≈ 2–3 días",
+        "headline": "Ves el sitio antes",
+        "description": "Armo una vista previa con tus colores, textos y fotos. La navegas en el celular como si ya estuviera en línea.",
+        "deliverables": [
+          "Enlace de vista previa",
+          "2 rondas de ajustes"
+        ],
+        "youDo": "Dime qué cambiar — puede ser por audio."
+      },
+      {
+        "title": "Construir",
+        "duration": "≈ 3–5 días",
+        "headline": "Código ligero y rápido",
+        "description": "Desarrollo el sitio de verdad: rápido en 4G, con WhatsApp, mapa y lo que incluya tu plan.",
+        "deliverables": [
+          "Versión final",
+          "Prueba de velocidad",
+          "SEO básico"
+        ],
+        "youDo": "Solo una última mirada y tu visto bueno."
+      },
+      {
+        "title": "Lanzar",
+        "duration": "Continuo",
+        "headline": "En línea, con tu dominio",
+        "description": "Lo publico con dominio propio y candado de seguridad (HTTPS). Después, el mantenimiento mensual está incluido.",
+        "deliverables": [
+          "Sitio publicado",
+          "Dominio y hosting",
+          "Mantenimiento mensual"
+        ],
+        "youDo": "Comparte el enlace en Instagram y Google. ¡Listo! 🎉"
+      }
+    ],
+    "pricing": {
+      "subtitle": "Suscripción mensual, sin permanencia. Cancela cuando quieras.",
+      "validFrom": "Precios vigentes desde 10/2026",
+      "trust": [
+        {
+          "text": "Sin permanencia"
+        },
+        {
+          "text": "El dominio es tuyo"
+        },
+        {
+          "text": "Aviso con 30 días si cambia el precio"
+        }
+      ],
+      "footnotes": [
+        {
+          "text": "Plan Medio: usas el sitio completo durante 30 días sin pagar nada. El cobro empieza el segundo mes. Sin compromiso."
+        },
+        {
+          "text": "Sin permanencia ni multa. Para pausar o cancelar, solo avisa."
+        },
+        {
+          "text": "Dominio propio (tunegocio.com.br) registrado a tu nombre."
+        }
+      ]
+    },
+    "planFeatures": {
+      "landing": {
+        "label": "Landing page de una sola página",
+        "tip": "Un sitio de una sola página, con todo lo que tu cliente necesita ver antes de escribirte por WhatsApp."
+      },
+      "whatsapp": {
+        "label": "Botón flotante de WhatsApp"
+      },
+      "map": {
+        "label": "Mapa y ubicación"
+      },
+      "hosting": {
+        "label": "Hosting y dominio incluidos",
+        "tip": "La dirección tunegocio.com.br y el servidor donde el sitio está en línea."
+      },
+      "tweaks": {
+        "label": "Ajustes simples a pedido"
+      },
+      "catalog": {
+        "label": "Menú o catálogo completo"
+      },
+      "gallery": {
+        "label": "Galería de fotos / portafolio"
+      },
+      "form": {
+        "label": "Formulario de presupuesto / contacto"
+      },
+      "updates": {
+        "label": "Actualizaciones mensuales incluidas"
+      },
+      "cart": {
+        "label": "Carrito con pedido por WhatsApp"
+      },
+      "tour": {
+        "label": "Tour guiado interactivo"
+      },
+      "priority": {
+        "label": "Prioridad en cambios"
+      },
+      "custom": {
+        "label": "Recursos a medida"
+      }
+    },
+    "plans": [
+      {
+        "name": "Básico",
+        "badge": null,
+        "persona": "Para quien necesita aparecer en Google y en WhatsApp.",
+        "anchor": "Sin cuota de alta"
+      },
+      {
+        "name": "Medio",
+        "badge": "El más elegido",
+        "persona": "Para mostrar tu menú/catálogo y recibir pedidos de presupuesto.",
+        "anchor": "1.er mes: R$ 0 · ahorras R$ 175",
+        "barNote": "1.er mes gratis"
+      },
+      {
+        "name": "Premium",
+        "badge": null,
+        "persona": "Para vender desde el sitio y tener prioridad.",
+        "anchor": "Sin cuota de alta"
+      }
+    ],
+    "compare": {
+      "title": "Compara todos los recursos",
+      "groups": [
+        {
+          "title": "El sitio"
+        },
+        {
+          "title": "Contacto y ventas"
+        },
+        {
+          "title": "Hosting y mantenimiento"
+        }
+      ],
+      "conditions": {
+        "title": "Condiciones",
+        "rows": [
+          {
+            "label": "Mensualidad",
+            "values": {
+              "basico": "R$ 100",
+              "medio": "R$ 175",
+              "premium": "R$ 250"
+            }
+          },
+          {
+            "label": "Primer mes",
+            "values": {
+              "basico": "R$ 100",
+              "medio": "R$ 0",
+              "premium": "R$ 250"
+            }
+          },
+          {
+            "label": "Permanencia",
+            "values": {
+              "basico": "Ninguna",
+              "medio": "Ninguna",
+              "premium": "Ninguna"
+            }
+          }
+        ]
+      }
+    },
+    "faq": [
+      {
+        "question": "¿Cuál es el plazo de entrega del sitio?",
+        "answer": "Los sitios simples están listos en hasta 7 días hábiles. Los proyectos más grandes pueden tardar de 2 a 3 semanas, según la complejidad."
+      },
+      {
+        "question": "¿Puedo usar mi propio dominio?",
+        "answer": "¡Sí! Si ya tienes un dominio, lo configuramos todo por ti. Si no, te ayudo a registrar uno nuevo."
+      },
+      {
+        "question": "¿Puedo cancelar cuando quiera?",
+        "answer": "Sí. No hay permanencia ni multa. Si quieres pausar o cancelar, solo avisa."
+      },
+      {
+        "question": "¿Quién actualiza el contenido del sitio?",
+        "answer": "Yo me encargo de las actualizaciones. Solo envía los cambios por WhatsApp y los hago."
+      },
+      {
+        "question": "¿Cómo funciona el mes gratis del plan Medio?",
+        "answer": "Usas el sitio completo durante 30 días sin pagar nada. Si te gusta, el cobro empieza el segundo mes. Sin compromiso."
+      },
+      {
+        "question": "¿Dónde se aloja el sitio?",
+        "answer": "En Vercel, una de las mejores plataformas del mundo. Tu sitio carga rápido y está en línea las 24 horas."
+      }
+    ],
+    "seo": {
+      "title": "GodoStudio — Sitios web para negocios locales en Taubaté",
+      "description": "Landing pages profesionales para cafés, estudios y comercios locales. Suscripción mensual desde R$ 100. Sin complicaciones."
+    }
+  },
+  "ui": {
+    "common": {
+      "wantSite": "Quiero mi sitio",
+      "contact": "Contacto",
+      "heroAria": "Inicio",
+      "scroll": "Desliza para explorar"
+    },
+    "header": {
+      "openMenu": "Abrir menú",
+      "closeMenu": "Cerrar menú",
+      "language": "Idioma"
+    },
+    "carousel": {
+      "eyebrow": "Proyectos",
+      "title": "Trabajos recientes",
+      "segment": "Rubro",
+      "whatDone": "Qué hicimos",
+      "live": "Ver sitio en vivo",
+      "wantLike": "Quiero un sitio así",
+      "back": "Todos los proyectos",
+      "detailsAria": "Detalles del proyecto {name}",
+      "sheetAria": "Proyecto {name}",
+      "roledesc": "carrusel",
+      "sectionAria": "Proyectos",
+      "cardAria": "{name}: ver detalles del proyecto",
+      "prev": "Proyecto anterior",
+      "next": "Proyecto siguiente",
+      "close": "Cerrar proyecto",
+      "announce": "Proyecto {number}: {name}"
+    },
+    "process": {
+      "kicker": "/ Proceso",
+      "happens": "Qué pasa",
+      "youGet": "Recibes",
+      "youDo": "Tú haces",
+      "done": "✓ Hecho",
+      "active": "● En curso",
+      "next": "· A continuación",
+      "step": "Paso",
+      "liveNow": "● En vivo",
+      "duration": "Duración",
+      "rulerAria": "Tiempo de cada paso",
+      "total": "Total"
+    },
+    "pricing": {
+      "kicker": "/ Planes",
+      "titleA": "Elige",
+      "titleB": "tu plan",
+      "perMonth": "/mes",
+      "noteAria": "Nota {mark}",
+      "tipAria": "Qué es: {label}",
+      "included": "Incluido",
+      "notIncluded": "No incluido",
+      "planAria": "Plan {name}",
+      "allOf": "Todo el plan {name}",
+      "want": "Quiero el {name}",
+      "seeAll": "Ver todo lo que incluye",
+      "compareLabel": "Comparar",
+      "with": "con",
+      "firstPlan": "Primer plan",
+      "secondPlan": "Segundo plan",
+      "caption": "Comparación de recursos de los planes",
+      "features": "Recursos",
+      "wantPlanAria": "Quiero el plan {name}",
+      "wantShort": "Quiero",
+      "viewAria": "Ver planes",
+      "summary": "Resumen",
+      "compareAll": "Comparar todo",
+      "prevPlan": "Plan anterior",
+      "nextPlan": "Plan siguiente",
+      "faqLink": "Preguntas frecuentes →",
+      "wantThis": "Quiero este"
+    },
+    "faq": {
+      "kicker": "/ Preguntas",
+      "t1": "Antes",
+      "t2": "de",
+      "t3": "empezar."
+    },
+    "contact": {
+      "kicker": "/ Contacto",
+      "titleA": "Creemos tu sitio",
+      "titleSign": "ahora",
+      "lead": "Cuéntanos qué hace tu negocio y qué necesita el sitio. Vitor responde por WhatsApp con la propuesta y el plan ideal.",
+      "hours": "Atención",
+      "place": "Ubicación",
+      "formTitle": "Pedir presupuesto",
+      "name": "Nombre *",
+      "namePh": "¿Cómo te llamamos?",
+      "business": "Tipo de negocio",
+      "choose": "Elige",
+      "plan": "Plan",
+      "idea": "Tu idea *",
+      "ideaPh": "Qué hace tu negocio y qué debe tener el sitio.",
+      "submit": "Enviar por WhatsApp",
+      "hint": "El mensaje se abre listo en WhatsApp. Fotos y referencias las envías por ahí.",
+      "errName": "Dinos cómo llamarte.",
+      "errPhone": "Revisa el número con el código de área.",
+      "errIdea": "Escribe un poco sobre tu negocio y el sitio."
+    },
+    "footer": {
+      "sections": "/ Secciones",
+      "social": "/ Redes",
+      "top": "Volver arriba ↑"
+    },
+    "loader": {
+      "waTitle": "Abriendo WhatsApp",
+      "waText": "Tu mensaje ya va listo, solo envíalo.",
+      "igTitle": "Abriendo Instagram",
+      "igText": "El perfil de Vitor, @vitor_godo.",
+      "siteTitle": "Abriendo el sitio en vivo",
+      "cancel": "Cancelar"
+    }
+  }
+}

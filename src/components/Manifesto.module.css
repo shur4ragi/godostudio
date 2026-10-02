@@ -1,0 +1,40 @@
+/* Manifesto v3 — Minimalist, smaller text */
+
+.section {
+  padding: var(--space-3xl) 0;
+  background: var(--color-dark);
+  color: var(--color-light);
+}
+
+.text {
+  font-size: var(--text-body);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--color-light);
+  max-width: 600px;
+  letter-spacing: 0.01em;
+}
+
+.word {
+  display: inline;
+}
+
+.wordInner {
+  transition: opacity 0.3s ease;
+}
+
+.highlight .wordInner {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-2xl) 0;
+  }
+
+  .text {
+    font-size: var(--text-small);
+    line-height: 1.65;
+  }
+}

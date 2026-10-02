@@ -1,0 +1,42 @@
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid rgba(42, 42, 40, 0.14);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.switch button {
+  min-width: 34px;
+  height: 28px;
+  padding: 0 0.55rem;
+  border: 0;
+  border-radius: 99px;
+  background: transparent;
+  color: var(--color-dark-muted);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.switch button:hover {
+  color: var(--color-dark);
+}
+
+.switch button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.switch .active {
+  background: var(--color-dark);
+  color: var(--color-light);
+}
+
+.switch .active:hover {
+  color: var(--color-light);
+}

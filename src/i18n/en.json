@@ -1,0 +1,414 @@
+{
+  "meta": {
+    "code": "en",
+    "label": "EN",
+    "name": "English",
+    "htmlLang": "en",
+    "ogLocale": "en_US",
+    "locale": "en-US"
+  },
+  "content": {
+    "brand": {
+      "tagline": "Sites that sell."
+    },
+    "hero": {
+      "subtitle": "Professional websites for local businesses",
+      "highlight": "local businesses",
+      "lead": "Landing pages for cafés, studios and local shops, built to convert. Monthly subscription from R$ 100.",
+      "labels": [
+        "Websites",
+        "Local businesses"
+      ]
+    },
+    "manifesto": {
+      "text": "We build websites that turn visitors into customers. Landing pages for cafés, studios and shops — built to convert.",
+      "highlight": "turn"
+    },
+    "contact": {
+      "hours": "On WhatsApp, by appointment"
+    },
+    "contactForm": {
+      "businessTypes": [
+        "Coffee shop",
+        "Bakery / Patisserie",
+        "Restaurant / Snack bar",
+        "Studio / Tattoo",
+        "Salon / Barbershop",
+        "Store / Retail",
+        "Services",
+        "Other"
+      ],
+      "plans": [
+        "Basic",
+        "Standard",
+        "Premium",
+        "Not sure yet"
+      ]
+    },
+    "nav": [
+      {
+        "label": "Projects"
+      },
+      {
+        "label": "Process"
+      },
+      {
+        "label": "Plans"
+      },
+      {
+        "label": "FAQ"
+      }
+    ],
+    "projects": [
+      {
+        "segment": "Coffee shop",
+        "description": "Menu and orders via WhatsApp"
+      },
+      {
+        "segment": "Coffee shop",
+        "description": "Menu, cart and WhatsApp ordering"
+      },
+      {
+        "segment": "Sweet shop",
+        "description": "Menu, cart and ordering"
+      },
+      {
+        "segment": "Studio",
+        "description": "Portfolio and quotes"
+      }
+    ],
+    "processIntro": {
+      "title": "How it works",
+      "subtitle": "from first hello to a live site",
+      "total": "≈ 7–10 days",
+      "rulerLabel": "From first hello to a live site",
+      "closing": "From first hello to a live site in about 7 to 10 days.",
+      "cta": "Start with step 01"
+    },
+    "process": [
+      {
+        "title": "Discover",
+        "duration": "≈ 1 day",
+        "headline": "A chat about your business",
+        "description": "We talk on WhatsApp about what you sell and who your customers are. By the end, you know which plan makes sense.",
+        "deliverables": [
+          "Project summary",
+          "Recommended plan"
+        ],
+        "youDo": "Send me your logo, photos and menu — whatever you already have."
+      },
+      {
+        "title": "Prototype",
+        "duration": "≈ 2–3 days",
+        "headline": "You see the site first",
+        "description": "I build a preview with your colors, copy and photos. You browse it on your phone as if it were already live.",
+        "deliverables": [
+          "Preview link",
+          "2 rounds of changes"
+        ],
+        "youDo": "Tell me what to change — a voice note works."
+      },
+      {
+        "title": "Build",
+        "duration": "≈ 3–5 days",
+        "headline": "Light, fast code",
+        "description": "I develop the real site: fast on 4G, with WhatsApp, a map and whatever your plan includes.",
+        "deliverables": [
+          "Final version",
+          "Speed test",
+          "Basic SEO"
+        ],
+        "youDo": "Just one last look and your OK."
+      },
+      {
+        "title": "Launch",
+        "duration": "Ongoing",
+        "headline": "Live, on your own domain",
+        "description": "I publish it with your own domain and a security padlock (HTTPS). After that, monthly maintenance is included.",
+        "deliverables": [
+          "Published site",
+          "Domain and hosting",
+          "Monthly maintenance"
+        ],
+        "youDo": "Share the link on Instagram and Google. Done! 🎉"
+      }
+    ],
+    "pricing": {
+      "subtitle": "Monthly subscription, no lock-in. Cancel anytime.",
+      "validFrom": "Prices valid since 10/2026",
+      "trust": [
+        {
+          "text": "No lock-in"
+        },
+        {
+          "text": "The domain is yours"
+        },
+        {
+          "text": "30 days’ notice before any price change"
+        }
+      ],
+      "footnotes": [
+        {
+          "text": "Standard plan: use the full site for 30 days at no cost. Billing starts in the second month. No commitment."
+        },
+        {
+          "text": "No lock-in and no cancellation fee. To pause or cancel, just let me know."
+        },
+        {
+          "text": "Your own domain (yourbusiness.com.br) registered in your name."
+        }
+      ]
+    },
+    "planFeatures": {
+      "landing": {
+        "label": "Single-page landing page",
+        "tip": "A one-page site with everything your customer needs to see before messaging you on WhatsApp."
+      },
+      "whatsapp": {
+        "label": "Floating WhatsApp button"
+      },
+      "map": {
+        "label": "Map and location"
+      },
+      "hosting": {
+        "label": "Hosting and domain included",
+        "tip": "The yourbusiness.com.br address and the server that keeps the site online."
+      },
+      "tweaks": {
+        "label": "Simple changes on request"
+      },
+      "catalog": {
+        "label": "Full menu or catalog"
+      },
+      "gallery": {
+        "label": "Photo gallery / portfolio"
+      },
+      "form": {
+        "label": "Quote / contact form"
+      },
+      "updates": {
+        "label": "Monthly updates included"
+      },
+      "cart": {
+        "label": "Cart with WhatsApp ordering"
+      },
+      "tour": {
+        "label": "Interactive guided tour"
+      },
+      "priority": {
+        "label": "Priority on changes"
+      },
+      "custom": {
+        "label": "Custom features"
+      }
+    },
+    "plans": [
+      {
+        "name": "Basic",
+        "badge": null,
+        "persona": "For businesses that need to show up on Google and WhatsApp.",
+        "anchor": "No setup fee"
+      },
+      {
+        "name": "Standard",
+        "badge": "Most popular",
+        "persona": "For showing your menu/catalog and getting quote requests.",
+        "anchor": "1st month: R$ 0 · you save R$ 175",
+        "barNote": "1st month free"
+      },
+      {
+        "name": "Premium",
+        "badge": null,
+        "persona": "For selling through the site, with priority support.",
+        "anchor": "No setup fee"
+      }
+    ],
+    "compare": {
+      "title": "Compare all features",
+      "groups": [
+        {
+          "title": "The site"
+        },
+        {
+          "title": "Contact and sales"
+        },
+        {
+          "title": "Hosting and maintenance"
+        }
+      ],
+      "conditions": {
+        "title": "Terms",
+        "rows": [
+          {
+            "label": "Monthly fee",
+            "values": {
+              "basico": "R$ 100",
+              "medio": "R$ 175",
+              "premium": "R$ 250"
+            }
+          },
+          {
+            "label": "First month",
+            "values": {
+              "basico": "R$ 100",
+              "medio": "R$ 0",
+              "premium": "R$ 250"
+            }
+          },
+          {
+            "label": "Lock-in",
+            "values": {
+              "basico": "None",
+              "medio": "None",
+              "premium": "None"
+            }
+          }
+        ]
+      }
+    },
+    "faq": [
+      {
+        "question": "How long does it take to deliver the site?",
+        "answer": "Simple sites are ready within 7 business days. Larger projects can take 2 to 3 weeks, depending on complexity."
+      },
+      {
+        "question": "Can I use my own domain?",
+        "answer": "Yes! If you already have a domain, we set everything up for you. If not, I’ll help you register a new one."
+      },
+      {
+        "question": "Can I cancel anytime?",
+        "answer": "Yes. There’s no lock-in and no fee. If you want to pause or cancel, just let me know."
+      },
+      {
+        "question": "Who updates the site’s content?",
+        "answer": "I take care of updates for you. Just send the changes on WhatsApp and I’ll make them."
+      },
+      {
+        "question": "How does the Standard plan’s free month work?",
+        "answer": "You use the full site for 30 days at no cost. If you like it, billing starts in the second month. No commitment."
+      },
+      {
+        "question": "Where is the site hosted?",
+        "answer": "On Vercel, one of the best platforms in the world. Your site loads fast and stays online 24/7."
+      }
+    ],
+    "seo": {
+      "title": "GodoStudio — Websites for Local Businesses in Taubaté",
+      "description": "Professional landing pages for cafés, studios and local shops. Monthly subscription from R$ 100. No hassle."
+    }
+  },
+  "ui": {
+    "common": {
+      "wantSite": "I want my site",
+      "contact": "Contact",
+      "heroAria": "Home",
+      "scroll": "Scroll to explore"
+    },
+    "header": {
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "language": "Language"
+    },
+    "carousel": {
+      "eyebrow": "Projects",
+      "title": "Recent work",
+      "segment": "Industry",
+      "whatDone": "What we built",
+      "live": "View live site",
+      "wantLike": "I want a site like this",
+      "back": "All projects",
+      "detailsAria": "{name} project details",
+      "sheetAria": "{name} project",
+      "roledesc": "carousel",
+      "sectionAria": "Projects",
+      "cardAria": "{name}: view project details",
+      "prev": "Previous project",
+      "next": "Next project",
+      "close": "Close project",
+      "announce": "Project {number}: {name}"
+    },
+    "process": {
+      "kicker": "/ Process",
+      "happens": "What happens",
+      "youGet": "You get",
+      "youDo": "You do",
+      "done": "✓ Done",
+      "active": "● In progress",
+      "next": "· Up next",
+      "step": "Step",
+      "liveNow": "● Live",
+      "duration": "Duration",
+      "rulerAria": "Time for each step",
+      "total": "Total"
+    },
+    "pricing": {
+      "kicker": "/ Plans",
+      "titleA": "Choose",
+      "titleB": "your plan",
+      "perMonth": "/month",
+      "noteAria": "Note {mark}",
+      "tipAria": "What is: {label}",
+      "included": "Included",
+      "notIncluded": "Not included",
+      "planAria": "{name} plan",
+      "allOf": "Everything in {name}",
+      "want": "Get {name}",
+      "seeAll": "See everything included",
+      "compareLabel": "Compare",
+      "with": "with",
+      "firstPlan": "First plan",
+      "secondPlan": "Second plan",
+      "caption": "Plan feature comparison",
+      "features": "Features",
+      "wantPlanAria": "Get the {name} plan",
+      "wantShort": "Get it",
+      "viewAria": "View plans",
+      "summary": "Overview",
+      "compareAll": "Compare all",
+      "prevPlan": "Previous plan",
+      "nextPlan": "Next plan",
+      "faqLink": "FAQ →",
+      "wantThis": "Get this one"
+    },
+    "faq": {
+      "kicker": "/ FAQ",
+      "t1": "Before",
+      "t2": "you",
+      "t3": "start."
+    },
+    "contact": {
+      "kicker": "/ Contact",
+      "titleA": "Let’s build your site",
+      "titleSign": "now",
+      "lead": "Tell us what your business does and what the site needs. Vitor replies on WhatsApp with a proposal and the right plan.",
+      "hours": "Availability",
+      "place": "Location",
+      "formTitle": "Request a quote",
+      "name": "Name *",
+      "namePh": "What should we call you?",
+      "business": "Business type",
+      "choose": "Choose",
+      "plan": "Plan",
+      "idea": "Your idea *",
+      "ideaPh": "What your business does and what the site should have.",
+      "submit": "Send via WhatsApp",
+      "hint": "The message opens ready to send in WhatsApp. You can send photos and references there.",
+      "errName": "Tell us what to call you.",
+      "errPhone": "Check the number, including the area code.",
+      "errIdea": "Write a little about your business and the site."
+    },
+    "footer": {
+      "sections": "/ Sections",
+      "social": "/ Social",
+      "top": "Back to top ↑"
+    },
+    "loader": {
+      "waTitle": "Opening WhatsApp",
+      "waText": "Your message is ready, just hit send.",
+      "igTitle": "Opening Instagram",
+      "igText": "Vitor’s profile, @vitor_godo.",
+      "siteTitle": "Opening the live site",
+      "cancel": "Cancel"
+    }
+  }
+}
