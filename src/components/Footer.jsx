@@ -26,7 +26,7 @@ export function Footer() {
   const [year] = useState(() => new Date().getFullYear());
 
   return (
-    <footer className={styles.footer}>
+    <footer className={`${styles.footer} tone-flip`}>
       <div className={`container ${styles.inner}`}>
         <div className={styles.cols}>
           <div>

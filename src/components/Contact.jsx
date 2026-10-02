@@ -89,7 +89,7 @@ export function Contact() {
   });
 
   return (
-    <section id="contato" className={styles.section}>
+    <section id="contato" className={`${styles.section} tone-flip`}>
       <div className="container">
         <p className={styles.kicker} data-reveal>
           <Mark /> <span>{t('contact.kicker')}</span>

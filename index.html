@@ -27,6 +27,15 @@
     
     <!-- Theme color -->
     <meta name="theme-color" content="#eef2f4" />
+    <!-- Saved theme (light by default) applied before first paint -->
+    <script>
+      try {
+        if (localStorage.getItem('godostudio-theme') === 'dark') {
+          document.documentElement.dataset.theme = 'dark';
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1f2226');
+        }
+      } catch (e) {}
+    </script>
 
   </head>
   <body>

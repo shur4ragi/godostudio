@@ -7,27 +7,49 @@
 @import '@fontsource/mrs-saint-delafield';
 
 :root {
+  /* Theme primitives. Light is the default; html[data-theme='dark'] swaps them.
+     Components keep using the --color-* names below (tone roles: "light" = paper,
+     "dark" = ink); .tone-flip sections invert the roles locally (see below). */
+  --t-paper: #eef2f4;
+  --t-paper-rgb: 238 242 244;
+  --t-paper-2: #e3e8eb;
+  --t-paper-2-rgb: 227 232 235;
+  --t-sand: #ece6df; /* warm pastel block (sections that used to be dark) */
+  --t-surface: #f8f9fa; /* cards, glass panels */
+  --t-surface-rgb: 248 249 250;
+  --t-ink: #2a2a28;
+  --t-ink-rgb: 42 42 40;
+  --t-ink-2: #353532;
+  --t-ink-3: #3d3d3a;
+  --t-ink-muted: #6f6f6c;
+  --t-shadow-rgb: 42 42 40;
+  --t-accent-text: #b9532f; /* coral that stays readable as text on the paper tones */
+
   /* Colors — Pastel/Muted palette (no pure black, no lime green) */
-  /* Light tones (like Galvão's --paper) */
-  --color-light: #eef2f4;
-  --color-light-2: #e3e8eb;
-  --color-light-muted: rgba(238, 242, 244, 0.7);
-  
-  /* Dark tones (like Galvão's --ink, charcoal not pure black) */
-  --color-dark: #2a2a28;
-  --color-dark-2: #353532;
-  --color-dark-3: #3d3d3a;
-  --color-dark-muted: #6f6f6c;
-  
+  --color-light: var(--t-paper);
+  --color-light-2: var(--t-paper-2);
+  --color-light-muted: rgb(var(--t-paper-rgb) / 0.7);
+  --color-dark: var(--t-ink);
+  --color-dark-2: var(--t-ink-2);
+  --color-dark-3: var(--t-ink-3);
+  --color-dark-muted: var(--t-ink-muted);
+  --color-surface: var(--t-surface);
+  --rgb-light: var(--t-paper-rgb);
+  --rgb-dark: var(--t-ink-rgb);
+  --rgb-surface: var(--t-surface-rgb);
+  --rgb-shadow: var(--t-shadow-rgb);
+
   /* Accent — warm coral/terracotta instead of lime green */
   --color-accent: #e07850;
   --color-accent-hover: #d06540;
   --color-accent-dim: rgba(224, 120, 80, 0.15);
-  
+
   /* Borders */
-  --color-border-light: rgba(238, 242, 244, 0.22);
-  --color-border-dark: rgba(42, 42, 40, 0.16);
-  
+  --color-border-light: rgb(var(--t-paper-rgb) / 0.22);
+  --color-border-dark: rgb(var(--t-ink-rgb) / 0.16);
+
+  color-scheme: light;
+
   /* Typography */
   --font-display: 'Host Grotesk Variable', 'Inter', -apple-system, sans-serif;
   --font-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
@@ -77,6 +99,37 @@
   /* Z-index */
   --z-header: 100;
   --z-modal: 200;
+}
+
+/* Optional dark theme (header toggle). Charcoal, never pure black; same coral accent. */
+html[data-theme='dark'] {
+  --t-paper: #1f2226;
+  --t-paper-rgb: 31 34 38;
+  --t-paper-2: #262a2f;
+  --t-paper-2-rgb: 38 42 47;
+  --t-sand: #2a2826;
+  --t-surface: #2d3137;
+  --t-surface-rgb: 45 49 55;
+  --t-ink: #e8ebed;
+  --t-ink-rgb: 232 235 237;
+  --t-ink-2: #d9dde0;
+  --t-ink-3: #cdd2d6;
+  --t-ink-muted: #a3a8ad;
+  --t-shadow-rgb: 6 8 10;
+  --t-accent-text: #f0a58a;
+  color-scheme: dark;
+}
+
+/* Theme switch: a short colour cross-fade, only while switching (no permanent transitions). */
+html.theme-anim,
+html.theme-anim *,
+html.theme-anim *::before,
+html.theme-anim *::after {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    fill 0.35s ease !important;
 }
 
 /* Reset */
@@ -238,6 +291,23 @@ html[data-entrance='reveal'] [data-site-header] {
 .section-light {
   background: var(--color-light);
   color: var(--color-dark);
+}
+
+/* Former dark bands, now a light tonal block in the light theme (and a dark one in dark
+   mode): the tone roles are inverted locally, so everything inside that was written as
+   "light on dark" renders as ink on sand. */
+.tone-flip {
+  --color-light: var(--t-ink);
+  --color-light-2: var(--t-ink-2);
+  --color-light-muted: rgb(var(--t-ink-rgb) / 0.7);
+  --color-dark: var(--t-sand);
+  --color-dark-2: var(--t-surface);
+  --color-dark-3: var(--t-paper-2);
+  --color-dark-muted: var(--t-ink-muted);
+  --color-border-light: rgb(var(--t-ink-rgb) / 0.16);
+  --color-border-dark: rgb(var(--t-ink-rgb) / 0.16);
+  --rgb-light: var(--t-ink-rgb);
+  --rgb-dark: var(--t-surface-rgb);
 }
 
 .section-dark {

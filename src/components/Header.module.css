@@ -10,7 +10,7 @@
 }
 
 .header.scrolled {
-  background: rgba(238, 242, 244, 0.95);
+  background: rgb(var(--rgb-light) / 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 var(--color-border-dark);
@@ -107,6 +107,12 @@
   display: flex;
   align-items: center;
   gap: var(--space-md);
+}
+
+.prefs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .menuBtn {

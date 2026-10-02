@@ -64,7 +64,7 @@
 }
 
 .item[data-open='true'] {
-  border-bottom-color: rgba(42, 42, 40, 0.4);
+  border-bottom-color: rgb(var(--rgb-dark) / 0.4);
 }
 
 .heading {

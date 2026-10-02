@@ -308,7 +308,9 @@
       "openMenu": "Abrir menú",
       "closeMenu": "Cerrar menú",
       "language": "Idioma",
-      "menu": "Menú"
+      "menu": "Menú",
+      "themeDark": "Activar modo oscuro",
+      "themeLight": "Activar modo claro"
     },
     "carousel": {
       "eyebrow": "Proyectos",

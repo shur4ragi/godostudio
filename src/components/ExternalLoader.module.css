@@ -7,7 +7,7 @@
   display: grid;
   place-items: center;
   padding: var(--space-lg);
-  background: rgba(227, 232, 235, 0.88);
+  background: rgb(var(--t-paper-2-rgb) / 0.88);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   animation: fade 0.3s var(--ease);
@@ -24,7 +24,7 @@
   background: var(--color-light);
   color: var(--color-dark);
   text-align: center;
-  box-shadow: 0 30px 80px -20px rgba(42, 42, 40, 0.25);
+  box-shadow: 0 30px 80px -20px rgb(var(--rgb-shadow) / 0.25);
   animation: rise 0.45s var(--ease);
 }
 
@@ -44,7 +44,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(100deg, transparent 30%, rgba(238, 242, 244, 0.7) 50%, transparent 70%);
+  background: linear-gradient(100deg, transparent 30%, rgb(var(--rgb-light) / 0.7) 50%, transparent 70%);
   transform: translateX(-100%);
   animation: shine 1.4s var(--ease) infinite;
 }
@@ -66,12 +66,12 @@
 }
 
 .line {
-  fill: rgba(42, 42, 40, 0.12);
+  fill: rgb(var(--rgb-dark) / 0.12);
   animation: pulse 1.2s ease-in-out infinite;
 }
 
 .dot {
-  fill: rgba(42, 42, 40, 0.35);
+  fill: rgb(var(--rgb-dark) / 0.35);
   animation: type 0.9s ease-in-out infinite;
 }
 
@@ -131,7 +131,7 @@
 @keyframes rise { from { opacity: 0; transform: translateY(14px) scale(0.98); } }
 @keyframes shine { to { transform: translateX(100%); } }
 @keyframes draw { to { stroke-dashoffset: 0; } }
-@keyframes pulse { 50% { fill: rgba(42, 42, 40, 0.22); } }
+@keyframes pulse { 50% { fill: rgb(var(--rgb-dark) / 0.22); } }
 @keyframes type { 50% { fill: var(--color-accent); transform: translateY(-3px); } }
 @keyframes grow { from { transform: scaleX(0); } }
 

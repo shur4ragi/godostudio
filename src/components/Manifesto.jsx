@@ -50,7 +50,7 @@ export function Manifesto() {
   }, [copy, highlight]);
 
   return (
-    <section ref={sectionRef} className={`${styles.section} section-dark`}>
+    <section ref={sectionRef} className={`${styles.section} section-dark tone-flip`}>
       <div className="container">
         {/* key: React must not reconcile into the words injected below on a language switch */}
         <p key={lang} ref={textRef} className={styles.text}>

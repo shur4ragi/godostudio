@@ -4,6 +4,7 @@ import { siteConfig, getWhatsAppLink } from '../data/site';
 import { useLang } from '../i18n';
 import { lockScroll, unlockScroll } from '../scrollLock';
 import { LangSwitch } from './LangSwitch';
+import { ThemeToggle } from './ThemeToggle';
 import styles from './Header.module.css';
 
 const MOBILE_QUERY = '(max-width: 768px)';
@@ -148,7 +149,10 @@ export function Header() {
           </nav>
 
           <div className={styles.actions}>
-            <LangSwitch className={styles.lang} />
+            <div className={styles.prefs}>
+              <LangSwitch className={styles.lang} />
+              <ThemeToggle />
+            </div>
             <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className={styles.cta}>
               {t('common.contact')}
             </a>

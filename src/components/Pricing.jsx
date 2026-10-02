@@ -411,7 +411,7 @@ export function Pricing() {
   const barPlan = plans[current] || plans[startIndex];
 
   return (
-    <section id="planos" ref={sectionRef} className={`${styles.section} section-dark`}>
+    <section id="planos" ref={sectionRef} className={`${styles.section} section-dark tone-flip`}>
       <InkReveal variant="band" className={styles.band} contentClassName={`container ${styles.bandLayout}`}>
         <p className={styles.kicker}>
           <Mark /> <span>{t('pricing.kicker')}</span>

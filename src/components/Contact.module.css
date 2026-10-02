@@ -25,7 +25,7 @@
 
 .kickerIndex {
   margin-left: auto;
-  color: rgba(238, 242, 244, 0.6);
+  color: rgb(var(--rgb-light) / 0.6);
 }
 
 .grid {
@@ -55,7 +55,7 @@
 .lead {
   max-width: 440px;
   margin-top: 14px;
-  color: rgba(238, 242, 244, 0.68);
+  color: rgb(var(--rgb-light) / 0.68);
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -70,11 +70,11 @@
   grid-template-columns: 112px minmax(0, 1fr);
   gap: 12px;
   padding: 13px 0;
-  border-top: 1px solid rgba(238, 242, 244, 0.14);
+  border-top: 1px solid rgb(var(--rgb-light) / 0.14);
 }
 
 .info div:last-child {
-  border-bottom: 1px solid rgba(238, 242, 244, 0.14);
+  border-bottom: 1px solid rgb(var(--rgb-light) / 0.14);
 }
 
 .info dt {
@@ -83,7 +83,7 @@
   font-size: 11px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: rgba(238, 242, 244, 0.5);
+  color: rgb(var(--rgb-light) / 0.5);
 }
 
 .info dd {
@@ -92,7 +92,7 @@
 }
 
 .info a {
-  border-bottom: 1px solid rgba(238, 242, 244, 0.3);
+  border-bottom: 1px solid rgb(var(--rgb-light) / 0.3);
   transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
 }
 
@@ -138,7 +138,7 @@
 
 .field > span {
   font-size: 12px;
-  color: rgba(238, 242, 244, 0.65);
+  color: rgb(var(--rgb-light) / 0.65);
 }
 
 .field input,
@@ -148,7 +148,7 @@
   min-height: 44px;
   padding: 8px 0;
   border: 0;
-  border-bottom: 1px solid rgba(238, 242, 244, 0.25);
+  border-bottom: 1px solid rgb(var(--rgb-light) / 0.25);
   border-radius: 0;
   background: transparent;
   color: var(--color-light);
@@ -182,7 +182,7 @@
 .field .placeholder,
 .field input::placeholder,
 .field textarea::placeholder {
-  color: rgba(238, 242, 244, 0.4);
+  color: rgb(var(--rgb-light) / 0.4);
 }
 
 .field input:focus,
@@ -199,13 +199,13 @@
 }
 
 .field [aria-invalid='true'] {
-  border-bottom-color: #f0a58a;
+  border-bottom-color: var(--t-accent-text);
 }
 
 .field em {
   font-style: normal;
   font-size: 12px;
-  color: #f0a58a;
+  color: var(--t-accent-text);
 }
 
 .submit {
@@ -232,7 +232,7 @@
 
 .hint {
   font-size: 12px;
-  color: rgba(238, 242, 244, 0.5);
+  color: rgb(var(--rgb-light) / 0.5);
 }
 
 @media (max-width: 900px) {
