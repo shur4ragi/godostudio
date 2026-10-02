@@ -10,6 +10,7 @@ import styles from './ProjectsCarousel.module.css';
  *         sit in the centre (active, video plays) and exit down-left into a stack.
  * Step 2: the active card un-tilts and expands (shared element), the left column
  *         turns into the project detail. Close / Esc reverses.
+ * Mobile (<= 768px) uses a flat row instead of the diagonal deck (see rowState).
  * Motion is CSS transforms only (compositor-friendly); no per-frame layout reads.
  */
 
@@ -33,10 +34,40 @@ const relPos = (i, c) => {
 // Geometry per breakpoint. x in card widths, y in card heights (of the *scaled* card).
 const GEO = {
   desktop: { k: 0.6, inX: [0.66, 1.5], inY: [-0.95, -2.1], stackX: 0.52, stackY: 0.68, stepX: 0.15, stepY: 0.22, depth: 3 },
-  mobile: { k: 0.6, inX: [0.7, 1.95], inY: [-0.48, -1.45], stackX: 0.62, stackY: 0.56, stepX: 0.15, stepY: 0.075, depth: 3 },
 };
 const TILT = 'rotateX(35deg) rotateZ(20deg)';
 const FLAT = 'rotateX(0deg) rotateZ(0deg)';
+
+// Mobile: the diagonal deck cannot fit tall portrait cards without them crossing, so the
+// cards line up in a flat row instead: the active one in front, one neighbour peeking on
+// each side (smaller, turned slightly toward the centre, always behind), the rest parked
+// off-stage and invisible. Neighbours are spaced wider than the cards, and every card is its
+// own flat plane (no preserve-3d), so no two cards ever overlap or cut through each other,
+// even mid-transition (they move in lock-step along the same line).
+const ROW = { side: 0.8, hidden: 0.62, gap: 0.12, park: 0.45, turn: 16, lift: -4 };
+const rowX = (n) => {
+  // centre-to-centre distance (in active-card widths) for |p| = n. Parked cards (|p| >= 2)
+  // each get their own off-stage slot, so cards never converge on one spot during fast steps.
+  const d1 = 0.5 + ROW.side / 2 + ROW.gap;
+  if (n === 1) return d1;
+  return d1 + ROW.side / 2 + ROW.hidden / 2 + ROW.park + (n - 2) * (ROW.hidden + ROW.park);
+};
+
+function rowState(p, expanded) {
+  const a = Math.abs(p);
+  const dir = Math.sign(p);
+  if (p === 0) {
+    const s = expanded ? 1.12 : 1;
+    return { transform: `translate3d(-50%, ${expanded ? -50 : -50 + ROW.lift}%, 0) scale(${s})`, opacity: 1 };
+  }
+  const n = a;
+  const s = n === 1 ? ROW.side : ROW.hidden;
+  const x = dir * rowX(n) * (expanded ? 1.6 : 1);
+  return {
+    transform: `translate3d(${(-50 + x * 100).toFixed(2)}%, ${-50 + ROW.lift}%, 0) scale(${s}) rotateY(${-dir * ROW.turn}deg)`,
+    opacity: n === 1 && !expanded ? 1 : 0,
+  };
+}
 
 function cardTransform(p, geo, expanded) {
   if (p === 0 && expanded) return `translate3d(-50%, -50%, 0) scale3d(1, 1, 1) ${FLAT}`;
@@ -63,7 +94,8 @@ function cardTransform(p, geo, expanded) {
   return `translate3d(${(-50 + x * k * 100).toFixed(2)}%, ${(-50 + y * k * 100).toFixed(2)}%, 0) scale3d(${(s * k).toFixed(3)}, ${(s * k).toFixed(3)}, ${(s * k).toFixed(3)}) ${TILT}`;
 }
 
-function zFor(p, expanded) {
+function zFor(p, expanded, row) {
+  if (row) return p === 0 ? (expanded ? 40 : 30) : 20 - Math.min(Math.abs(p), 5);
   if (p === 0) return expanded ? 40 : 10;
   if (p > 0) return 10 - p;
   return 30 + p; // newest stack card (p=-1) highest
@@ -199,7 +231,7 @@ export function ProjectsCarousel() {
   // ---- layout cards (transforms only) ----
   useLayoutEffect(() => {
     cursorRef.current = cursor;
-    const geo = isMobile ? GEO.mobile : GEO.desktop;
+    const geo = GEO.desktop;
     const teleported = [];
     cardsRef.current.forEach((card, i) => {
       if (!card) return;
@@ -210,8 +242,15 @@ export function ProjectsCarousel() {
         card.style.transition = 'none';
         teleported.push(card);
       }
-      card.style.transform = cardTransform(p, geo, expanded);
-      card.style.zIndex = String(zFor(p, expanded));
+      if (isMobile) {
+        const st = rowState(p, expanded);
+        card.style.transform = st.transform;
+        card.style.opacity = String(st.opacity);
+      } else {
+        card.style.transform = cardTransform(p, geo, expanded);
+        card.style.opacity = '';
+      }
+      card.style.zIndex = String(zFor(p, expanded, isMobile));
       prevPosRef.current[i] = p;
     });
     if (!teleported.length) return undefined;
@@ -454,11 +493,15 @@ export function ProjectsCarousel() {
       <div className={styles.inner}>
         <div className={styles.side}>
           <div className={styles.panel} inert={expanded} aria-hidden={expanded}>
-            <span className={styles.eyebrow}>{t('carousel.eyebrow')}</span>
-            <h2 className={styles.title}>{t('carousel.title')}</h2>
+            <span className={styles.eyebrow} data-reveal>
+              {t('carousel.eyebrow')}
+            </span>
+            <h2 className={styles.title} data-reveal>
+              {t('carousel.title')}
+            </h2>
             <ol className={styles.list}>
               {projects.map((project, j) => (
-                <li key={project.id}>
+                <li key={project.id} data-reveal>
                   <button
                     type="button"
                     className={`${styles.item} ${j === activeIndex ? styles.itemActive : ''}`}
@@ -505,7 +548,8 @@ export function ProjectsCarousel() {
               swipeRef.current = null;
             }}
           >
-            <div ref={deckRef} className={styles.deck}>
+            {/* Entrance lives on the deck, never on an ancestor of the fixed mobile sheet. */}
+            <div ref={deckRef} className={styles.deck} data-reveal style={{ '--reveal-y': '40px' }}>
               {cards.map((i) => {
                 const project = projects[i % N];
                 const preview = previewFor(project, isMobile);

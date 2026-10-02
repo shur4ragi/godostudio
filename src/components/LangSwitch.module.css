@@ -40,3 +40,24 @@
 .switch .active:hover {
   color: var(--color-light);
 }
+
+@media (max-width: 768px) {
+  .switch {
+    padding: 2px;
+  }
+
+  .switch button {
+    min-width: 30px;
+    height: 28px;
+    padding: 0 0.4rem;
+    letter-spacing: 0.06em;
+  }
+}
+
+@media (max-width: 360px) {
+  .switch button {
+    min-width: 28px;
+    padding: 0 0.3rem;
+    letter-spacing: 0.04em;
+  }
+}

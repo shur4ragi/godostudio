@@ -1,7 +1,7 @@
 import { DICTS, LANGS, useLang } from '../i18n';
 import styles from './LangSwitch.module.css';
 
-// Compact PT / EN / ES segmented switch (header on desktop, inside the menu on mobile).
+// Compact PT / EN / ES segmented switch, always in the header (desktop and mobile).
 export function LangSwitch({ className = '', onPick }) {
   const { lang, setLang, t } = useLang();
   return (

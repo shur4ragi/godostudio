@@ -103,22 +103,10 @@
   transform: translateY(-1px);
 }
 
-.ctaMobile {
-  display: none;
-}
-
 .actions {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-}
-
-.langMobile {
-  display: none !important;
-}
-
-.closeBtn {
-  display: none;
 }
 
 .menuBtn {
@@ -129,13 +117,15 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .menuLine {
-  width: 24px;
+  width: 22px;
   height: 2px;
+  border-radius: 2px;
   background: var(--color-dark);
-  transition: transform 0.3s var(--ease);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .menuBtn.menuOpen .menuLine:first-child {
@@ -146,99 +136,189 @@
   transform: translateY(-4px) rotate(-45deg);
 }
 
-.overlay {
+/* ---------- Mobile menu sheet (portaled to <body>, sits under the header) ---------- */
+.sheet {
   display: none;
 }
 
 @media (max-width: 768px) {
-  .nav {
-    position: fixed;
-    inset: 0;
-    background: var(--color-light);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-xl);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: var(--z-header);
+  .inner {
+    gap: var(--space-sm);
   }
 
-  .nav.navOpen {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .navLinks {
-    flex-direction: column;
-    gap: var(--space-lg);
-  }
-
-  .navLink {
-    font-size: var(--text-body);
-  }
-
-  .closeBtn {
-    display: flex;
-    position: absolute;
-    top: var(--space-lg);
-    right: var(--space-lg);
-    width: 44px;
-    height: 44px;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-dark-muted);
-  }
-
-  .closeBtn svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .closeBtn:hover {
-    color: var(--color-dark);
-  }
-
+  .nav,
   .cta {
     display: none;
   }
 
-  .langDesktop {
-    display: none !important;
-  }
-
-  .langMobile {
-    display: inline-flex !important;
-    margin-top: var(--space-md);
-  }
-
   .actions {
     margin-left: auto;
-  }
-
-  .ctaMobile {
-    display: block;
-    font-size: var(--text-small);
-    font-weight: 600;
-    color: var(--color-light);
-    background: var(--color-accent);
-    padding: var(--space-md) var(--space-xl);
-    border-radius: var(--radius-full);
-    margin-top: var(--space-lg);
+    gap: var(--space-xs);
   }
 
   .menuBtn {
     display: flex;
-    position: relative;
-    z-index: calc(var(--z-header) + 1);
+    margin-right: -8px;
   }
 
-  .overlay {
-    display: block;
+  /* While the menu is open the bar is solid and joins the sheet. */
+  .header.headerMenu {
+    background: var(--color-light);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    box-shadow: 0 1px 0 var(--color-border-dark);
+  }
+
+  .sheet {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-2xl);
     position: fixed;
-    inset: 0;
-    background: rgba(42, 42, 40, 0.3);
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: calc(var(--z-header) - 1);
+    padding: var(--space-2xl) var(--container-padding) calc(var(--space-2xl) + env(safe-area-inset-bottom, 0px));
+    background: var(--color-light);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    visibility: hidden;
+    clip-path: inset(0 0 100% 0);
+    transition:
+      clip-path 0.45s cubic-bezier(0.7, 0, 0.84, 0) 0.1s,
+      visibility 0s linear 0.55s;
+  }
+
+  .sheetOpen {
+    visibility: visible;
+    clip-path: inset(0 0 0 0);
+    transition:
+      clip-path 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0s linear 0s;
+  }
+
+  .sheetNav {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--color-border-dark);
+  }
+
+  .sheetLink,
+  .sheetFoot {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease;
+  }
+
+  .sheetOpen .sheetLink,
+  .sheetOpen .sheetFoot {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(0.12s + var(--i, 0) * 0.055s);
+  }
+
+  .sheetLink {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
+    min-height: 56px;
+    border-bottom: 1px solid var(--color-border-dark);
+    font-size: clamp(1.6rem, 8vw, 2.25rem);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    color: var(--color-dark);
+  }
+
+  .sheetLink:active,
+  .sheetLink:hover {
+    color: var(--color-accent);
+  }
+
+  .sheetIndex {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    color: var(--color-accent);
+    transform: translateY(-0.4em);
+  }
+
+  .sheetFoot {
+    display: grid;
+    gap: var(--space-md);
+  }
+
+  .sheetCta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    min-height: 52px;
+    padding: var(--space-md) var(--space-xl);
+    border-radius: var(--radius-full);
+    background: var(--color-accent);
+    color: var(--color-light);
+    font-weight: 600;
+    font-size: var(--text-small);
+  }
+
+  .sheetMeta {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-dark-muted);
+  }
+}
+
+@media (max-width: 360px) {
+  .logo {
+    gap: 6px;
+  }
+
+  .logoIcon {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .menuBtn {
+    width: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sheet,
+  .sheetOpen {
+    clip-path: none;
+    opacity: 0;
+    transition: opacity 0.15s linear, visibility 0s linear 0.15s;
+  }
+
+  .sheetOpen {
+    opacity: 1;
+    transition: opacity 0.15s linear, visibility 0s linear 0s;
+  }
+
+  .sheetLink,
+  .sheetFoot,
+  .sheetOpen .sheetLink,
+  .sheetOpen .sheetFoot {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .menuLine {
+    transition: none;
   }
 }

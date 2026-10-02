@@ -14,7 +14,7 @@ export function FAQ() {
     <section id="faq" className={`${styles.section} section-muted`}>
       <div className={`container ${styles.layout}`}>
         <header className={styles.head}>
-          <p className={styles.tag}>
+          <p className={styles.tag} data-reveal>
             <Mark /> <span>{t('faq.kicker')}</span>
             <span className={styles.index}>05</span>
           </p>
@@ -29,7 +29,7 @@ export function FAQ() {
           {site.faq.map((item, i) => {
             const isOpen = open === i;
             return (
-              <div key={i} className={styles.item} data-open={isOpen}>
+              <div key={i} className={styles.item} data-open={isOpen} data-reveal>
                 <h3 className={styles.heading}>
                   <button
                     type="button"

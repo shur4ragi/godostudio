@@ -307,7 +307,8 @@
     "header": {
       "openMenu": "Open menu",
       "closeMenu": "Close menu",
-      "language": "Language"
+      "language": "Language",
+      "menu": "Menu"
     },
     "carousel": {
       "eyebrow": "Projects",

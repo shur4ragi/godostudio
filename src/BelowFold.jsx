@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { initReveal } from './reveal';
 import { Manifesto } from './components/Manifesto';
 import { ProjectsCarousel } from './components/ProjectsCarousel';
 import { Process } from './components/Process';
@@ -23,6 +24,8 @@ const cancelIdle = (id) =>
 
 export default function BelowFold() {
   const [count, setCount] = useState(1);
+
+  useEffect(() => initReveal(document.body), []);
 
   useEffect(() => {
     if (count < SECTIONS.length) {

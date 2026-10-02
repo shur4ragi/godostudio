@@ -319,6 +319,7 @@ function Rail() {
           <li
             key={s.number}
             className={styles.railStep}
+            data-reveal
             data-state={reduce || i <= reached ? 'lit' : 'dim'}
             data-current={!reduce && i === reached ? '' : undefined}
             style={{ '--indent': `${Math.min(i * 16, 48)}px` }}
@@ -339,7 +340,7 @@ function Rail() {
           </li>
         ))}
       </ol>
-      <div className={styles.railFoot}>
+      <div className={styles.railFoot} data-reveal>
         <p className={styles.total}>
           {t('process.total')} <strong>{intro.total}</strong>
         </p>
@@ -358,11 +359,11 @@ export function Process() {
   return (
     <section id="processo" className={`${styles.section} section-light`}>
       <div className={`container ${styles.header}`}>
-        <p className={styles.kicker}>
+        <p className={styles.kicker} data-reveal>
           <Mark /> <span>{t('process.kicker')}</span>
           <span className={styles.kickerIndex}>03</span>
         </p>
-        <h2 className={styles.title}>
+        <h2 className={styles.title} data-reveal>
           {intro.title} <span>— {intro.subtitle}</span>
         </h2>
       </div>

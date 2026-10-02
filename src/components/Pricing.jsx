@@ -429,7 +429,7 @@ export function Pricing() {
       </InkReveal>
 
       <div className="container">
-        <div className={styles.switch} role="group" aria-label={t('pricing.viewAria')}>
+        <div className={styles.switch} data-reveal role="group" aria-label={t('pricing.viewAria')}>
           {[
             ['resumo', t('pricing.summary')],
             ['comparar', t('pricing.compareAll')],

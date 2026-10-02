@@ -91,21 +91,21 @@ export function Contact() {
   return (
     <section id="contato" className={styles.section}>
       <div className="container">
-        <p className={styles.kicker}>
+        <p className={styles.kicker} data-reveal>
           <Mark /> <span>{t('contact.kicker')}</span>
           <span className={styles.kickerIndex}>06</span>
         </p>
 
         <div className={styles.grid}>
           <div className={styles.side}>
-            <h2 className={styles.title}>
+            <h2 className={styles.title} data-reveal>
               {t('contact.titleA')} <span className={styles.sign}>{t('contact.titleSign')}</span>
             </h2>
-            <p className={styles.lead}>
+            <p className={styles.lead} data-reveal>
               {t('contact.lead')}
             </p>
 
-            <dl className={styles.info}>
+            <dl className={styles.info} data-reveal>
               <div>
                 <dt>WhatsApp</dt>
                 <dd>
@@ -133,7 +133,7 @@ export function Contact() {
             </dl>
           </div>
 
-          <form className={styles.form} onSubmit={submit} noValidate aria-labelledby="orcamento-titulo">
+          <form className={styles.form} data-reveal style={{ '--reveal-y': '32px' }} onSubmit={submit} noValidate aria-labelledby="orcamento-titulo">
             <p id="orcamento-titulo" className={styles.formTitle}>
               {t('contact.formTitle')}
             </p>
