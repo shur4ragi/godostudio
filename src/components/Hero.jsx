@@ -10,17 +10,15 @@ import styles from './Hero.module.css';
 const OUT_AT = 1900;
 const OPEN_AT = 2500;
 const DONE_AFTER_OPEN = 2600;
-const VISITED_KEY = 'godostudio-visited';
 
+// The opening plays on every page load / reload (Vitor wants it each time; it used to be
+// skipped for the rest of the tab session via a sessionStorage flag). Reduced motion skips it.
+// Every load starts at the top: the browser must not restore the old scroll position.
+if (typeof window !== 'undefined' && 'scrollRestoration' in history) history.scrollRestoration = 'manual';
 
 function initialPhase() {
   if (typeof window === 'undefined') return 'done';
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 'done';
-  try {
-    if (sessionStorage.getItem(VISITED_KEY)) return 'open';
-  } catch {
-    /* storage unavailable */
-  }
   return 'intro';
 }
 
@@ -55,16 +53,14 @@ export function Hero() {
 
   useEffect(() => () => delete document.documentElement.dataset.entrance, []);
 
+  // Start at the top on every load (also with reduced motion, where there is no intro).
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Intro timers
   useEffect(() => {
     if (phase !== 'intro') return undefined;
-    try {
-      sessionStorage.setItem(VISITED_KEY, '1');
-    } catch {
-      /* ignore */
-    }
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
     const t = setTimeout(() => setPhase((p) => (p === 'intro' ? 'out' : p)), OUT_AT);
     return () => clearTimeout(t);
   }, [phase]);
