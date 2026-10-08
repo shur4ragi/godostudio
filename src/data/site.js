@@ -39,8 +39,9 @@ export const siteConfig = {
   ],
   
   // Carousel previews: Vitor's 30 s ads (muted). Desktop/tablet (>768px) uses the 16:9 cut,
-  // mobile the 9:16 one. `fit: 'contain'` = the clip's aspect differs from the card (only
-  // Galvão on mobile now), so it is centred over a tiny pre-blurred `backdrop` image. Clips are only fetched for the active card (see ProjectsCarousel).
+  // mobile the 9:16 one. `fit: 'contain'` + `backdrop` (still supported by ProjectsCarousel) centre a
+  // clip whose aspect differs from the card over a tiny pre-blurred image; no project needs it now.
+  // Clips are only fetched for the active card (see ProjectsCarousel).
   projects: [
     {
       id: 'fryda',
@@ -122,13 +123,11 @@ export const siteConfig = {
           h: 432,
         },
         mobile: {
-          webm: '/previews/galvao-ad.webm',
-          mp4: '/previews/galvao-ad.mp4',
-          poster: '/previews/galvao-ad-poster.webp',
-          backdrop: '/previews/galvao-ad-backdrop.webp',
-          fit: 'contain',
-          w: 768,
-          h: 432,
+          webm: '/previews/galvao-ad-mobile.webm',
+          mp4: '/previews/galvao-ad-mobile.mp4',
+          poster: '/previews/galvao-ad-mobile-poster.webp',
+          w: 432,
+          h: 768,
         },
       },
     },
