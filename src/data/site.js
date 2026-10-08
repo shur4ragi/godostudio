@@ -132,6 +132,50 @@ export const siteConfig = {
         },
       },
     },
+    {
+      id: 'dj',
+      name: 'Endryw Lima',
+      url: 'https://endryw-lima.vercel.app/',
+      number: '05',
+      preview: {
+        desktop: {
+          webm: '/previews/dj-ad-desktop.webm',
+          mp4: '/previews/dj-ad-desktop.mp4',
+          poster: '/previews/dj-ad-desktop-poster.webp',
+          w: 768,
+          h: 432,
+        },
+        mobile: {
+          webm: '/previews/dj-ad-mobile.webm',
+          mp4: '/previews/dj-ad-mobile.mp4',
+          poster: '/previews/dj-ad-mobile-poster.webp',
+          w: 432,
+          h: 768,
+        },
+      },
+    },
+    {
+      id: 'aflora',
+      name: 'Aflora Floricultura',
+      url: 'https://aflora-flores.pages.dev/',
+      number: '06',
+      preview: {
+        desktop: {
+          webm: '/previews/aflora-ad-desktop.webm',
+          mp4: '/previews/aflora-ad-desktop.mp4',
+          poster: '/previews/aflora-ad-desktop-poster.webp',
+          w: 768,
+          h: 432,
+        },
+        mobile: {
+          webm: '/previews/aflora-ad-mobile.webm',
+          mp4: '/previews/aflora-ad-mobile.mp4',
+          poster: '/previews/aflora-ad-mobile-poster.webp',
+          w: 432,
+          h: 768,
+        },
+      },
+    },
   ],
   
   // Processo — "A escada". Durações, entregáveis e rodadas são SUGESTÕES da pesquisa.

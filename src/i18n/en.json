@@ -75,6 +75,14 @@
       {
         "segment": "Studio",
         "description": "Portfolio and quotes"
+      },
+      {
+        "segment": "DJ",
+        "description": "Portfolio, gig dates and booking"
+      },
+      {
+        "segment": "Florist",
+        "description": "Bouquets, subscription club and ordering"
       }
     ],
     "processIntro": {

@@ -75,6 +75,14 @@
       {
         "segment": "Estudio",
         "description": "Portafolio y presupuesto"
+      },
+      {
+        "segment": "DJ",
+        "description": "Portafolio, agenda y contratación"
+      },
+      {
+        "segment": "Floristería",
+        "description": "Arreglos, club de suscripción y pedido"
       }
     ],
     "processIntro": {

@@ -17,7 +17,7 @@ import styles from './ProjectsCarousel.module.css';
 const projects = siteConfig.projects;
 const N = projects.length;
 const COPIES = Math.max(2, Math.ceil(8 / N));
-const SLOTS = N * COPIES; // 8 cards for 4 projects
+const SLOTS = N * COPIES; // 12 cards for 6 projects
 const MAX_P = 2; // incoming positions (top-right)
 const STEP_GAP = 220; // ms between queued steps (multi-step jumps)
 const AUTO_DELAY = 3500;
