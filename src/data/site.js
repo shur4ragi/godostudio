@@ -243,7 +243,7 @@ export const siteConfig = {
   // TODO: Vitor - confirmar prazo médio de entrega e detalhes do mês grátis (content.faq)
 
   seo: {
-    ogImage: '/og-image.png',
+    ogImage: 'https://godostudio.vercel.app/og.png',
   },
 };
 
