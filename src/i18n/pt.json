@@ -186,7 +186,8 @@
         "label": "Ajustes simples sob demanda"
       },
       "catalog": {
-        "label": "Cardápio ou catálogo completo"
+        "label": "Cardápio ou catálogo com fotos",
+        "tip": "Cada item com foto, descrição e preço, e uma janela com os detalhes ao tocar."
       },
       "gallery": {
         "label": "Galeria de fotos/portfólio"
@@ -198,36 +199,47 @@
         "label": "Atualizações mensais inclusas"
       },
       "cart": {
-        "label": "Carrinho com pedido pelo WhatsApp"
-      },
-      "tour": {
-        "label": "Tour guiado interativo"
+        "label": "Carrinho com pedido pelo WhatsApp",
+        "tip": "O cliente monta o pedido no site e ele chega pronto no seu WhatsApp."
       },
       "priority": {
         "label": "Prioridade em alterações"
       },
       "custom": {
-        "label": "Recursos sob medida"
+        "label": "Recursos sob medida",
+        "tip": "Área de clientes, agendamento, app e outros sistemas maiores. Orçados à parte, com taxa de produção."
+      },
+      "preview": {
+        "label": "Prévia do link no WhatsApp",
+        "tip": "Quando alguém compartilha seu site, aparece uma foto e o nome do negócio, não só o endereço."
+      },
+      "motion": {
+        "label": "Animações e carrossel de destaques",
+        "tip": "Entrada animada, vídeos e carrosséis que dão vida à página."
+      },
+      "admin": {
+        "label": "Painel para editar produtos e preços",
+        "tip": "Você mesmo atualiza itens, fotos e preços, com acesso protegido."
       }
     },
     "plans": [
       {
         "name": "Básico",
         "badge": null,
-        "persona": "Pra quem precisa existir no Google e no WhatsApp.",
+        "persona": "Pra quem precisa de uma página simples e bonita para existir no Google e no WhatsApp.",
         "anchor": "Sem taxa de adesão"
       },
       {
         "name": "Médio",
         "badge": "Mais escolhido",
-        "persona": "Pra quem quer mostrar o cardápio/catálogo e receber pedidos de orçamento.",
+        "persona": "Pra quem quer mostrar o cardápio/catálogo com fotos e uma página mais viva.",
         "anchor": "1º mês: R$ 0 · você economiza R$ 175",
         "barNote": "1º mês grátis"
       },
       {
         "name": "Premium",
         "badge": null,
-        "persona": "Pra quem quer vender pelo site e ter prioridade.",
+        "persona": "Pra quem quer receber pedidos pelo site e editar o catálogo sozinho.",
         "anchor": "Sem taxa de adesão"
       }
     ],

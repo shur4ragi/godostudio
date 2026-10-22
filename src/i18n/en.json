@@ -186,7 +186,8 @@
         "label": "Simple changes on request"
       },
       "catalog": {
-        "label": "Full menu or catalog"
+        "label": "Menu or catalog with photos",
+        "tip": "Each item with photo, description and price, plus a detail window on tap."
       },
       "gallery": {
         "label": "Photo gallery / portfolio"
@@ -198,36 +199,47 @@
         "label": "Monthly updates included"
       },
       "cart": {
-        "label": "Cart with WhatsApp ordering"
-      },
-      "tour": {
-        "label": "Interactive guided tour"
+        "label": "Cart with WhatsApp ordering",
+        "tip": "Customers build the order on the site and it arrives ready on your WhatsApp."
       },
       "priority": {
         "label": "Priority on changes"
       },
       "custom": {
-        "label": "Custom features"
+        "label": "Custom features",
+        "tip": "Customer area, booking, app and other larger systems. Quoted separately, with a production fee."
+      },
+      "preview": {
+        "label": "Link preview on WhatsApp",
+        "tip": "When someone shares your site, a photo and your business name show up, not just the address."
+      },
+      "motion": {
+        "label": "Animations and highlight carousel",
+        "tip": "Animated intro, videos and carousels that bring the page to life."
+      },
+      "admin": {
+        "label": "Panel to edit products and prices",
+        "tip": "Update items, photos and prices yourself, with protected access."
       }
     },
     "plans": [
       {
         "name": "Basic",
         "badge": null,
-        "persona": "For businesses that need to show up on Google and WhatsApp.",
+        "persona": "For those who need a simple, good-looking page to show up on Google and WhatsApp.",
         "anchor": "No setup fee"
       },
       {
         "name": "Standard",
         "badge": "Most popular",
-        "persona": "For showing your menu/catalog and getting quote requests.",
+        "persona": "For those who want to show their menu/catalog with photos and a livelier page.",
         "anchor": "1st month: R$ 0 · you save R$ 175",
         "barNote": "1st month free"
       },
       {
         "name": "Premium",
         "badge": null,
-        "persona": "For selling through the site, with priority support.",
+        "persona": "For those who want to take orders through the site and edit the catalog themselves.",
         "anchor": "No setup fee"
       }
     ],

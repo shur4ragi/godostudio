@@ -215,24 +215,26 @@ export const siteConfig = {
     form: { icon: 'form' },
     updates: { icon: 'refresh' },
     cart: { icon: 'cart' },
-    tour: { icon: 'compass' },
+    preview: { icon: 'image' },
+    motion: { icon: 'compass' },
+    admin: { icon: 'key' },
     priority: { icon: 'bolt' },
     custom: { icon: 'spark' },
   },
 
   // TODO: Vitor - confirmar "sem taxa de adesão" e os recursos de cada plano
   plans: [
-    { id: 'basico', name: 'Básico', price: 100, highlighted: false, features: ['landing', 'whatsapp', 'map', 'hosting', 'tweaks'] },
+    { id: 'basico', name: 'Básico', price: 100, highlighted: false, features: ['landing', 'whatsapp', 'map', 'preview', 'hosting', 'tweaks'] },
     // Tudo do plano indicado em `includes` + os recursos abaixo.
-    { id: 'medio', name: 'Médio', price: 175, highlighted: true, anchorNote: '¹', includes: 'basico', features: ['catalog', 'gallery', 'form', 'updates'] },
-    { id: 'premium', name: 'Premium', price: 250, highlighted: false, includes: 'medio', features: ['cart', 'tour', 'priority', 'custom'] },
+    { id: 'medio', name: 'Médio', price: 175, highlighted: true, anchorNote: '¹', includes: 'basico', features: ['catalog', 'gallery', 'motion', 'form', 'updates'] },
+    { id: 'premium', name: 'Premium', price: 250, highlighted: false, includes: 'medio', features: ['cart', 'admin', 'priority', 'custom'] },
   ],
 
   // Tabela "Comparar tudo": grupos com os recursos acima (só o que já está nos planos).
   compare: {
     groups: [
-      { rows: ['landing', 'catalog', 'gallery', 'tour'] },
-      { rows: ['whatsapp', 'map', 'form', 'cart'] },
+      { rows: ['landing', 'preview', 'catalog', 'gallery', 'motion'] },
+      { rows: ['whatsapp', 'map', 'form', 'cart', 'admin'] },
       { rows: ['hosting', 'tweaks', 'updates', 'priority', 'custom'] },
     ],
     conditions: {
