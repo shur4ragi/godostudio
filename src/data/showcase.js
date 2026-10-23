@@ -12,7 +12,7 @@ export const showcase = {
         ['Lançamento', 'Domínio, SSL, analytics e publicação. Acompanhamos o dia do lançamento.', 'Site no ar'],
         ['Acompanhamento', 'Suporte mensal, melhorias contínuas e relatórios de acesso e conversão.', 'Relatório mensal'],
       ] },
-    eco: { kicker: '/ E-commerce', title: 'Lojas virtuais que', titleB: 'vendem', lead: 'Olmo Studio: loja de moda com catálogo filtrável, variações de tamanho e cor, carrinho e checkout.', name: 'Olmo Studio', feats: ['Catálogo com filtros', 'Tamanhos, cores e estoque', 'Carrinho e checkout', 'Cupons e frete grátis', 'Layout pensado para o celular'], alt: ['Olmo Studio — página inicial no computador', 'Olmo Studio — catálogo com filtros', 'Olmo Studio — loja no celular'] },
+    eco: { kicker: '/ E-commerce', title: 'Lojas virtuais que', titleB: 'vendem', lead: 'Olmo Studio: loja de moda com catálogo filtrável, variações de tamanho e cor, carrinho e checkout.', name: 'Olmo Studio', feats: ['Catálogo com filtros', 'Tamanhos, cores e estoque', 'Carrinho e checkout', 'Cupons e frete grátis', 'Layout pensado para o celular'], alt: ['Página inicial da loja', 'Painel do lojista com prévia ao vivo lado a lado', 'Checkout com o cartão personalizado da loja', 'Página de produto com cores, tamanhos e parcelamento', 'Loja no celular'], prev: 'Anterior', next: 'Próximo', goto: 'Ir para o slide' },
     int: { kicker: '/ Integrações', title: 'Integrações que já', titleB: 'entregamos', items: [
       ['E-mail', 'Envio de e-mails transacionais (Resend): confirmação de pedido, boas-vindas, recuperação de senha e formulários.'],
       ['Assistente de IA', 'Sites e aplicativos com assistente virtual que responde clientes sobre planos, entregas e produtos, 24h.'],
@@ -32,7 +32,7 @@ export const showcase = {
         ['Launch', 'Domain, SSL, analytics and go-live. We monitor launch day with you.', 'Site live'],
         ['Follow-up', 'Monthly support, continuous improvements and traffic/conversion reports.', 'Monthly report'],
       ] },
-    eco: { kicker: '/ E-commerce', title: 'Online stores that', titleB: 'sell', lead: 'Olmo Studio: fashion store with filterable catalog, size and color variants, cart and checkout.', name: 'Olmo Studio', feats: ['Filterable catalog', 'Sizes, colors and stock', 'Cart and checkout', 'Coupons and free shipping', 'Mobile-first layout'], alt: ['Olmo Studio — desktop home page', 'Olmo Studio — catalog with filters', 'Olmo Studio — store on mobile'] },
+    eco: { kicker: '/ E-commerce', title: 'Online stores that', titleB: 'sell', lead: 'Olmo Studio: fashion store with filterable catalog, size and color variants, cart and checkout.', name: 'Olmo Studio', feats: ['Filterable catalog', 'Sizes, colors and stock', 'Cart and checkout', 'Coupons and free shipping', 'Mobile-first layout'], alt: ['Store home page', 'Merchant admin with side-by-side live preview', 'Checkout with the store\'s custom card', 'Product page with colors, sizes and installments', 'Store on mobile'], prev: 'Previous', next: 'Next', goto: 'Go to slide' },
     int: { kicker: '/ Integrations', title: 'Integrations we', titleB: 'deliver', items: [
       ['E-mail', 'Transactional e-mail (Resend): order confirmation, welcome, password reset and forms.'],
       ['AI assistant', 'Websites and apps with a virtual assistant that answers customers about plans, deliveries and products, 24/7.'],
@@ -52,7 +52,7 @@ export const showcase = {
         ['Lanzamiento', 'Dominio, SSL, analytics y publicación. Acompañamos el día del lanzamiento.', 'Sitio en línea'],
         ['Seguimiento', 'Soporte mensual, mejoras continuas e informes de visitas y conversión.', 'Informe mensual'],
       ] },
-    eco: { kicker: '/ E-commerce', title: 'Tiendas online que', titleB: 'venden', lead: 'Olmo Studio: tienda de moda con catálogo filtrable, variantes de talla y color, carrito y checkout.', name: 'Olmo Studio', feats: ['Catálogo con filtros', 'Tallas, colores y stock', 'Carrito y checkout', 'Cupones y envío gratis', 'Diseño pensado para el móvil'], alt: ['Olmo Studio — inicio en computadora', 'Olmo Studio — catálogo con filtros', 'Olmo Studio — tienda en el móvil'] },
+    eco: { kicker: '/ E-commerce', title: 'Tiendas online que', titleB: 'venden', lead: 'Olmo Studio: tienda de moda con catálogo filtrable, variantes de talla y color, carrito y checkout.', name: 'Olmo Studio', feats: ['Catálogo con filtros', 'Tallas, colores y stock', 'Carrito y checkout', 'Cupones y envío gratis', 'Diseño pensado para el móvil'], alt: ['Página de inicio de la tienda', 'Panel del comerciante con vista previa en vivo al lado', 'Checkout con la tarjeta personalizada de la tienda', 'Página de producto con colores, tallas y cuotas', 'Tienda en el móvil'], prev: 'Anterior', next: 'Siguiente', goto: 'Ir a la diapositiva' },
     int: { kicker: '/ Integraciones', title: 'Integraciones que ya', titleB: 'entregamos', items: [
       ['E-mail', 'E-mails transaccionales (Resend): confirmación de pedido, bienvenida, recuperación de contraseña y formularios.'],
       ['Asistente de IA', 'Sitios y apps con asistente virtual que responde a clientes sobre planes, entregas y productos, 24 h.'],

@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { useLang } from '../i18n';
 import { showcase } from '../data/showcase';
 import styles from './Showcase.module.css';
@@ -38,7 +39,67 @@ export function Onboarding() {
   );
 }
 
-const SHOTS = ['/screenshots/olmo/olmo-desktop.webp', '/screenshots/olmo/olmo-catalogo.webp', '/screenshots/olmo/olmo-mobile.webp'];
+const SLIDES = [
+  { src: '/screenshots/olmo/olmo-desktop.webp' },
+  { src: '/screenshots/olmo/olmo-admin.webp' },
+  { src: '/screenshots/olmo/olmo-checkout.webp' },
+  { src: '/screenshots/olmo/olmo-produto.webp' },
+  { src: '/screenshots/olmo/olmo-mobile.webp', mobile: true },
+];
+
+function Carousel({ eco }) {
+  const track = useRef(null);
+  const [at, setAt] = useState(0);
+  const go = (i) => {
+    const el = track.current;
+    if (!el) return;
+    const n = (i + SLIDES.length) % SLIDES.length;
+    el.scrollTo({ left: n * el.clientWidth, behavior: 'smooth' });
+  };
+  const atRef = useRef(0);
+  useEffect(() => { atRef.current = at; }, [at]);
+  // Ao redimensionar, mantém o slide atual no lugar (o scroll é em px).
+  useEffect(() => {
+    const el = track.current;
+    if (!el || typeof ResizeObserver === 'undefined') return undefined;
+    const ro = new ResizeObserver(() => { el.scrollLeft = atRef.current * el.clientWidth; });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+  const onScroll = () => {
+    const el = track.current;
+    if (el) setAt(Math.round(el.scrollLeft / el.clientWidth));
+  };
+  const onKey = (e) => {
+    if (e.key === 'ArrowRight') { e.preventDefault(); go(at + 1); }
+    if (e.key === 'ArrowLeft') { e.preventDefault(); go(at - 1); }
+  };
+  return (
+    <div className={styles.carousel} role="region" aria-roledescription="carousel" aria-label={eco.name} onKeyDown={onKey}>
+      <div className={styles.track} ref={track} onScroll={onScroll} tabIndex={0}>
+        {SLIDES.map((s, i) => (
+          <figure key={s.src} className={`${styles.slide} ${s.mobile ? styles.slideMobile : ''}`} aria-roledescription="slide" aria-label={`${i + 1} / ${SLIDES.length}`} aria-hidden={i !== at}>
+            <div className={styles.frame}>
+              <img src={s.src} alt={`${eco.name} — ${eco.alt[i]}`} loading={i ? 'lazy' : undefined} width={s.mobile ? 390 : 1200} height={s.mobile ? 1014 : 750} draggable="false" />
+            </div>
+          </figure>
+        ))}
+      </div>
+      <div className={styles.controls}>
+        <p className={styles.caption} aria-live="polite"><span>{String(at + 1).padStart(2, '0')} / {String(SLIDES.length).padStart(2, '0')}</span> {eco.alt[at]}</p>
+        <div className={styles.dots}>
+          {SLIDES.map((s, i) => (
+            <button key={s.src} type="button" className={i === at ? styles.dotOn : styles.dot} aria-label={`${eco.goto} ${i + 1}`} aria-current={i === at} onClick={() => go(i)} />
+          ))}
+        </div>
+        <div className={styles.arrows}>
+          <button type="button" className={styles.arrow} aria-label={eco.prev} onClick={() => go(at - 1)}>←</button>
+          <button type="button" className={styles.arrow} aria-label={eco.next} onClick={() => go(at + 1)}>→</button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function Ecommerce() {
   const { eco } = useCopy();
@@ -46,11 +107,7 @@ export function Ecommerce() {
     <section id="ecommerce" className={`section-muted ${styles.section}`}>
       <div className="container">
         <Head {...eco} />
-        <div className={styles.shots}>
-          <figure className={styles.desk}><img src={SHOTS[0]} alt={eco.alt[0]} loading="lazy" width="1200" height="750" /></figure>
-          <figure className={styles.desk}><img src={SHOTS[1]} alt={eco.alt[1]} loading="lazy" width="1200" height="750" /></figure>
-          <figure className={styles.mob}><img src={SHOTS[2]} alt={eco.alt[2]} loading="lazy" width="390" height="1014" /></figure>
-        </div>
+        <Carousel eco={eco} />
         <ul className={styles.feats}>
           {eco.feats.map((f) => <li key={f}>{f}</li>)}
         </ul>
