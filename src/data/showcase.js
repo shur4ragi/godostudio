@@ -18,7 +18,7 @@ export const showcase = {
       ['Assistente de IA', 'Sites e aplicativos com assistente virtual que responde clientes sobre planos, entregas e produtos, 24h.'],
       ['Stripe', 'Pagamentos com cartão, Pix e assinaturas recorrentes, com webhooks e painel de cobranças.'],
       ['Plataforma de checkout', 'Checkout próprio ou hospedado, carrinho, cupons e confirmação automática por e-mail.'],
-    ], chat: { head: 'Assistente do Clube Aflora', status: 'Online · responde sobre o seu plano', hi: 'Oi! Sou a assistente do Clube Aflora. Posso te ajudar com seu plano, entregas e cuidados com as flores.', q: 'Posso pausar em dezembro?', chips: ['Mensal ou Quinzenal?', 'Como cuidar do girassol?'], ph: 'Pergunte sobre planos, entregas, flores…', cap: 'Assistente que criamos para o aplicativo do Clube Aflora.' } },
+    ], chat: { head: 'Assistente do Clube Aflora', status: 'Online · responde sobre o seu plano', hi: 'Oi! Sou a assistente do Clube Aflora. Posso te ajudar com seu plano, entregas e cuidados com as flores.', q: 'Qual a diferença entre o Mensal e o Quinzenal?', a: 'No Mensal (R$ 129,90/mês) você recebe 1 arranjo por mês. No Quinzenal (R$ 249,90/mês) são 2 arranjos, com flores novas a cada 15 dias. E se quiser mais, o Premium (R$ 479,60/mês) traz 4 arranjos por mês. 🌷', typing: 'Assistente digitando', send: 'Enviar', chips: ['Mensal ou Quinzenal?', 'Como cuidar do girassol?'], ph: 'Pergunte sobre planos, entregas, flores…', cap: 'Assistente que criamos para o aplicativo do Clube Aflora.' } },
   },
   en: {
     onb: { kicker: '/ Onboarding', title: 'From first call to', titleB: 'launch', lead: 'A structured plan for retailers and companies: every stage has deliverables, owners and deadlines agreed before we start.',
@@ -38,7 +38,7 @@ export const showcase = {
       ['AI assistant', 'Websites and apps with a virtual assistant that answers customers about plans, deliveries and products, 24/7.'],
       ['Stripe', 'Card payments, Pix and recurring subscriptions, with webhooks and a billing dashboard.'],
       ['Checkout platform', 'Custom or hosted checkout, cart, coupons and automatic e-mail confirmation.'],
-    ], chat: { head: 'Clube Aflora assistant', status: 'Online · answers about your plan', hi: "Hi! I'm the Clube Aflora assistant. I can help with your plan, deliveries and flower care.", q: 'Can I pause in December?', chips: ['Monthly or biweekly?', 'How to care for sunflowers?'], ph: 'Ask about plans, deliveries, flowers…', cap: 'Assistant we built for the Clube Aflora app.' } },
+    ], chat: { head: 'Clube Aflora assistant', status: 'Online · answers about your plan', hi: "Hi! I'm the Clube Aflora assistant. I can help with your plan, deliveries and flower care.", q: "What's the difference between Monthly and Biweekly?", a: 'With Monthly (R$ 129.90/month) you get 1 arrangement a month. Biweekly (R$ 249.90/month) brings 2 arrangements, with fresh flowers every 15 days. Want more? Premium (R$ 479.60/month) includes 4 arrangements a month. 🌷', typing: 'Assistant is typing', send: 'Send', chips: ['Monthly or biweekly?', 'How to care for sunflowers?'], ph: 'Ask about plans, deliveries, flowers…', cap: 'Assistant we built for the Clube Aflora app.' } },
   },
   es: {
     onb: { kicker: '/ Onboarding', title: 'De la primera charla al', titleB: 'lanzamiento', lead: 'Una planificación estructurada para comercios y empresas: cada etapa tiene entregables, responsables y plazos definidos antes de empezar.',
@@ -58,6 +58,6 @@ export const showcase = {
       ['Asistente de IA', 'Sitios y apps con asistente virtual que responde a clientes sobre planes, entregas y productos, 24 h.'],
       ['Stripe', 'Pagos con tarjeta, Pix y suscripciones recurrentes, con webhooks y panel de cobros.'],
       ['Plataforma de checkout', 'Checkout propio u hospedado, carrito, cupones y confirmación automática por e-mail.'],
-    ], chat: { head: 'Asistente del Clube Aflora', status: 'En línea · responde sobre tu plan', hi: '¡Hola! Soy la asistente del Clube Aflora. Te ayudo con tu plan, entregas y cuidado de las flores.', q: '¿Puedo pausar en diciembre?', chips: ['¿Mensual o quincenal?', '¿Cómo cuidar el girasol?'], ph: 'Pregunta sobre planes, entregas, flores…', cap: 'Asistente que creamos para la app del Clube Aflora.' } },
+    ], chat: { head: 'Asistente del Clube Aflora', status: 'En línea · responde sobre tu plan', hi: '¡Hola! Soy la asistente del Clube Aflora. Te ayudo con tu plan, entregas y cuidado de las flores.', q: '¿Cuál es la diferencia entre el Mensual y el Quincenal?', a: 'Con el Mensual (R$ 129,90/mes) recibes 1 arreglo al mes. El Quincenal (R$ 249,90/mes) trae 2 arreglos, con flores nuevas cada 15 días. ¿Quieres más? El Premium (R$ 479,60/mes) incluye 4 arreglos al mes. 🌷', typing: 'Asistente escribiendo', send: 'Enviar', chips: ['¿Mensual o quincenal?', '¿Cómo cuidar el girasol?'], ph: 'Pregunta sobre planes, entregas, flores…', cap: 'Asistente que creamos para la app del Clube Aflora.' } },
   },
 };

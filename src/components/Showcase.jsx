@@ -118,6 +118,58 @@ export function Ecommerce() {
 
 const ICONS = ['✉', '✦', '◈', '⇄'];
 
+// Demo do chat: boas-vindas da assistente, a cliente digita a pergunta sobre o plano, envia,
+// "digitando…" e a resposta com os preços do Clube; repete com pausa. Só anima visível na tela;
+// com prefers-reduced-motion mostra a conversa completa parada.
+const FINAL = 99;
+function ChatDemo({ c }) {
+  const ref = useRef(null);
+  // 0 pontinhos (boas-vindas) · 1 boas-vindas · 2 digitando no campo · 3 enviada · 4 pontinhos · FINAL resposta
+  const [step, setStep] = useState(0);
+  const [chars, setChars] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [reduced] = useState(() => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || reduced || typeof IntersectionObserver === 'undefined') return undefined;
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.35 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [reduced]);
+
+  useEffect(() => {
+    if (reduced || !visible) return undefined;
+    let t;
+    if (step === 0) t = setTimeout(() => setStep(1), 1400);
+    else if (step === 1) t = setTimeout(() => { setChars(0); setStep(2); }, 1600);
+    else if (step === 2) t = chars < c.q.length ? setTimeout(() => setChars((n) => n + 1), 45 + Math.random() * 55) : setTimeout(() => setStep(3), 450);
+    else if (step === 3) t = setTimeout(() => setStep(4), 600);
+    else if (step === 4) t = setTimeout(() => setStep(FINAL), 1800);
+    else t = setTimeout(() => { setStep(0); setChars(0); }, 6500);
+    return () => clearTimeout(t);
+  }, [step, chars, visible, reduced, c.q.length]);
+
+  const s = reduced ? FINAL : step;
+  const typed = s === 2 ? c.q.slice(0, chars) : '';
+  return (
+    <>
+      <div className={styles.chatBody} ref={ref} aria-live="off">
+        {s === 0 && <p className={`${styles.bot} ${styles.dots} ${styles.pop}`} aria-label={c.typing}><i /><i /><i /></p>}
+        {s >= 1 && <p className={`${styles.bot} ${styles.pop}`}>{c.hi}</p>}
+        {s >= 3 && <p className={`${styles.me} ${styles.pop}`}>{c.q}</p>}
+        {s === 4 && <p className={`${styles.bot} ${styles.dots} ${styles.pop}`} aria-label={c.typing}><i /><i /><i /></p>}
+        {s === FINAL && <p className={`${styles.bot} ${styles.pop}`}>{c.a}</p>}
+        {(s === 1 || s === 2) && <div className={`${styles.chips} ${styles.pop}`}>{c.chips.map((x) => <span key={x}>{x}</span>)}</div>}
+      </div>
+      <div className={`${styles.chatInput} ${typed ? styles.typing : ''}`} aria-hidden="true">
+        <span>{typed || c.ph}{s === 2 && <b className={styles.caret} />}</span>
+        <span className={`${styles.send} ${s === 2 && typed.length === c.q.length ? styles.sendOn : ''}`}>↑</span>
+      </div>
+    </>
+  );
+}
+
 export function Integrations() {
   const { int } = useCopy();
   const c = int.chat;
@@ -140,12 +192,7 @@ export function Integrations() {
               <span className={styles.avatar} aria-hidden="true">✿</span>
               <div><strong>{c.head}</strong><small>{c.status}</small></div>
             </div>
-            <div className={styles.chatBody}>
-              <p className={styles.bot}>{c.hi}</p>
-              <p className={styles.me}>{c.q}</p>
-              <div className={styles.chips}>{c.chips.map((x) => <span key={x}>{x}</span>)}</div>
-            </div>
-            <div className={styles.chatInput}>{c.ph}</div>
+            <ChatDemo key={c.q} c={c} />
             <figcaption>{c.cap}</figcaption>
           </figure>
         </div>
