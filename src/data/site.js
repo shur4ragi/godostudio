@@ -21,7 +21,7 @@ export const siteConfig = {
     whatsapp: {
       number: '5512991939876',
       label: '+55 12 99193-9876',
-      defaultMessage: 'Olá, Vitor! Vim pelo site da GodoStudio e quero um site para o meu negócio.',
+      defaultMessage: 'Olá, Vitor! Vim pelo site da GodoStudio e quero um site/sistema para a minha empresa.',
     },
     instagram: {
       handle: '@vitor_godo',
@@ -33,6 +33,9 @@ export const siteConfig = {
   
   nav: [
     { href: '#projetos' },
+    { href: '#onboarding' },
+    { href: '#ecommerce' },
+    { href: '#integracoes' },
     { href: '#processo' },
     { href: '#planos' },
     { href: '#faq' },
@@ -182,7 +185,7 @@ export const siteConfig = {
   // TODO: Vitor - confirmar prazo total (content.processIntro.total; a soma das durações dá ≈ 6–9 dias)
   // rulerWeight = tamanho do trecho do passo na régua de tempo (proporcional à duração).
   processIntro: {
-    ctaMessage: 'Oi, Vitor! Quero começar o meu site. Meu negócio é ',
+    ctaMessage: 'Oi, Vitor! Quero começar o meu site. Minha empresa é ',
   },
 
   process: [
@@ -215,24 +218,26 @@ export const siteConfig = {
     form: { icon: 'form' },
     updates: { icon: 'refresh' },
     cart: { icon: 'cart' },
-    tour: { icon: 'compass' },
+    preview: { icon: 'image' },
+    motion: { icon: 'compass' },
+    admin: { icon: 'key' },
     priority: { icon: 'bolt' },
     custom: { icon: 'spark' },
   },
 
   // TODO: Vitor - confirmar "sem taxa de adesão" e os recursos de cada plano
   plans: [
-    { id: 'basico', name: 'Básico', price: 100, highlighted: false, features: ['landing', 'whatsapp', 'map', 'hosting', 'tweaks'] },
+    { id: 'basico', name: 'Básico', price: 100, highlighted: false, features: ['landing', 'whatsapp', 'map', 'preview', 'hosting', 'tweaks'] },
     // Tudo do plano indicado em `includes` + os recursos abaixo.
-    { id: 'medio', name: 'Médio', price: 175, highlighted: true, anchorNote: '¹', includes: 'basico', features: ['catalog', 'gallery', 'form', 'updates'] },
-    { id: 'premium', name: 'Premium', price: 250, highlighted: false, includes: 'medio', features: ['cart', 'tour', 'priority', 'custom'] },
+    { id: 'medio', name: 'Médio', price: 175, highlighted: true, anchorNote: '¹', includes: 'basico', features: ['catalog', 'gallery', 'motion', 'form', 'updates'] },
+    { id: 'premium', name: 'Premium', price: 250, highlighted: false, includes: 'medio', features: ['cart', 'admin', 'priority', 'custom'] },
   ],
 
   // Tabela "Comparar tudo": grupos com os recursos acima (só o que já está nos planos).
   compare: {
     groups: [
-      { rows: ['landing', 'catalog', 'gallery', 'tour'] },
-      { rows: ['whatsapp', 'map', 'form', 'cart'] },
+      { rows: ['landing', 'preview', 'catalog', 'gallery', 'motion'] },
+      { rows: ['whatsapp', 'map', 'form', 'cart', 'admin'] },
       { rows: ['hosting', 'tweaks', 'updates', 'priority', 'custom'] },
     ],
     conditions: {

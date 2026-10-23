@@ -12,16 +12,16 @@
       "tagline": "Sitios que venden."
     },
     "hero": {
-      "subtitle": "Sitios web profesionales para negocios locales",
-      "highlight": "negocios locales",
-      "lead": "Landing pages para cafés, estudios y comercios locales, pensadas para convertir. Suscripción mensual desde R$ 100.",
+      "subtitle": "Sitios y sistemas para comercios y empresas",
+      "highlight": "comercios y empresas",
+      "lead": "Sitios, e-commerces y aplicaciones para comercios y empresas, con checkout, e-mail y asistentes de IA integrados. Suscripción mensual desde R$ 100.",
       "labels": [
         "Sitios web",
-        "Negocios locales"
+        "Comercios y empresas"
       ]
     },
     "manifesto": {
-      "text": "Creamos sitios que convierten visitantes en clientes. Landing pages para cafés, estudios y comercios — pensadas para convertir.",
+      "text": "Creamos sitios que convierten visitantes en clientes. Sitios, tiendas online y sistemas para comercios y empresas — pensados para convertir.",
       "highlight": "convierten"
     },
     "contact": {
@@ -48,6 +48,15 @@
     "nav": [
       {
         "label": "Proyectos"
+      },
+      {
+        "label": "Onboarding"
+      },
+      {
+        "label": "E-commerce"
+      },
+      {
+        "label": "Integraciones"
       },
       {
         "label": "Proceso"
@@ -186,7 +195,8 @@
         "label": "Ajustes simples a pedido"
       },
       "catalog": {
-        "label": "Menú o catálogo completo"
+        "label": "Menú o catálogo con fotos",
+        "tip": "Cada ítem con foto, descripción y precio, y una ventana con los detalles al tocar."
       },
       "gallery": {
         "label": "Galería de fotos / portafolio"
@@ -198,36 +208,47 @@
         "label": "Actualizaciones mensuales incluidas"
       },
       "cart": {
-        "label": "Carrito con pedido por WhatsApp"
-      },
-      "tour": {
-        "label": "Tour guiado interactivo"
+        "label": "Carrito con pedido por WhatsApp",
+        "tip": "El cliente arma el pedido en el sitio y llega listo a tu WhatsApp."
       },
       "priority": {
         "label": "Prioridad en cambios"
       },
       "custom": {
-        "label": "Recursos a medida"
+        "label": "Funciones a medida",
+        "tip": "Área de clientes, reservas, app y otros sistemas más grandes. Cotizados aparte, con tarifa de producción."
+      },
+      "preview": {
+        "label": "Vista previa del enlace en WhatsApp",
+        "tip": "Cuando alguien comparte tu sitio, aparece una foto y el nombre del negocio, no solo la dirección."
+      },
+      "motion": {
+        "label": "Animaciones y carrusel de destacados",
+        "tip": "Entrada animada, videos y carruseles que dan vida a la página."
+      },
+      "admin": {
+        "label": "Panel para editar productos y precios",
+        "tip": "Tú mismo actualizas ítems, fotos y precios, con acceso protegido."
       }
     },
     "plans": [
       {
         "name": "Básico",
         "badge": null,
-        "persona": "Para quien necesita aparecer en Google y en WhatsApp.",
+        "persona": "Para quien necesita una página simple y bonita para estar en Google y WhatsApp.",
         "anchor": "Sin cuota de alta"
       },
       {
         "name": "Medio",
         "badge": "El más elegido",
-        "persona": "Para mostrar tu menú/catálogo y recibir pedidos de presupuesto.",
+        "persona": "Para quien quiere mostrar su menú/catálogo con fotos y una página más viva.",
         "anchor": "1.er mes: R$ 0 · ahorras R$ 175",
         "barNote": "1.er mes gratis"
       },
       {
         "name": "Premium",
         "badge": null,
-        "persona": "Para vender desde el sitio y tener prioridad.",
+        "persona": "Para quien quiere recibir pedidos por el sitio y editar el catálogo por su cuenta.",
         "anchor": "Sin cuota de alta"
       }
     ],
@@ -301,8 +322,8 @@
       }
     ],
     "seo": {
-      "title": "GodoStudio — Sitios web para negocios locales en Taubaté",
-      "description": "Landing pages profesionales para cafés, estudios y comercios locales. Suscripción mensual desde R$ 100. Sin complicaciones."
+      "title": "GodoStudio — Sitios, e-commerce y sistemas para comercios y empresas",
+      "description": "Sitios, e-commerce y sistemas para comercios y empresas, con checkout, Stripe, e-mail e IA. Suscripción mensual desde R$ 100. Sin complicaciones."
     }
   },
   "ui": {
