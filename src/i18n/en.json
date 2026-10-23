@@ -12,16 +12,16 @@
       "tagline": "Sites that sell."
     },
     "hero": {
-      "subtitle": "Professional websites for local businesses",
-      "highlight": "local businesses",
-      "lead": "Landing pages for cafés, studios and local shops, built to convert. Monthly subscription from R$ 100.",
+      "subtitle": "Websites and systems for retailers and companies",
+      "highlight": "retailers and companies",
+      "lead": "Websites, online stores and apps for retailers and companies, with checkout, e-mail and AI assistants built in. Monthly subscription from R$ 100.",
       "labels": [
         "Websites",
-        "Local businesses"
+        "Retail & companies"
       ]
     },
     "manifesto": {
-      "text": "We build websites that turn visitors into customers. Landing pages for cafés, studios and shops — built to convert.",
+      "text": "We build websites that turn visitors into customers. Websites, online stores and systems for retailers and companies — built to convert.",
       "highlight": "turn"
     },
     "contact": {
@@ -48,6 +48,15 @@
     "nav": [
       {
         "label": "Projects"
+      },
+      {
+        "label": "Onboarding"
+      },
+      {
+        "label": "E-commerce"
+      },
+      {
+        "label": "Integrations"
       },
       {
         "label": "Process"
@@ -313,8 +322,8 @@
       }
     ],
     "seo": {
-      "title": "GodoStudio — Websites for Local Businesses in Taubaté",
-      "description": "Professional landing pages for cafés, studios and local shops. Monthly subscription from R$ 100. No hassle."
+      "title": "GodoStudio — Websites, E-commerce and Systems for Retailers and Companies",
+      "description": "Websites, e-commerce and systems for retailers and companies, with checkout, Stripe, e-mail and AI. Monthly subscription from R$ 100. No hassle."
     }
   },
   "ui": {

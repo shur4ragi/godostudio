@@ -21,7 +21,7 @@ export const siteConfig = {
     whatsapp: {
       number: '5512991939876',
       label: '+55 12 99193-9876',
-      defaultMessage: 'Olá, Vitor! Vim pelo site da GodoStudio e quero um site para o meu negócio.',
+      defaultMessage: 'Olá, Vitor! Vim pelo site da GodoStudio e quero um site/sistema para a minha empresa.',
     },
     instagram: {
       handle: '@vitor_godo',
@@ -33,6 +33,9 @@ export const siteConfig = {
   
   nav: [
     { href: '#projetos' },
+    { href: '#onboarding' },
+    { href: '#ecommerce' },
+    { href: '#integracoes' },
     { href: '#processo' },
     { href: '#planos' },
     { href: '#faq' },
@@ -182,7 +185,7 @@ export const siteConfig = {
   // TODO: Vitor - confirmar prazo total (content.processIntro.total; a soma das durações dá ≈ 6–9 dias)
   // rulerWeight = tamanho do trecho do passo na régua de tempo (proporcional à duração).
   processIntro: {
-    ctaMessage: 'Oi, Vitor! Quero começar o meu site. Meu negócio é ',
+    ctaMessage: 'Oi, Vitor! Quero começar o meu site. Minha empresa é ',
   },
 
   process: [

@@ -12,16 +12,16 @@
       "tagline": "Sites que vendem."
     },
     "hero": {
-      "subtitle": "Sites profissionais para negócios locais",
-      "highlight": "negócios locais",
-      "lead": "Landing pages para cafés, estúdios e comércios locais, com foco em conversão. Assinatura mensal a partir de R$ 100.",
+      "subtitle": "Sites e sistemas para comércios e empresas",
+      "highlight": "comércios e empresas",
+      "lead": "Sites, e-commerces e aplicativos para comércios e empresas, com checkout, e-mail e assistentes de IA integrados. Assinatura mensal a partir de R$ 100.",
       "labels": [
         "Sites",
-        "Negócios locais"
+        "Comércios e empresas"
       ]
     },
     "manifesto": {
-      "text": "Criamos sites que transformam visitantes em clientes. Landing pages para cafés, estúdios e comércios — com foco em conversão.",
+      "text": "Criamos sites que transformam visitantes em clientes. Sites, lojas virtuais e sistemas para comércios e empresas — com foco em conversão.",
       "highlight": "transformam"
     },
     "contact": {
@@ -48,6 +48,15 @@
     "nav": [
       {
         "label": "Projetos"
+      },
+      {
+        "label": "Onboarding"
+      },
+      {
+        "label": "E-commerce"
+      },
+      {
+        "label": "Integrações"
       },
       {
         "label": "Processo"
@@ -313,8 +322,8 @@
       }
     ],
     "seo": {
-      "title": "GodoStudio — Sites para Negócios Locais em Taubaté",
-      "description": "Landing pages profissionais para cafés, estúdios e comércios locais. Assinatura mensal a partir de R$ 100. Sem complicação."
+      "title": "GodoStudio — Sites, E-commerces e Sistemas para Comércios e Empresas",
+      "description": "Sites, e-commerces e sistemas para comércios e empresas, com checkout, Stripe, e-mail e IA. Assinatura mensal a partir de R$ 100. Sem complicação."
     }
   },
   "ui": {
