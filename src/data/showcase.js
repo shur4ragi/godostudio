@@ -18,7 +18,7 @@ export const showcase = {
       ['Assistente de IA', 'Sites e aplicativos com assistente virtual que responde clientes sobre planos, entregas e produtos, 24h.'],
       ['Stripe', 'Pagamentos com cartão, Pix e assinaturas recorrentes, com webhooks e painel de cobranças.'],
       ['Plataforma de checkout', 'Checkout próprio ou hospedado, carrinho, cupons e confirmação automática por e-mail.'],
-    ], chat: { head: 'Assistente do Clube Aflora', status: 'Online · responde sobre o seu plano', hi: 'Oi! Sou a assistente do Clube Aflora. Posso te ajudar com seu plano, entregas e cuidados com as flores.', q: 'Posso pausar em dezembro?', chips: ['Mensal ou Quinzenal?', 'Como cuidar do girassol?'], ph: 'Pergunte sobre planos, entregas, flores…', cap: 'Assistente que criamos para o aplicativo do Clube Aflora.' } },
+    ], chat: { head: 'Assistente do Clube Aflora', status: 'Online · responde sobre o seu plano', hi: 'Oi! Sou a assistente do Clube Aflora. Posso te ajudar com seu plano, entregas e cuidados com as flores.', q: 'Posso pausar em dezembro?', a: 'Pode sim! Você pausa o plano por até 1 mês direto no app, em Meu plano › Pausar. As entregas voltam automaticamente na data seguinte, sem cobrança no mês pausado. 🌷', typing: 'Assistente digitando', send: 'Enviar', chips: ['Mensal ou Quinzenal?', 'Como cuidar do girassol?'], ph: 'Pergunte sobre planos, entregas, flores…', cap: 'Assistente que criamos para o aplicativo do Clube Aflora.' } },
   },
   en: {
     onb: { kicker: '/ Onboarding', title: 'From first call to', titleB: 'launch', lead: 'A structured plan for retailers and companies: every stage has deliverables, owners and deadlines agreed before we start.',
@@ -38,7 +38,7 @@ export const showcase = {
       ['AI assistant', 'Websites and apps with a virtual assistant that answers customers about plans, deliveries and products, 24/7.'],
       ['Stripe', 'Card payments, Pix and recurring subscriptions, with webhooks and a billing dashboard.'],
       ['Checkout platform', 'Custom or hosted checkout, cart, coupons and automatic e-mail confirmation.'],
-    ], chat: { head: 'Clube Aflora assistant', status: 'Online · answers about your plan', hi: "Hi! I'm the Clube Aflora assistant. I can help with your plan, deliveries and flower care.", q: 'Can I pause in December?', chips: ['Monthly or biweekly?', 'How to care for sunflowers?'], ph: 'Ask about plans, deliveries, flowers…', cap: 'Assistant we built for the Clube Aflora app.' } },
+    ], chat: { head: 'Clube Aflora assistant', status: 'Online · answers about your plan', hi: "Hi! I'm the Clube Aflora assistant. I can help with your plan, deliveries and flower care.", q: 'Can I pause in December?', a: 'Yes! You can pause your plan for up to 1 month right in the app, under My plan › Pause. Deliveries resume automatically on the next date, with no charge for the paused month. 🌷', typing: 'Assistant is typing', send: 'Send', chips: ['Monthly or biweekly?', 'How to care for sunflowers?'], ph: 'Ask about plans, deliveries, flowers…', cap: 'Assistant we built for the Clube Aflora app.' } },
   },
   es: {
     onb: { kicker: '/ Onboarding', title: 'De la primera charla al', titleB: 'lanzamiento', lead: 'Una planificación estructurada para comercios y empresas: cada etapa tiene entregables, responsables y plazos definidos antes de empezar.',
@@ -58,6 +58,6 @@ export const showcase = {
       ['Asistente de IA', 'Sitios y apps con asistente virtual que responde a clientes sobre planes, entregas y productos, 24 h.'],
       ['Stripe', 'Pagos con tarjeta, Pix y suscripciones recurrentes, con webhooks y panel de cobros.'],
       ['Plataforma de checkout', 'Checkout propio u hospedado, carrito, cupones y confirmación automática por e-mail.'],
-    ], chat: { head: 'Asistente del Clube Aflora', status: 'En línea · responde sobre tu plan', hi: '¡Hola! Soy la asistente del Clube Aflora. Te ayudo con tu plan, entregas y cuidado de las flores.', q: '¿Puedo pausar en diciembre?', chips: ['¿Mensual o quincenal?', '¿Cómo cuidar el girasol?'], ph: 'Pregunta sobre planes, entregas, flores…', cap: 'Asistente que creamos para la app del Clube Aflora.' } },
+    ], chat: { head: 'Asistente del Clube Aflora', status: 'En línea · responde sobre tu plan', hi: '¡Hola! Soy la asistente del Clube Aflora. Te ayudo con tu plan, entregas y cuidado de las flores.', q: '¿Puedo pausar en diciembre?', a: '¡Claro! Puedes pausar tu plan hasta 1 mes desde la app, en Mi plan › Pausar. Las entregas vuelven solas en la fecha siguiente, sin cobro en el mes pausado. 🌷', typing: 'Asistente escribiendo', send: 'Enviar', chips: ['¿Mensual o quincenal?', '¿Cómo cuidar el girasol?'], ph: 'Pregunta sobre planes, entregas, flores…', cap: 'Asistente que creamos para la app del Clube Aflora.' } },
   },
 };
