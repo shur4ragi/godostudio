@@ -173,96 +173,110 @@
         },
         {
           "text": "Your own domain (yourbusiness.com.br) registered in your name."
+        },
+        {
+          "text": "The AI assistant is implemented by us inside your website or app. AI usage cost (consumption) is billed separately, passed through at cost."
         }
-      ]
+      ],
+      "proposal": {
+        "title": "PDF proposal",
+        "text": "Once we understand your business, we prepare a PDF proposal (proposal form) describing all services and prices. Operating costs, such as AI usage, Supabase Pro, Resend Pro and Apple/Google accounts, are billed separately and passed through at cost."
+      }
     },
     "planFeatures": {
       "landing": {
-        "label": "Single-page landing page",
-        "tip": "A one-page site with everything your customer needs to see before messaging you on WhatsApp."
+        "label": "Professional website live in a few days",
+        "tip": "One clear, fast page with everything customers need to see before getting in touch."
       },
       "whatsapp": {
-        "label": "Floating WhatsApp button"
+        "label": "Customers reach you on WhatsApp with one tap"
       },
       "map": {
-        "label": "Map and location"
+        "label": "Get found: map and location"
       },
       "hosting": {
-        "label": "Hosting and domain included",
-        "tip": "The yourbusiness.com.br address and the server that keeps the site online."
+        "label": "Hosting and domain in your name, hassle-free",
+        "tip": "Your address (yourbusiness.com.br) and the server that keeps the site online, all handled by us."
       },
       "tweaks": {
-        "label": "Simple changes on request"
+        "label": "Simple tweaks whenever you need them"
       },
       "catalog": {
-        "label": "Menu or catalog with photos",
-        "tip": "Each item with photo, description and price, plus a detail window on tap."
+        "label": "Showcase with photos and prices: customers choose before they call",
+        "tip": "Each item with photo, description and price, and details on tap."
       },
       "gallery": {
-        "label": "Photo gallery / portfolio"
+        "label": "Gallery that shows the quality of your work"
       },
       "form": {
-        "label": "Quote / contact form"
+        "label": "Quote requests landing straight with you"
       },
       "updates": {
-        "label": "Monthly updates included"
+        "label": "Monthly updates: your site never stands still"
       },
       "cart": {
-        "label": "Cart with WhatsApp ordering",
-        "tip": "Customers build the order on the site and it arrives ready on your WhatsApp."
+        "label": "Customers build their order on the site and it arrives ready on WhatsApp",
+        "tip": "Customers pick items on the site and the order reaches your WhatsApp organized."
       },
       "priority": {
-        "label": "Priority on changes"
+        "label": "Your change requests go to the front of the queue"
       },
       "custom": {
-        "label": "Custom features",
-        "tip": "Customer area, booking, app and other larger systems. Quoted separately, with a production fee."
+        "label": "Custom integrations: payments, e-mail, apps and more",
+        "tip": "Stripe, automatic e-mails, customer area, scheduling, apps and larger systems. Quoted separately, with a production fee."
       },
       "preview": {
-        "label": "Link preview on WhatsApp",
-        "tip": "When someone shares your site, a photo and your business name show up, not just the address."
+        "label": "Nice link preview when shared on WhatsApp",
+        "tip": "When someone shares your site, a photo and your company name show up, not just the address."
       },
       "motion": {
-        "label": "Animations and highlight carousel",
-        "tip": "Animated intro, videos and carousels that bring the page to life."
+        "label": "Animated look that builds trust",
+        "tip": "Animated entrance, videos and carousels that bring the page to life."
       },
       "admin": {
-        "label": "Panel to edit products and prices",
-        "tip": "Update items, photos and prices yourself, with protected access."
+        "label": "Panel to change products, photos and prices yourself",
+        "tip": "Update items, photos and prices whenever you want, with protected access."
+      },
+      "ai": {
+        "label": "AI assistant that serves your customers 24/7",
+        "tip": "An assistant inside your website/app that answers questions about products, plans and deliveries, like the Clube Aflora one. AI usage cost is billed separately."
       }
     },
     "plans": [
       {
         "name": "Basic",
         "badge": null,
-        "persona": "For those who need a simple, good-looking page to show up on Google and WhatsApp.",
-        "anchor": "No setup fee"
+        "persona": "For businesses with no website yet that want to be found on Google and contacted on WhatsApp.",
+        "anchor": "No setup fee",
+        "tagline": "Presence"
       },
       {
         "name": "Standard",
         "badge": "Most popular",
-        "persona": "For those who want to show their menu/catalog with photos and a livelier page.",
+        "persona": "For shops, cafés, clinics and companies that want to show products and services and get more orders.",
         "anchor": "1st month: R$ 0 · you save R$ 175",
-        "barNote": "1st month free"
+        "barNote": "1st month free",
+        "tagline": "Showcase"
       },
       {
         "name": "Premium",
         "badge": null,
-        "persona": "For those who want to take orders through the site and edit the catalog themselves.",
-        "anchor": "No setup fee"
+        "persona": "For those who want to sell and serve customers all day, without adding people to the operation.",
+        "anchor": "No setup fee",
+        "tagline": "Service & sales"
       }
     ],
     "compare": {
       "title": "Compare all features",
       "groups": [
         {
-          "title": "The site"
+          "title": "Online presence"
         },
         {
-          "title": "Contact and sales"
+          "title": "Sales and service"
         },
         {
-          "title": "Hosting and maintenance"
+          "title": "Support and maintenance"
         }
       ],
       "conditions": {
@@ -383,7 +397,7 @@
       "included": "Included",
       "notIncluded": "Not included",
       "planAria": "{name} plan",
-      "allOf": "Everything in {name}",
+      "allOf": "Everything in {name}, plus:",
       "want": "Get {name}",
       "seeAll": "See everything included",
       "compareLabel": "Compare",

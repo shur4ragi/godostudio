@@ -201,8 +201,17 @@
   color: var(--color-light-muted);
 }
 
+.tagline {
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--color-light);
+}
+
 .persona {
-  min-height: 2.8em;
+  min-height: 4.2em;
   margin: 10px 0 22px;
   font-size: 0.95rem;
   line-height: 1.4;
@@ -625,12 +634,45 @@
   box-shadow: 0 12px 30px -12px rgb(var(--rgb-shadow) / 0.5);
 }
 
+.proposal {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-top: 40px;
+  padding: 20px 22px;
+  max-width: 80ch;
+  border: 1px dashed var(--line);
+  border-radius: 14px;
+}
+
+.proposal h3 {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--coral-text);
+}
+
+.proposal p {
+  margin-top: 6px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--color-light-muted);
+}
+
+.proposalIcon {
+  flex: none;
+  margin-top: 2px;
+  color: var(--coral);
+}
+
 .trust {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 12px 32px;
-  margin-top: 48px;
+  margin-top: 32px;
   padding-top: 24px;
   border-top: 1px solid var(--line);
   font-family: var(--font-mono);

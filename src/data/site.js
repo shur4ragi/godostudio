@@ -203,7 +203,7 @@ export const siteConfig = {
     planMessage: 'Olá, Vitor! Vim pelo site da GodoStudio e tenho interesse no plano {plan}.',
     trust: [{ icon: 'unlock' }, { icon: 'key' }, { icon: 'bell' }],
     // Notas de rodapé (as marcas ¹ ² ³ nos cards e na tabela apontam para cá).
-    footnotes: [{ mark: '¹' }, { mark: '²' }, { mark: '³' }],
+    footnotes: [{ mark: '¹' }, { mark: '²' }, { mark: '³' }, { mark: '⁴' }],
   },
 
   // Recursos dos planos. icon = nome do ícone em PlanIcon.jsx; label/tip ficam nos JSON.
@@ -220,6 +220,7 @@ export const siteConfig = {
     cart: { icon: 'cart' },
     preview: { icon: 'image' },
     motion: { icon: 'compass' },
+    ai: { icon: 'chat', note: '⁴' },
     admin: { icon: 'key' },
     priority: { icon: 'bolt' },
     custom: { icon: 'spark' },
@@ -230,14 +231,14 @@ export const siteConfig = {
     { id: 'basico', name: 'Básico', price: 100, highlighted: false, features: ['landing', 'whatsapp', 'map', 'preview', 'hosting', 'tweaks'] },
     // Tudo do plano indicado em `includes` + os recursos abaixo.
     { id: 'medio', name: 'Médio', price: 175, highlighted: true, anchorNote: '¹', includes: 'basico', features: ['catalog', 'gallery', 'motion', 'form', 'updates'] },
-    { id: 'premium', name: 'Premium', price: 250, highlighted: false, includes: 'medio', features: ['cart', 'admin', 'priority', 'custom'] },
+    { id: 'premium', name: 'Premium', price: 250, highlighted: false, includes: 'medio', features: ['cart', 'ai', 'admin', 'priority', 'custom'] },
   ],
 
   // Tabela "Comparar tudo": grupos com os recursos acima (só o que já está nos planos).
   compare: {
     groups: [
-      { rows: ['landing', 'preview', 'catalog', 'gallery', 'motion'] },
-      { rows: ['whatsapp', 'map', 'form', 'cart', 'admin'] },
+      { rows: ['landing', 'map', 'preview', 'catalog', 'gallery', 'motion'] },
+      { rows: ['whatsapp', 'form', 'cart', 'ai', 'admin'] },
       { rows: ['hosting', 'tweaks', 'updates', 'priority', 'custom'] },
     ],
     conditions: {

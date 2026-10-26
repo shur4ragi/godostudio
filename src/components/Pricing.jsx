@@ -111,6 +111,7 @@ function PlanCard({ plan, onSeeAll, cardRef }) {
       {plan.badge && <span className={styles.badge}>{plan.badge}</span>}
       <div className={styles.cardDim}>
         <h3 className={styles.planName}>{plan.name}</h3>
+        {plan.tagline && <p className={styles.tagline}>{plan.tagline}</p>}
         <p className={styles.persona}>{plan.persona}</p>
         <div className={styles.priceRow}>
           <span className={styles.price}>{formatPrice(plan.price)}</span>
@@ -489,6 +490,16 @@ export function Pricing() {
             <CompareTable mobile={mobile} pair={pair} setPair={setPair} compareRef={compareRef} />
           </div>
         </div>
+
+        {pricing.proposal && (
+          <aside className={styles.proposal} data-reveal>
+            <PlanIcon name="page" size={22} className={styles.proposalIcon} />
+            <div>
+              <h3>{pricing.proposal.title}</h3>
+              <p>{pricing.proposal.text}</p>
+            </div>
+          </aside>
+        )}
 
         <ul className={styles.trust}>
           {pricing.trust.map((item) => (
