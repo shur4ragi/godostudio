@@ -222,8 +222,8 @@
         "label": "Your change requests go to the front of the queue"
       },
       "custom": {
-        "label": "Custom integrations: payments, e-mail, apps and more",
-        "tip": "Stripe, automatic e-mails, customer area, scheduling, apps and larger systems. Quoted separately, with a production fee."
+        "label": "Custom integrations: e-mail, apps, customer area and more",
+        "tip": "Automatic e-mails, customer area, scheduling, apps and larger systems. Quoted separately, with a production fee."
       },
       "preview": {
         "label": "Nice link preview when shared on WhatsApp",

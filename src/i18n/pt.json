@@ -222,8 +222,8 @@
         "label": "Suas alterações passam na frente da fila"
       },
       "custom": {
-        "label": "Integrações sob medida: pagamentos, e-mail, app e mais",
-        "tip": "Stripe, e-mails automáticos, área de clientes, agendamento, app e outros sistemas. Orçados à parte, com taxa de produção."
+        "label": "Integrações sob medida: e-mail, app, área de clientes e mais",
+        "tip": "E-mails automáticos, área de clientes, agendamento, app e outros sistemas. Orçados à parte, com taxa de produção."
       },
       "preview": {
         "label": "Link bonito ao compartilhar no WhatsApp",
