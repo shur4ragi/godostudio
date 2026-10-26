@@ -173,96 +173,110 @@
         },
         {
           "text": "Domínio próprio (seunegocio.com.br) registrado no seu nome."
+        },
+        {
+          "text": "O assistente de IA é implementado por nós dentro do seu site ou app. O custo de uso da IA (consumo) é cobrado à parte, repassado a preço de custo."
         }
-      ]
+      ],
+      "proposal": {
+        "title": "Proposta em PDF",
+        "text": "Depois de entender o seu negócio, preparamos uma proposta em PDF (formulário de proposta) descrevendo todos os serviços e valores. Custos operacionais, como uso de IA, Supabase Pro, Resend Pro e contas Apple/Google, são cobrados à parte e repassados a preço de custo."
+      }
     },
     "planFeatures": {
       "landing": {
-        "label": "Landing page de uma página",
-        "tip": "Um site de uma página só, com tudo o que o seu cliente precisa ver antes de chamar no WhatsApp."
+        "label": "Site profissional no ar em poucos dias",
+        "tip": "Uma página só, clara e rápida, com tudo o que o cliente precisa ver antes de chamar."
       },
       "whatsapp": {
-        "label": "Botão WhatsApp flutuante"
+        "label": "Cliente chama você no WhatsApp com 1 toque"
       },
       "map": {
-        "label": "Mapa e localização"
+        "label": "Seja encontrado: mapa e localização"
       },
       "hosting": {
-        "label": "Hospedagem e domínio inclusos",
-        "tip": "O endereço seunegocio.com.br e o servidor onde o site fica no ar."
+        "label": "Hospedagem e domínio no seu nome, sem dor de cabeça",
+        "tip": "O endereço seunegocio.com.br e o servidor onde o site fica no ar, tudo resolvido por nós."
       },
       "tweaks": {
-        "label": "Ajustes simples sob demanda"
+        "label": "Ajustes simples quando você precisar"
       },
       "catalog": {
-        "label": "Cardápio ou catálogo com fotos",
-        "tip": "Cada item com foto, descrição e preço, e uma janela com os detalhes ao tocar."
+        "label": "Vitrine com fotos e preços: o cliente escolhe antes de chamar",
+        "tip": "Cada item com foto, descrição e preço, e os detalhes ao tocar."
       },
       "gallery": {
-        "label": "Galeria de fotos/portfólio"
+        "label": "Galeria que mostra a qualidade do seu trabalho"
       },
       "form": {
-        "label": "Formulário de orçamento/contato"
+        "label": "Pedidos de orçamento chegando direto para você"
       },
       "updates": {
-        "label": "Atualizações mensais inclusas"
+        "label": "Atualizações todo mês: o site nunca fica parado"
       },
       "cart": {
-        "label": "Carrinho com pedido pelo WhatsApp",
-        "tip": "O cliente monta o pedido no site e ele chega pronto no seu WhatsApp."
+        "label": "Cliente monta o pedido no site e ele chega pronto no WhatsApp",
+        "tip": "O cliente escolhe os itens no site e o pedido chega organizado no seu WhatsApp."
       },
       "priority": {
-        "label": "Prioridade em alterações"
+        "label": "Suas alterações passam na frente da fila"
       },
       "custom": {
-        "label": "Recursos sob medida",
-        "tip": "Área de clientes, agendamento, app e outros sistemas maiores. Orçados à parte, com taxa de produção."
+        "label": "Integrações sob medida: e-mail, app, área de clientes e mais",
+        "tip": "E-mails automáticos, área de clientes, agendamento, app e outros sistemas. Orçados à parte, com taxa de produção."
       },
       "preview": {
-        "label": "Prévia do link no WhatsApp",
-        "tip": "Quando alguém compartilha seu site, aparece uma foto e o nome do negócio, não só o endereço."
+        "label": "Link bonito ao compartilhar no WhatsApp",
+        "tip": "Quando alguém compartilha seu site, aparece uma foto e o nome da empresa, não só o endereço."
       },
       "motion": {
-        "label": "Animações e carrossel de destaques",
+        "label": "Visual animado que passa confiança",
         "tip": "Entrada animada, vídeos e carrosséis que dão vida à página."
       },
       "admin": {
-        "label": "Painel para editar produtos e preços",
-        "tip": "Você mesmo atualiza itens, fotos e preços, com acesso protegido."
+        "label": "Painel para você trocar produtos, fotos e preços sozinho",
+        "tip": "Você atualiza itens, fotos e preços quando quiser, com acesso protegido."
+      },
+      "ai": {
+        "label": "Assistente de IA que atende seus clientes 24h",
+        "tip": "Um assistente dentro do seu site/app que tira dúvidas sobre produtos, planos e entregas, como o do Clube Aflora. O custo de uso da IA é cobrado à parte."
       }
     },
     "plans": [
       {
         "name": "Básico",
         "badge": null,
-        "persona": "Pra quem precisa de uma página simples e bonita para existir no Google e no WhatsApp.",
-        "anchor": "Sem taxa de adesão"
+        "persona": "Para quem ainda não tem site e quer ser encontrado no Google e chamado no WhatsApp.",
+        "anchor": "Sem taxa de adesão",
+        "tagline": "Presença"
       },
       {
         "name": "Médio",
         "badge": "Mais escolhido",
-        "persona": "Pra quem quer mostrar o cardápio/catálogo com fotos e uma página mais viva.",
+        "persona": "Para lojas, cafés, clínicas e empresas que querem mostrar produtos e serviços e gerar mais pedidos.",
         "anchor": "1º mês: R$ 0 · você economiza R$ 175",
-        "barNote": "1º mês grátis"
+        "barNote": "1º mês grátis",
+        "tagline": "Vitrine"
       },
       {
         "name": "Premium",
         "badge": null,
-        "persona": "Pra quem quer receber pedidos pelo site e editar o catálogo sozinho.",
-        "anchor": "Sem taxa de adesão"
+        "persona": "Para quem quer vender e atender o dia todo, sem depender de mais gente na operação.",
+        "anchor": "Sem taxa de adesão",
+        "tagline": "Atendimento e vendas"
       }
     ],
     "compare": {
       "title": "Compare todos os recursos",
       "groups": [
         {
-          "title": "O site"
+          "title": "Presença online"
         },
         {
-          "title": "Contato e vendas"
+          "title": "Vendas e atendimento"
         },
         {
-          "title": "Hospedagem e manutenção"
+          "title": "Suporte e manutenção"
         }
       ],
       "conditions": {
@@ -383,7 +397,7 @@
       "included": "Incluso",
       "notIncluded": "Não incluso",
       "planAria": "Plano {name}",
-      "allOf": "Tudo do plano {name}",
+      "allOf": "Tudo do {name}, mais:",
       "want": "Quero o {name}",
       "seeAll": "Ver tudo que está incluso",
       "compareLabel": "Comparar",
