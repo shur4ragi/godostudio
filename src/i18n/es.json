@@ -92,6 +92,10 @@
       {
         "segment": "Floristería",
         "description": "Arreglos, club de suscripción y pedido"
+      },
+      {
+        "segment": "Veterinaria",
+        "description": "Servicios, planes y turnos por WhatsApp"
       }
     ],
     "processIntro": {

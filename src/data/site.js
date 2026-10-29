@@ -178,6 +178,28 @@ export const siteConfig = {
         },
       },
     },
+    {
+      id: 'zupet',
+      name: 'ZuPet',
+      url: 'https://zupet-petshop.vercel.app/',
+      number: '07',
+      preview: {
+        desktop: {
+          webm: '/previews/zupet-ad-desktop.webm',
+          mp4: '/previews/zupet-ad-desktop.mp4',
+          poster: '/previews/zupet-ad-desktop-poster.webp',
+          w: 768,
+          h: 432,
+        },
+        mobile: {
+          webm: '/previews/zupet-ad-mobile.webm',
+          mp4: '/previews/zupet-ad-mobile.mp4',
+          poster: '/previews/zupet-ad-mobile-poster.webp',
+          w: 432,
+          h: 768,
+        },
+      },
+    },
   ],
   
   // Processo — "A escada". Durações, entregáveis e rodadas são SUGESTÕES da pesquisa.

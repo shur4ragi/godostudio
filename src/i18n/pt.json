@@ -92,6 +92,10 @@
       {
         "segment": "Floricultura",
         "description": "Arranjos, clube de assinatura e pedido"
+      },
+      {
+        "segment": "Petshop",
+        "description": "Serviços, planos e agendamento pelo WhatsApp"
       }
     ],
     "processIntro": {

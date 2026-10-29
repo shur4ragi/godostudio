@@ -92,6 +92,10 @@
       {
         "segment": "Florist",
         "description": "Bouquets, subscription club and ordering"
+      },
+      {
+        "segment": "Pet shop",
+        "description": "Services, plans and WhatsApp booking"
       }
     ],
     "processIntro": {
