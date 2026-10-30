@@ -96,6 +96,10 @@
       {
         "segment": "Pet shop",
         "description": "Services, plans and WhatsApp booking"
+      },
+      {
+        "segment": "Restaurant",
+        "description": "Sushi buffet, digital menu and booking"
       }
     ],
     "processIntro": {

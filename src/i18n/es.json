@@ -96,6 +96,10 @@
       {
         "segment": "Veterinaria",
         "description": "Servicios, planes y turnos por WhatsApp"
+      },
+      {
+        "segment": "Restaurante",
+        "description": "Rodizio, menú digital y reserva"
       }
     ],
     "processIntro": {

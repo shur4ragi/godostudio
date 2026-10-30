@@ -200,6 +200,28 @@ export const siteConfig = {
         },
       },
     },
+    {
+      id: 'nawan',
+      name: 'Nawân Sushi',
+      url: 'https://nawan-sushi.vercel.app/',
+      number: '08',
+      preview: {
+        desktop: {
+          webm: '/previews/nawan-ad-desktop.webm',
+          mp4: '/previews/nawan-ad-desktop.mp4',
+          poster: '/previews/nawan-ad-desktop-poster.webp',
+          w: 768,
+          h: 432,
+        },
+        mobile: {
+          webm: '/previews/nawan-ad-mobile.webm',
+          mp4: '/previews/nawan-ad-mobile.mp4',
+          poster: '/previews/nawan-ad-mobile-poster.webp',
+          w: 432,
+          h: 768,
+        },
+      },
+    },
   ],
   
   // Processo — "A escada". Durações, entregáveis e rodadas são SUGESTÕES da pesquisa.

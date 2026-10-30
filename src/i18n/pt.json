@@ -96,6 +96,10 @@
       {
         "segment": "Petshop",
         "description": "Serviços, planos e agendamento pelo WhatsApp"
+      },
+      {
+        "segment": "Restaurante",
+        "description": "Rodízio, cardápio digital e reserva"
       }
     ],
     "processIntro": {
