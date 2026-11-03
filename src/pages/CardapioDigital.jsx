@@ -7,7 +7,7 @@ import { PlanIcon } from '../components/PlanIcon';
 import { siteConfig } from '../data/site';
 import styles from './CardapioDigital.module.css';
 
-const EXAMPLES = ['fryda', 'leyas', 'nanica'];
+const EXAMPLES = ['fryda', 'nanica', 'nawan'];
 
 // Página compartilhável /cardapio-digital (cafés, restaurantes, lojas).
 export default function CardapioDigital() {
