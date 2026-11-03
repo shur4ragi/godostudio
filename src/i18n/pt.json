@@ -100,6 +100,10 @@
       {
         "segment": "Restaurante",
         "description": "Rodízio, cardápio digital e reserva"
+      },
+      {
+        "segment": "Fotografia",
+        "description": "Arquivo de fotos, mural e contato pelo WhatsApp"
       }
     ],
     "processIntro": {
@@ -379,7 +383,11 @@
       "prev": "Projeto anterior",
       "next": "Próximo projeto",
       "close": "Fechar projeto",
-      "announce": "Projeto {number}: {name}"
+      "announce": "Projeto {number}: {name}",
+      "deliverables": "Entregas",
+      "address": "Endereço",
+      "playing": "Reproduzindo",
+      "project": "Projeto"
     },
     "process": {
       "kicker": "/ Processo",

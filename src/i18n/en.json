@@ -100,6 +100,10 @@
       {
         "segment": "Restaurant",
         "description": "Sushi buffet, digital menu and booking"
+      },
+      {
+        "segment": "Photography",
+        "description": "Photo archive, mural and WhatsApp contact"
       }
     ],
     "processIntro": {
@@ -379,7 +383,11 @@
       "prev": "Previous project",
       "next": "Next project",
       "close": "Close project",
-      "announce": "Project {number}: {name}"
+      "announce": "Project {number}: {name}",
+      "deliverables": "Deliverables",
+      "address": "Address",
+      "playing": "Now playing",
+      "project": "Project"
     },
     "process": {
       "kicker": "/ Process",

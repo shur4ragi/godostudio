@@ -222,6 +222,28 @@ export const siteConfig = {
         },
       },
     },
+    {
+      id: 'cosmothico',
+      name: 'Cosmothico',
+      url: 'https://cosmothico.vercel.app/',
+      number: '09',
+      preview: {
+        desktop: {
+          webm: '/previews/cosmothico-ad-desktop.webm',
+          mp4: '/previews/cosmothico-ad-desktop.mp4',
+          poster: '/previews/cosmothico-ad-desktop-poster.webp',
+          w: 768,
+          h: 432,
+        },
+        mobile: {
+          webm: '/previews/cosmothico-ad-mobile.webm',
+          mp4: '/previews/cosmothico-ad-mobile.mp4',
+          poster: '/previews/cosmothico-ad-mobile-poster.webp',
+          w: 432,
+          h: 768,
+        },
+      },
+    },
   ],
   
   // Processo — "A escada". Durações, entregáveis e rodadas são SUGESTÕES da pesquisa.
