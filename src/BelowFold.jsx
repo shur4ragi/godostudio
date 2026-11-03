@@ -5,6 +5,7 @@ import { Manifesto } from './components/Manifesto';
 import { ProjectsCarousel } from './components/ProjectsCarousel';
 import { Process } from './components/Process';
 import { Pricing } from './components/Pricing';
+import { Avulso } from './components/Avulso';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Onboarding, Ecommerce, Integrations } from './components/Showcase';
@@ -14,7 +15,7 @@ export { Footer } from './components/Footer';
 // Everything below the hero lives in its own chunk and mounts one section per idle slot,
 // top to bottom, so first paint and the hero entrance are not blocked by one long
 // style/layout task. Each section's ScrollTriggers are created after the content above it.
-const SECTIONS = [Manifesto, ProjectsCarousel, Onboarding, Ecommerce, Integrations, Process, Pricing, FAQ, Contact];
+const SECTIONS = [Manifesto, ProjectsCarousel, Onboarding, Ecommerce, Integrations, Process, Pricing, Avulso, FAQ, Contact];
 
 const idle = (fn) =>
   'requestIdleCallback' in window

@@ -14,7 +14,7 @@
     "hero": {
       "subtitle": "Websites and systems for retailers and companies",
       "highlight": "retailers and companies",
-      "lead": "Websites, online stores and apps for retailers and companies, with checkout, e-mail and AI assistants built in. Monthly subscription from R$ 100.",
+      "lead": "Websites, online stores and apps for retailers and companies, with checkout, e-mail and AI assistants built in. Subscription from R$ 100/month or a one-off project with a single payment.",
       "labels": [
         "Websites",
         "Retail & companies"
@@ -159,7 +159,7 @@
       }
     ],
     "pricing": {
-      "subtitle": "Monthly subscription, no lock-in. Cancel anytime.",
+      "subtitle": "Monthly subscription with no lock-in, or a one-time purchase: the site is yours.",
       "validFrom": "Prices valid since 10/2026",
       "trust": [
         {
@@ -345,7 +345,7 @@
     ],
     "seo": {
       "title": "GodoStudio — Websites, E-commerce and Systems for Retailers and Companies",
-      "description": "Websites, e-commerce and systems for retailers and companies, with checkout, Stripe, e-mail and AI. Monthly subscription from R$ 100. No hassle."
+      "description": "Websites, e-commerce and systems for retailers and companies, with checkout, Stripe, e-mail and AI. Subscription from R$ 100/month or a one-off project with a single payment. No hassle."
     }
   },
   "ui": {
