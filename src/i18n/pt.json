@@ -14,7 +14,7 @@
     "hero": {
       "subtitle": "Sites e sistemas para comércios e empresas",
       "highlight": "comércios e empresas",
-      "lead": "Sites, e-commerces e aplicativos para comércios e empresas, com checkout, e-mail e assistentes de IA integrados. Assinatura mensal a partir de R$ 100.",
+      "lead": "Sites, e-commerces e aplicativos para comércios e empresas, com checkout, e-mail e assistentes de IA integrados. Assinatura a partir de R$ 100/mês ou projeto avulso, com pagamento único.",
       "labels": [
         "Sites",
         "Comércios e empresas"
@@ -159,7 +159,7 @@
       }
     ],
     "pricing": {
-      "subtitle": "Assinatura mensal, sem fidelidade. Cancele quando quiser.",
+      "subtitle": "Assinatura mensal sem fidelidade, ou compra única: o site é seu.",
       "validFrom": "Preços válidos desde 10/2026",
       "trust": [
         {
@@ -345,7 +345,7 @@
     ],
     "seo": {
       "title": "GodoStudio — Sites, E-commerces e Sistemas para Comércios e Empresas",
-      "description": "Sites, e-commerces e sistemas para comércios e empresas, com checkout, Stripe, e-mail e IA. Assinatura mensal a partir de R$ 100. Sem complicação."
+      "description": "Sites, e-commerces e sistemas para comércios e empresas, com checkout, Stripe, e-mail e IA. Assinatura a partir de R$ 100/mês ou projeto avulso, com pagamento único. Sem complicação."
     }
   },
   "ui": {
