@@ -5,16 +5,15 @@ import { useLang } from '../i18n';
 import styles from './ProjectsCarousel.module.css';
 
 /*
- * "Reel" projects carousel.
- * Desktop: film-strip rail of posters (left) · big framed stage playing the active ad (centre)
- *          · stylised spec card describing the landing (right).
- * Mobile:  stage (9:16) on top, horizontal snap strip of posters, spec card below.
+ * Projects carousel: list (left) + flat card stack (right).
+ * The active card sits in front and plays its ad; the next two peek behind it.
+ * Mobile: stack on top (9:16 cards), compact list below.
  * Only the active project mounts a <video>; the rest are posters. The ad plays to the end and
  * the reel advances; a progress bar on the rail shows how much of the clip is left.
  */
 
 const N = siteConfig.projects.length;
-const AUTO_DELAY = 5000; // poster-only states (data saver, video not started)
+const AUTO_DELAY = 4000; // poster-only states (data saver, video not started)
 const MOBILE_QUERY = '(max-width: 768px)';
 
 const mod = (a, b) => ((a % b) + b) % b;
@@ -30,17 +29,6 @@ function projectWhatsApp(project) {
   const msg = `Olá, Vitor! Vi o projeto ${project.name} no site da GodoStudio e quero um site assim para o meu negócio.`;
   return `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;
 }
-
-// "Cardápio, carrinho e pedido pelo WhatsApp" -> ["Cardápio", "Carrinho", "Pedido pelo WhatsApp"]
-function deliverables(description = '') {
-  return description
-    .split(/,\s*|\s+(?:e|and|y)\s+/i)
-    .map((s) => s.trim())
-    .filter(Boolean)
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1));
-}
-
-const domain = (url = '') => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
 function PreviewVideo({ preview, allowSoftwareAv1, onPlaying, onProgress, onEnded }) {
   const ref = useRef(null);
@@ -80,7 +68,7 @@ function PreviewVideo({ preview, allowSoftwareAv1, onPlaying, onProgress, onEnde
   return (
     <video
       ref={ref}
-      className={`${styles.media} ${styles.videoLayer} ${shown ? styles.videoShown : ''}`}
+      className={`${styles.video} ${styles.videoLayer} ${shown ? styles.videoShown : ''}`}
       src={src || undefined}
       muted
       playsInline
@@ -110,27 +98,21 @@ const prefersReduced = () =>
 
 export function ProjectsCarousel() {
   const sectionRef = useRef(null);
-  const railRef = useRef(null);
-  const thumbRefs = useRef([]);
   const swipeRef = useRef(null);
 
   const [index, setIndex] = useState(0);
-  const [dir, setDir] = useState(1);
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== 'undefined' ? window.matchMedia(MOBILE_QUERY).matches : false
   );
   const [reduced, setReduced] = useState(prefersReduced);
   const [inView, setInView] = useState(false);
   const [limitData] = useState(shouldLimitData);
-  const [paused, setPaused] = useState(false); // hover / focus
-  const [manualPlay, setManualPlay] = useState(false); // data saver: user asked to play
+  const [paused, setPaused] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
 
   const { t, site } = useLang();
   const projects = site.projects;
   const active = projects[index];
-  const preview = previewFor(active, isMobile);
 
   useEffect(() => {
     const mq = window.matchMedia(MOBILE_QUERY);
@@ -151,65 +133,40 @@ export function ProjectsCarousel() {
     return () => io.disconnect();
   }, []);
 
-  const goTo = useCallback((j, d) => {
-    setIndex((i) => {
-      const next = mod(j, N);
-      if (next !== i) setDir(d ?? (next > i ? 1 : -1));
-      return next;
-    });
+  const goTo = useCallback((j) => {
+    setIndex(mod(j, N));
     setPlaying(false);
-    setProgress(0);
   }, []);
-  const step = useCallback((d) => setIndex((i) => {
-    setDir(d);
+  const step = useCallback((d) => {
+    setIndex((i) => mod(i + d, N));
     setPlaying(false);
-    setProgress(0);
-    return mod(i + d, N);
-  }), []);
-
-  // keep the active thumb visible in the rail (scroll only the rail, never the page)
-  useEffect(() => {
-    const rail = railRef.current;
-    const el = thumbRefs.current[index];
-    if (!rail || !el) return;
-    if (isMobile) {
-      rail.scrollTo({ left: el.offsetLeft - rail.clientWidth / 2 + el.clientWidth / 2, behavior: reduced ? 'auto' : 'smooth' });
-    } else {
-      rail.scrollTo({ top: el.offsetTop - rail.clientHeight / 2 + el.clientHeight / 2, behavior: reduced ? 'auto' : 'smooth' });
-    }
-  }, [index, isMobile, reduced]);
+  }, []);
 
   const autoOn = !reduced && inView && !paused;
   const autoOnRef = useRef(autoOn);
   useEffect(() => {
     autoOnRef.current = autoOn;
   }, [autoOn]);
-
-  // poster-only fallback timer
   useEffect(() => {
     if (!autoOn || playing) return undefined;
     const tm = setTimeout(() => step(1), AUTO_DELAY);
     return () => clearTimeout(tm);
   }, [index, autoOn, playing, step]);
-
   const onEnded = useCallback(() => {
     if (!autoOnRef.current) return false;
     step(1);
     return true;
   }, [step]);
 
-  const playVideo = !!preview && !reduced && inView && (!limitData || manualPlay);
-
   const onKeyDown = (e) => {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+    if (e.key === 'ArrowRight') {
       e.preventDefault();
       step(1);
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+    } else if (e.key === 'ArrowLeft') {
       e.preventDefault();
       step(-1);
     }
   };
-
   const onPointerDown = (e) => {
     swipeRef.current = { x: e.clientX, y: e.clientY };
   };
@@ -221,8 +178,6 @@ export function ProjectsCarousel() {
     const dy = e.clientY - s.y;
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.2) step(dx < 0 ? 1 : -1);
   };
-
-  const tags = deliverables(active.description);
 
   return (
     <section
@@ -240,18 +195,103 @@ export function ProjectsCarousel() {
       onPointerLeave={(e) => e.pointerType === 'mouse' && setPaused(false)}
     >
       <div className={styles.inner}>
-        <header className={styles.head}>
-          <div>
-            <span className={styles.eyebrow} data-reveal>
-              {t('carousel.eyebrow')}
-            </span>
-            <h2 className={styles.title} data-reveal>
-              {t('carousel.title')}
-            </h2>
+        <div className={styles.side}>
+          <span className={styles.eyebrow} data-reveal>
+            {t('carousel.eyebrow')}
+          </span>
+          <h2 className={styles.title} data-reveal>
+            {t('carousel.title')}
+          </h2>
+          <ol className={styles.list}>
+            {projects.map((project, j) => {
+              const on = j === index;
+              return (
+                <li key={project.id} data-reveal>
+                  <button
+                    type="button"
+                    className={`${styles.item} ${on ? styles.itemActive : ''}`}
+                    aria-current={on ? 'true' : undefined}
+                    aria-expanded={on}
+                    onClick={() => goTo(j)}
+                  >
+                    <span className={styles.itemNum}>{project.number}</span>
+                    <span className={styles.itemName}>{project.name}</span>
+                    <span className={styles.itemSeg}>{project.segment}</span>
+                  </button>
+                  <div className={`${styles.more} ${on ? styles.moreOn : ''}`} inert={!on}>
+                    <div>
+                      <p className={styles.itemDesc}>{project.description}</p>
+                      <div className={styles.ctas}>
+                        {project.url && (
+                          <a className={styles.ctaGhost} href={project.url} target="_blank" rel="noopener noreferrer">
+                            {t('carousel.live')} <span aria-hidden="true">↗</span>
+                          </a>
+                        )}
+                        <a className={styles.ctaPrimary} href={projectWhatsApp(project)} target="_blank" rel="noopener noreferrer">
+                          <span className={styles.ctaDot} aria-hidden="true" />
+                          {t('carousel.wantLike')}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
+
+        <div className={styles.stageWrap} data-reveal style={{ '--reveal-y': '40px' }}>
+          <div
+            className={styles.stack}
+            onPointerDown={onPointerDown}
+            onPointerUp={onPointerUp}
+            onPointerCancel={() => {
+              swipeRef.current = null;
+            }}
+          >
+            {projects.map((project, j) => {
+              let p = mod(j - index, N); // 0 = front, 1..2 behind, last = just left
+              if (p === N - 1) p = -1;
+              const visible = p >= -1 && p <= 2;
+              const preview = previewFor(project, isMobile);
+              const front = p === 0;
+              return (
+                <button
+                  key={project.id}
+                  type="button"
+                  className={styles.card}
+                  data-pos={visible ? p : 'hidden'}
+                  tabIndex={front ? 0 : -1}
+                  aria-hidden={!front}
+                  aria-label={t('carousel.cardAria', { name: project.name })}
+                  onClick={() => (front ? window.open(project.url, '_blank', 'noopener') : goTo(j))}
+                >
+                  <span className={styles.media}>
+                    {preview && (
+                      <img className={styles.video} src={preview.poster} alt="" loading="lazy" decoding="async" draggable="false" />
+                    )}
+                    {front && preview && !reduced && inView && !limitData && (
+                      <PreviewVideo
+                        key={preview.mp4}
+                        preview={preview}
+                        allowSoftwareAv1={!isMobile}
+                        onPlaying={() => setPlaying(true)}
+                        onEnded={onEnded}
+                      />
+                    )}
+                  </span>
+                  <span className={styles.label} aria-hidden="true">
+                    <span className={styles.labelNum}>{project.number}</span>
+                    <span className={styles.labelName}>{project.name}</span>
+                  </span>
+                </button>
+              );
+            })}
           </div>
-          <div className={styles.controls} data-reveal>
+
+          <div className={styles.controls}>
             <span className={styles.counter} aria-hidden="true">
-              <b>{active.number}</b> / {String(N).padStart(2, '0')}
+              {active.number} <span>/ {String(N).padStart(2, '0')}</span>
             </span>
             <button type="button" className={styles.arrow} onClick={() => step(-1)} aria-label={t('carousel.prev')}>
               <span aria-hidden="true">←</span>
@@ -260,146 +300,6 @@ export function ProjectsCarousel() {
               <span aria-hidden="true">→</span>
             </button>
           </div>
-        </header>
-
-        <div className={styles.reel}>
-          {/* Film strip */}
-          <ol ref={railRef} className={styles.rail} data-reveal data-lenis-prevent aria-label={t('carousel.sectionAria')}>
-            {projects.map((project, j) => {
-              const p = previewFor(project, false);
-              const isActive = j === index;
-              return (
-                <li key={project.id}>
-                  <button
-                    type="button"
-                    ref={(el) => {
-                      thumbRefs.current[j] = el;
-                    }}
-                    className={`${styles.thumb} ${isActive ? styles.thumbActive : ''}`}
-                    aria-current={isActive ? 'true' : undefined}
-                    aria-label={t('carousel.cardAria', { name: project.name })}
-                    onClick={() => goTo(j)}
-                  >
-                    <span className={styles.thumbImg}>
-                      {p && <img src={p.poster} alt="" loading="lazy" decoding="async" draggable="false" />}
-                    </span>
-                    <span className={styles.thumbMeta}>
-                      <span className={styles.thumbNum}>{project.number}</span>
-                      <span className={styles.thumbName}>{project.name}</span>
-                    </span>
-                    {isActive && (
-                      <span className={styles.thumbBar} aria-hidden="true">
-                        <i style={{ transform: `scaleX(${playing ? progress : 0})` }} />
-                      </span>
-                    )}
-                  </button>
-                </li>
-              );
-            })}
-          </ol>
-
-          {/* Stage */}
-          <div
-            className={styles.stage}
-            data-reveal
-            style={{ '--reveal-y': '40px' }}
-            onPointerDown={onPointerDown}
-            onPointerUp={onPointerUp}
-            onPointerCancel={() => {
-              swipeRef.current = null;
-            }}
-          >
-            <div className={styles.frame}>
-              <div className={styles.frameBar} aria-hidden="true">
-                <span className={styles.dots}>
-                  <i />
-                  <i />
-                  <i />
-                </span>
-                <span className={styles.addr}>{domain(active.url)}</span>
-                <span className={`${styles.live} ${playing ? styles.liveOn : ''}`}>
-                  <i /> {t('carousel.playing')}
-                </span>
-              </div>
-              <div className={styles.screen}>
-                <div key={active.id} className={`${styles.slide} ${dir > 0 ? styles.fromRight : styles.fromLeft}`}>
-                  {preview ? (
-                    <>
-                      <img className={styles.media} src={preview.poster} alt="" decoding="async" draggable="false" />
-                      {playVideo && (
-                        <PreviewVideo
-                          key={preview.mp4}
-                          preview={preview}
-                          allowSoftwareAv1={!isMobile}
-                          onPlaying={() => setPlaying(true)}
-                          onProgress={setProgress}
-                          onEnded={onEnded}
-                        />
-                      )}
-                    </>
-                  ) : (
-                    <span className={styles.typo}>{active.name}</span>
-                  )}
-                </div>
-                {limitData && !manualPlay && preview && (
-                  <button type="button" className={styles.playBtn} onClick={() => setManualPlay(true)} aria-label={active.name}>
-                    ▶
-                  </button>
-                )}
-              </div>
-            </div>
-            <span className={styles.bigNum} aria-hidden="true">
-              {active.number}
-            </span>
-          </div>
-
-          {/* Spec card */}
-          <article key={`card-${active.id}`} className={styles.card} data-reveal aria-live="polite">
-            <div className={styles.cardTop}>
-              <span className={styles.cardKicker}>
-                {t('carousel.project')} {active.number}
-              </span>
-              <span className={styles.chip}>{active.segment}</span>
-            </div>
-            <h3 className={styles.cardTitle}>{active.name}</h3>
-            <p className={styles.cardDesc}>{active.description}</p>
-
-            <div className={styles.perf} aria-hidden="true" />
-
-            <dl className={styles.spec}>
-              <div>
-                <dt>{t('carousel.segment')}</dt>
-                <dd>{active.segment}</dd>
-              </div>
-              <div>
-                <dt>{t('carousel.address')}</dt>
-                <dd className={styles.mono}>{domain(active.url)}</dd>
-              </div>
-            </dl>
-
-            <div className={styles.deliver}>
-              <span className={styles.deliverLabel}>{t('carousel.deliverables')}</span>
-              <ul>
-                {tags.map((tg, k) => (
-                  <li key={tg} style={{ '--k': k }}>
-                    <span aria-hidden="true">✓</span> {tg}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className={styles.ctas}>
-              {active.url && (
-                <a className={styles.ctaGhost} href={active.url} target="_blank" rel="noopener noreferrer">
-                  {t('carousel.live')} <span aria-hidden="true">↗</span>
-                </a>
-              )}
-              <a className={styles.ctaPrimary} href={projectWhatsApp(active)} target="_blank" rel="noopener noreferrer">
-                <span className={styles.ctaDot} aria-hidden="true" />
-                {t('carousel.wantLike')}
-              </a>
-            </div>
-          </article>
         </div>
       </div>
       <p className={styles.srOnly} aria-live="polite">
